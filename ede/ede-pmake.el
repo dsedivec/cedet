@@ -27,8 +27,6 @@
 ;; 
 ;; Code generator for Makefiles.
 
-(require 'ede-proj)
-
 ;;; Code:
 (defmethod ede-proj-makefile-create ((this ede-proj-project) mfilename)
   "Create a Makefile for all Makefile targets in THIS.
