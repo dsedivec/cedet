@@ -72,7 +72,7 @@ Results in --add-missing being passed to automake."
 
 (defmethod ede-proj-makefile-sourcevar ((this ede-proj-target-makefile-info))
   "Return the variable name for THIS's sources."
-  (concat (ede-pmake-varname this) "_TEXINFOS")))
+  (concat (ede-pmake-varname this) "_TEXINFOS"))
 
 (defmethod ede-proj-makefile-insert-source-variables
   ((this ede-proj-target-makefile-info) &optional moresource)
