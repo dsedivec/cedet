@@ -1841,8 +1841,7 @@ Optional argument NOESCAPE is passed to `prin1-to-string' when appropriate."
 (autoload 'describe-generic "eieio-opt" "Describe GENERIC defined by a string or symbol" t)
 (autoload 'eieiodoc-class "eieio-doc" "Create texinfo documentation about a class hierarchy." t)
 
-(autoload 'eieio-customize-object "eieio-custom" "Create a custom buffer editing OBJ.")
-(autoload 'eieio-custom-widget-insert "eieio-custom" "Insert a widget for customizing.")
+(autoload 'customize-object "eieio-custom" "Create a custom buffer editing OBJ.")
 
 ;; make sure this shows up after the help mode hook.
 (add-hook 'temp-buffer-show-hook 'eieio-help-mode-augmentation-maybee t)
