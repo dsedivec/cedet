@@ -21,6 +21,9 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.36  2001/05/25 01:12:10  zappo
+# (expression): Added string.
+#
 # Revision 1.35  2001/05/09 03:25:17  zappo
 # Added inline method support.
 # Store protection elements
@@ -546,6 +549,8 @@ opt-expression : expression
 expression : symbol
 	     ( )
            | punctuation "[!*&~]" symbol
+	     ( )
+	   | string
 	     ( )
            | semantic-list
 	     ( )
