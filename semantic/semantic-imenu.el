@@ -398,6 +398,19 @@ Optional argument STREAM is an optional stream of tokens used to create menus."
                  ;; Emacs imenu
                  'imenu-update-menubar))))))))
 
+(defun semantic-imenu-semanticdb-hook ()
+  "Function to be called from `semanticdb-mode-hooks'.
+Clears all imenu menus that may be depending on the database."
+  (semantic-map-buffers
+   #'(lambda ()
+       ;; Set up semanticdb environment if enabled.
+       (if (semanticdb-minor-mode-p)
+           (semanticdb-semantic-init-hook-fcn))
+       ;; Clear imenu cache to redraw the imenu.
+       (semantic-imenu-flush-fcn))))
+
+(add-hook 'semanticdb-mode-hooks 'semantic-imenu-semanticdb-hook)
+
 ;;; Interactive Utilities
 ;;
 (defun semantic-imenu-toggle-bucketize-file ()
