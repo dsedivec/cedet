@@ -332,16 +332,23 @@ TOP-LEVEL ENTRIES:
    MODIFIERS are details about a variable that are not covered in the TYPE
    field.  DOCSTRING is optional.
 
- (\"NAME\" function \"TYPE\" ( ARG-LIST ) \"DOCSTRING\" START END)
-   A function/procedure definition.  DOCSTRING is optional.
+ (\"NAME\" function \"TYPE\" ( ARG-LIST ) MODIFIERS [THROWS]
+          \"DOCSTRING\" START END)
+   A function/procedure definition.
    ARG-LIST is a list of variable definitions.
+   THROWS is an optional argument for functions or methods in languages
+   that support typed signal throwing.
+   DOCSTRING is optional.
 
- (\"NAME\" type \"TYPE\" ( PART-LIST ) ( PARENTS ) \"DOCSTRING\" START END)
-   A type definition.  TYPE of a type could be anything, such as (in C)
-   struct, union, typedef, or class.  The PART-LIST is only useful for
-   structs that have multiple individual parts.  (It is recommended
-   that these be variables, functions or types).  PARENTS is strictly for
-   classes where there is inheritance.
+ (\"NAME\" type \"TYPE\" ( PART-LIST ) ( PARENTS ) MODIFIERS
+          \"DOCSTRING\" START END)
+   A type definition.
+   TYPE of a type could be anything, such as (in C) struct, union, typedef,
+   or class.
+   PART-LIST is only useful for structs that have multiple individual parts.
+            (It is recommended that these be variables, functions or types).
+   PARENTS is strictly for classes where there is inheritance.
+   
 
  (\"FILE\" include SYSTEM \"DOCSTRING\" START END)
    In C, an #include statement.  In elisp, a require statement.
@@ -677,7 +684,8 @@ A second pass comares return values against this list.")
   (setq semantic-bovinate-create-reference nil))
 
 (defun bovinate-reference-compare ()
-  "Create a reference list."
+  "Compare the current parsed output to the reference list.
+Create a reference with `bovinate-create-reference'."
   (interactive)
   (let ((semantic-bovinate-compare-reference t))
     (semantic-clear-toplevel-cache)
