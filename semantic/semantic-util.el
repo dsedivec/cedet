@@ -499,7 +499,10 @@ If SEARCH-INCLUDE is non-nil, search include files."
 		       (set-buffer streamorbuffer)
 		       (semantic-bovinate-toplevel))
 		   streamorbuffer))
-	 (m (assoc name stream)))
+         (assoc-fun (if semantic-case-fold
+                        #'assoc-ignore-case
+                      #'assoc))
+	 (m (funcall assoc-fun name stream)))
     (if m
 	m
       (let ((toklst stream)
@@ -629,7 +632,8 @@ searched for matches."
 	(includes nil)			;list of includes
 	(stream nil)			;current stream
 	(sl nil)			;list of token children
-	(nl nil))			;new list
+	(nl nil)			;new list
+        (case-fold-search semantic-case-fold))
     (if search-includes
 	(setq includes (semantic-find-nonterminal-by-token
 			'include (car streamlist))))
@@ -673,7 +677,8 @@ searched for matches."
 		       (set-buffer streamorbuffer)
 		       (semantic-bovinate-toplevel))
 		   streamorbuffer))
-	(found nil))
+	(found nil)
+        (case-fold-search semantic-case-fold))
     (while (and (not found) stream)
       (if (funcall function (car stream))
 	  (setq found (car stream)))
