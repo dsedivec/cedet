@@ -66,8 +66,24 @@ the current major mode is the only one.")
   `(nth 3 ,token))
 
 (defmacro semantic-token-type-parent (token)
-  "Retrieve the parent of the type TOKEN."
+  "Retrieve the parent of the type TOKEN.
+The return value is a list.  A value of nil means no parents.
+The `car' of the list is either the parent class, or a list
+of parent classes.  The `cdr' of the list is the list of
+interfaces, or abstract classes which are parents of TOKEN."
   `(nth 4 ,token))
+
+(defun semantic-token-type-parent-superclass (token)
+  "Retrieve the parent superclasses of type type TOKEN."
+  (let ((p (semantic-token-type-parent token)))
+    (cond ((stringp (car p))
+	   (list (car p)))
+	  ((listp (car p))
+	   (car p)))))
+
+(defun semantic-token-type-parent-implement (token)
+  "Retrieve the parent interfaces of type type TOKEN."
+  (cdr (semantic-token-type-parent token)))
 
 (defmacro semantic-token-type-extra-specs (token)
   "Retrieve extra specifications for the type TOKEN."
