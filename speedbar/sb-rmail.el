@@ -1,6 +1,6 @@
 ;;; sb-rmail --- Speedbar support for rmail
 
-;; Copyright (C) 1997, 1998 Free Software Foundation
+;; Copyright (C) 1997, 1998, 1999 Free Software Foundation
 ;;
 ;; Author: Eric M. Ludlam <zappo@gnu.ai.mit.edu>
 ;; Version: 0.1
@@ -132,7 +132,7 @@ The command used is TOKEN.  INDENT is not used."
   "Load in the rmail file TEXT.
 TOKEN and INDENT are not used."
   (speedbar-with-attached-buffer
-   (message "Loading in RMAIL file %s..." text)
+   (speedbar-message "Loading in RMAIL file %s..." text)
    (find-file text)))
 
 (defun rmail-speedbar-move-message-to-folder-on-line ()
