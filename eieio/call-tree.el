@@ -76,6 +76,7 @@ This function is assumed to have been called from it's parent node")
 		  :name (symbol-name func)
 		  :symbol func))
 
+;;;###autoload
 (defun call-tree (func)
   "Build a call tree to show all functions called by FUNC."
   (interactive "aFunction: ")
