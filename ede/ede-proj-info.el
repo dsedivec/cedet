@@ -43,6 +43,12 @@ All other sources should be included independently."))
   "Return t if OBJ wants to own FILE."
   (string-match "\\.texi?$" file))
 
+;;; Makefile generation
+;;
+(defmethod ede-proj-makefile-sourcevar ((this ede-proj-target-makefile-info))
+  "Return the variable name for THIS's sources."
+  (concat (ede-pmake-varname this) "_INFOS"))
+
 (defmethod ede-proj-makefile-garbage-patterns
   ((this ede-proj-target-makefile-info))
   "Return a list of patterns that are considred garbage to THIS.
