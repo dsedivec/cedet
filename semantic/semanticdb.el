@@ -370,7 +370,7 @@ Save all the databases."
 ;;
 (defvar semanticdb-hooks
   '((semanticdb-semantic-init-hook-fcn semantic-init-hooks)
-    (semanticdb-post-bovination semantic-after-toplevel-bovinate-hook)
+    (semanticdb-post-bovination semantic-after-toplevel-cache-change-hook)
     (semanticdb-kill-hook kill-buffer-hook)
     (semanticdb-kill-emacs-hook kill-emacs-hook)
     )
