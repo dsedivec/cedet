@@ -33,7 +33,7 @@
 ;; By splitting out that hard part into this file, and avoiding byte
 ;; compilation, one copy speedbar can support all these platforms together.
 ;;
-;; This file require the `image' package if it is available.
+;; This file requires the `image' package if it is available.
 
 (condition-case nil
     (require 'image)
