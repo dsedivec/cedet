@@ -934,6 +934,8 @@ Fills in the default value in CLASS' in FIELD with VALUE."
       (setcar (nthcdr (- c 3) (aref (class-v class) class-public-d))
 	      value))))
 
+;;; Handy CLOS macros
+;;
 (defmacro with-slots (spec-list object &rest body)
   "Create a lexical scope for slots in SPEC-LIST for OBJECT.
 Execute BODY within this lexical scope."
@@ -1033,12 +1035,21 @@ If EXTRA, include that in the string returned to represent the symbol."
       (setq ia (cdr ia)))
     f))
 
-(defmacro slot-boundp (object slot)
+;;; CLOS queries into classes and slots
+;;
+(defun slot-boundp (object slot)
   "Non-nil if OBJECT's SLOT is bound.
 Strictly speaking in CLOS, a slot can exist in OBJECT, but not be bound.
 This is not the case in EIEIO as all slots are bound at instantiation time.
 Therefore `slot-boundp' is really a macro calling `slot-exists-p'"
-  `(slot-exists-p ,object ,slot))
+  ;; Skip typechecking while retrieving this value.
+  (let ((eieio-skip-typecheck t))
+    ;; Return nil if the magic symbol is in there.
+    (if (eq (oref-engine object slot) eieio-unbound) nil t)))
+
+(defun slot-makeunbound (object slot)
+  "In OBJECT, make SLOT unbound."
+  (oset-engine object slot eieio-unbound))
 
 (defun slot-exists-p (object slot)
   "Non-nil if OBJECT contains SLOT."
