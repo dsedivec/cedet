@@ -1,4 +1,4 @@
-;;; semantic-ex.el --- Semantic details for some languages
+;;; semantic-el.el --- Semantic details for Emacs Lisp
 
 ;;; Copyright (C) 1999, 2000, 2001 Eric M. Ludlam
 
@@ -64,7 +64,7 @@ at compile time, permitting compound strings."
 	((and (listp form) (eq (car form) 'concat)
 	      (stringp (nth 1 form)))
 	 (nth 1 form))
-	nil))
+	(t nil)))
 
 (defun semantic-elisp-use-read (sl)
   "Use `read' on the semantic list SL.
