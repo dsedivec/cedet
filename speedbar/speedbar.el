@@ -894,20 +894,20 @@ directories.")
 
 ;;; Compatibility
 ;;
-(if (fboundp 'make-overlay)
+(if (featurep 'xemacs)
     (progn
-      (defalias 'speedbar-make-overlay 'make-overlay)
-      (defalias 'speedbar-overlay-put 'overlay-put)
-      (defalias 'speedbar-delete-overlay 'delete-overlay)
-      (defalias 'speedbar-overlay-start 'overlay-start)
-      (defalias 'speedbar-overlay-end 'overlay-end)
-      (defalias 'speedbar-mode-line-update 'force-mode-line-update))
-  (defalias 'speedbar-make-overlay 'make-extent)
-  (defalias 'speedbar-overlay-put 'set-extent-property)
-  (defalias 'speedbar-delete-overlay 'delete-extent)
-  (defalias 'speedbar-overlay-start 'extent-start)
-  (defalias 'speedbar-overlay-end 'extent-end)
-  (defalias 'speedbar-mode-line-update 'redraw-modeline))
+      (defalias 'speedbar-make-overlay 'make-extent)
+      (defalias 'speedbar-overlay-put 'set-extent-property)
+      (defalias 'speedbar-delete-overlay 'delete-extent)
+      (defalias 'speedbar-overlay-start 'extent-start)
+      (defalias 'speedbar-overlay-end 'extent-end)
+      (defalias 'speedbar-mode-line-update 'redraw-modeline))
+  (defalias 'speedbar-make-overlay 'make-overlay)
+  (defalias 'speedbar-overlay-put 'overlay-put)
+  (defalias 'speedbar-delete-overlay 'delete-overlay)
+  (defalias 'speedbar-overlay-start 'overlay-start)
+  (defalias 'speedbar-overlay-end 'overlay-end)
+  (defalias 'speedbar-mode-line-update 'force-mode-line-update))
 
 ;;; Mode definitions/ user commands
 ;;
