@@ -1277,14 +1277,20 @@ If ITEM already exists in the list in SLOT, then it is not added.
 Comparison is done with `equal' through the `member' function call.
 If SLOT is unbound, bind it to the list containing ITEM."
   (let (ov)
+    ;; Find the originating list.
     (if (not (slot-boundp object slot))
 	(setq ov (list item))
       (setq ov (eieio-oref object slot))
+      ;; turn it into a list.
+      (unless (listp ov)
+	(setq ov (list ov)))
+      ;; Do the combination
       (if (not (member item ov))
 	  (setq ov
 		(if append
 		    (append ov (list item))
 		  (cons item ov)))))
+    ;; Set back into the slot.
     (eieio-oset object slot ov)))
 
 (defun object-remove-from-list (object slot item)
