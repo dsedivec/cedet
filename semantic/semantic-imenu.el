@@ -167,6 +167,29 @@ Optional argument NOTYPECHECK specifies not to make subgroups under types."
 	      imenu-sort-function)
       index)))
 
+;;; Interactive Utilities
+;;
+(defun semantic-imenu-toggle-bucketize-file ()
+  "Toggle the ability of imenu to bucketize the current file."
+  (interactive)
+  (setq semantic-imenu-bucketize-file (not semantic-imenu-bucketize-file))
+  ;; Force a rescan
+  (setq imenu--index-alist nil))
+
+(defun semantic-imenu-toggle-buckets-to-submenu ()
+  "Toggle the ability of imenu to turn buckets into submenus."
+  (interactive)
+  (setq semantic-imenu-buckets-to-submenu (not semantic-imenu-buckets-to-submenu))
+  ;; Force a rescan
+  (setq imenu--index-alist nil))
+
+(defun semantic-imenu-toggle-bucketize-type-parts ()
+  "Toggle the ability of imenu to bucketize the current file."
+  (interactive)
+  (setq semantic-imenu-bucketize-type-parts (not semantic-imenu-bucketize-type-parts))
+  ;; Force a rescan
+  (setq imenu--index-alist nil))
+
 (provide 'semantic-imenu)
 
 ;;; semantic-imenu.el ends here
