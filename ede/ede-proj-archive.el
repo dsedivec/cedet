@@ -27,6 +27,8 @@
 ;;
 ;; Handle Emacs Lisp in and EDE Project file.
 
+(require 'ede-proj-obj)
+
 ;;; Code:
 (defclass ede-proj-target-makefile-archive
   (ede-proj-target-makefile-objectcode)
