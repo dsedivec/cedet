@@ -481,11 +481,12 @@ it returns the results of function `semanticdb-current-database'."
 			(expand-file-name default-directory))
 	  (setq root (car roots)))
       (setq roots (cdr roots)))
-    (let ((regexp (concat "^" (regexp-quote (expand-file-name root)))))
-      (while (and root adb)
-	(if (string-match regexp (oref (car adb) file))
-	    (setq dbs (cons (car adb) dbs)))
-	(setq adb (cdr adb))))
+    (if root
+        (let ((regexp (concat "^" (regexp-quote (expand-file-name root)))))
+          (while (and root adb)
+            (if (string-match regexp (oref (car adb) file))
+                (setq dbs (cons (car adb) dbs)))
+            (setq adb (cdr adb)))))
     dbs))
 
 ;;; Search routines
