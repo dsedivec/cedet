@@ -699,7 +699,7 @@ Optional argument PARENT is the parent type if TOKEN is a detail."
 (defun semantic-summerize-nonterminal (token &optional parent)
   "Summerize TOKEN in a reasonable way.
 Optional argument PARENT is the parent type if TOKEN is a detail."
-  (let ((s (semantic-fetch-overload 'prototype-nonterminal)))
+  (let ((s (semantic-fetch-overload 'summerize-nonterminal)))
     (if s
 	(funcall s token parent)
       ;; FLESH THIS OUT MORE
@@ -714,7 +714,7 @@ Optional argument PARENT is the parent type if TOKEN is a detail."
   "Return a prototype for TOKEN.
 This functin must be overloaded, though it need not be used."
   (let ((tt (semantic-token-token token))
-	(s (semantic-fetch-overload 'summerize-nonterminal)))
+	(s (semantic-fetch-overload 'prototype-nonterminal)))
     (if s
 	;; Prototype is non-local
 	(funcall s token)
@@ -759,7 +759,7 @@ This functin must be overloaded, though it need not be used."
 Default behavior (if not overriden) looks for a token specifying the
 prototype file, or the existence of an EDE variable indicating which
 file prototypes belong in."
-  (let ((s (semantic-fetch-overload 'prototype-nonterminal)))
+  (let ((s (semantic-fetch-overload 'prototype-file)))
     (if s
 	(funcall s buffer)
       ;; Else, perform some default behaviors
