@@ -48,6 +48,7 @@
      (include)
      (package)
      (method)
+     (advice)
      (code)
      (comment) )
     ;; A type is defined by extended tools like CL, or EIEIO
@@ -71,6 +72,12 @@
 		 ,(semantic-lambda
 		    (list (nth 2 vals) 'function nil (nth 4 vals) nil
 			  (car-safe (nth 5 vals))))))
+    (advice
+     (open-paren symbol "defadvice" symbol arg-list
+		 doc-string
+		 ,(semantic-lambda
+		   (list (nth 2 vals) 'function nil (nth 3 vals) nil
+			 (car-safe (nth 4 vals))))))
     ;; A variable can be a defvar or defconst.
     (variable
      (open-paren symbol "defvar\\|defconst\\|defcustom\\|defface\\|defimage"
