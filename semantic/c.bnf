@@ -21,6 +21,9 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.20  2000/10/30 01:34:23  zappo
+# Tidied up opt-array stuff.
+#
 # Revision 1.19  2000/09/27 02:08:04  zappo
 # Moved `type' to be before `function' and `variable' in `declaration'.
 #
@@ -210,7 +213,7 @@ opt-bits : COLON symbol
 	   ( nil )
 	 ;
 
-opt-array : semantic-list "^\\[.*\\]$" opt-array
+opt-array : semantic-list "\\[.*\\]$" opt-array
 	  # Eventually we want to replace the 1 below with a size
 	  # (if available)
 	    ( (cons 1 (car ,$2) ) )
