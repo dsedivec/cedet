@@ -1020,6 +1020,7 @@ so far, to be used in the error recovery stack."
       (semantic-bovinate-nonterminal-check stream nonterminal))
 
   (let ((matchlist (cdr (assq nonterminal table)))
+	(starting-stream stream)
         (nt-loop  t)             ;non-terminal loop condition
         nt-popup                 ;non-nil if return from nt recursion
         nt-stack                 ;non-terminal recursion stack
@@ -1174,7 +1175,12 @@ so far, to be used in the error recovery stack."
                     (setq out nil)))
               ;; Nothin?
               ))
-          (setq result (list s out semantic-overlay-error-recovery-stack))
+	  (setq result
+		(if (eq s starting-stream)
+		    (list (cdr s) nil
+			  semantic-overlay-error-recovery-stack)
+		  (list s out
+			semantic-overlay-error-recovery-stack)))
           (if nt-stack
               ;; pop previous state from the nt-stack
               (let ((state (car nt-stack))
@@ -1710,8 +1716,21 @@ LENGTH tokens."
 	       (if semantic-ignore-comments
 		   ;; If the language doesn't deal with comments,
 		   ;; ignore them here.
-		   (progn (forward-comment 1)
-			  (setq ep (point)))
+		   (let ((comment-start-point (point)))
+		     (forward-comment 1)
+		     (if (eq (point) comment-start-point)
+			 ;; In this case our start-skip string failed
+			 ;; to work properly.  Lets try and move over
+			 ;; whatever white space we matched to begin
+			 ;; with.
+			 (skip-syntax-forward "-.'"
+					      (save-excursion
+						(end-of-line)
+						(point)))
+		       (forward-comment 1))
+		     (if (eq (point) comment-start-point)
+			 (error "Strange comment syntax prevents lexical analysis"))
+		     (setq ep (point)))
 		 ;; Language wants comments, link them together.
 		 (if (eq (car (car ts)) 'comment)
 		     (setcdr (cdr (car ts)) (save-excursion
