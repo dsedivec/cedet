@@ -475,7 +475,7 @@ COLLECTION is the list of things collected so far."
 	  (forward-list matchlen)
 	  (skip-chars-forward " \t\n(")
 	  (forward-sexp tokenlen)
-	  (message "%s: %S" (car s) collection)
+	  (message "%s: %S" lse collection)
 	  (let ((e (read-event)))
 	    (cond ((eq e ?f)		;force a failure on this symbol.
 		   (setq ret 'fail))
@@ -576,9 +576,8 @@ list of semantic tokens found."
 	    (setq s (cdr s)))
 	  ;; Do the compare
 	  (if (eq (car lte) (car lse))	;syntactic match
-	      (progn
+	      (let ((valdot (cdr lse)))
 		(setq val (semantic-flex-text lse)
-		      valdot (cdr lse)
 		      lte (cdr lte))
 		(if (stringp (car lte))
 		    (progn
