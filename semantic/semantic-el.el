@@ -34,6 +34,7 @@
 ;; 
 
 (require 'semantic)
+(require 'semantic-inc)
 (require 'backquote)
 
 ;;; Code:
@@ -489,13 +490,23 @@
 	    (t nil))
     nil))
 
-(add-hook 'c-mode-hook
-          (lambda ()
-            (setq semantic-toplevel-bovine-table 
-		  semantic-toplevel-c-bovine-table
-		  semantic-expand-nonterminal 
-		  'semantic-expand-c-nonterminal
-		  semantic-flex-extensions semantic-flex-c-extensions)))
+(defcustom semantic-inc-default-c-path '("/usr/include" "/usr/dt/include"
+					 "/usr/X11R6/include")
+  "Default set of include paths for C code.
+Used by `semantic-inc' to define an include path.  This should
+probably do some sort of search to see what is actually on the local
+machine."
+  :group 'c
+  :type '(repeat (string :tag "Path")))
+
+(add-hook
+ 'c-mode-hook
+ (lambda ()
+   (setq semantic-toplevel-bovine-table semantic-toplevel-c-bovine-table
+	 semantic-expand-nonterminal 'semantic-expand-c-nonterminal
+	 semantic-flex-extensions semantic-flex-c-extensions
+	 semantic-inc-include-path semantic-inc-default-c-path
+	 )))
 
 (provide 'semantic-ex)
 
