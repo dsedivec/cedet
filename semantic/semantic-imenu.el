@@ -85,7 +85,7 @@ Uses the output of the Semantic Bovinator to create the index."
 			       (semantic-create-imenu-subindex
 				(semantic-token-type-parts token))))
 			    index))
-	(setq index (cons (cons (semantic-abbreviate-nonterminal token)
+	(setq index (cons (cons (funcall semantic-imenu-summary-function token)
 				(semantic-token-end token))
 			  index)))
       (setq tokens (cdr tokens)))
