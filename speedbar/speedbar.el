@@ -475,10 +475,10 @@ or
   (GROUP-NAME-STRING ELT1 EL2... ELTn)"
   :group 'speedbar
   :type 'hook
-  :options '(speedbar-sort-tag-hierarchy
-	     speedbar-trim-words-tag-hierarchy
+  :options '(speedbar-trim-words-tag-hierarchy
 	     speedbar-prefix-group-tag-hierarchy
-	     speedbar-simple-group-tag-hierarchy)
+	     speedbar-simple-group-tag-hierarchy
+	     speedbar-sort-tag-hierarchy)
   )
 
 (defcustom speedbar-tag-group-name-minimum-length 4
@@ -2176,8 +2176,10 @@ This is based on `speedbar-initial-expansion-list-name' referencing
   (setq speedbar-previously-used-expansion-list-name
 	speedbar-initial-expansion-list-name
 	speedbar-initial-expansion-list-name new-default)
-  (speedbar-refresh)
-  (speedbar-reconfigure-keymaps))
+  (if (and speedbar-frame (frame-live-p speedbar-frame))
+      (progn
+	(speedbar-refresh)
+	(speedbar-reconfigure-keymaps))))
 
 (defun speedbar-fetch-replacement-function (function)
   "Return a current mode specific replacement for function, or nil.
