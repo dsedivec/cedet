@@ -2106,8 +2106,8 @@ cell of the form ( 'DIRLIST . 'FILELIST )"
 	   (if work-list
 	       (if junk-list
 		   (append (nreverse newlst)
-			   (list (cons "Misc" junk-list))
-			   (nreverse work-list))
+			   (nreverse work-list)
+			   junk-list)
 		 (append (nreverse newlst)
 			 (nreverse work-list)))
 	     (append (nreverse newlst) junk-list))))
@@ -2125,7 +2125,8 @@ cell of the form ( 'DIRLIST . 'FILELIST )"
 	   ;; Get the prefix to trim by.  Make sure that we don't trim
 	   ;; off silly pieces, only complete understandable words.
 	   (setq trim-prefix (try-completion "" sublst))
-	   (if (or (not trim-prefix)
+	   (if (or (= (length sublst) 1)
+		   (not trim-prefix)
 		   (not (string-match "\\(\\w+\\W+\\)+" trim-prefix)))
 	       (append (nreverse newlst) (nreverse sublst))
 	     (setq trim-prefix (substring trim-prefix (match-beginning 0)
