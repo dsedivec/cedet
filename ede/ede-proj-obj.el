@@ -143,6 +143,23 @@ These are removed with make clean."
 	    "")
 	  "\n\n"))
 
+;;; Speedbar options:
+;;
+(defmethod ede-sb-expand ((this ede-proj-target-makefile-objectcode) depth)
+  "Expand an object code node in speedbar.
+This is special for additional headers."
+  (call-next-method)
+  (with-slots (headers) this
+    (mapcar (lambda (car)
+	      (speedbar-make-tag-line 'bracket ?+
+				      'ede-tag-file
+				      (concat (oref this :path) car)
+				      car
+				      'ede-file-find
+				      (concat (oref this :path) car)
+				      'speedbar-file-face depth))
+	    headers)))
+
 (provide 'ede-proj-obj)
 
 ;;; ede-proj-obj.el ends here
