@@ -335,14 +335,20 @@ INDENT is the current indentation level."
   (let ((tok (speedbar-line-token)))
     (cond ((object-p tok)
 	   (message (eieio-speedbar-description tok)))
-	  ((stringp tok)
-	   (speedbar-item-info-file-helper))
-	  (t (speedbar-item-info-tag-helper)))))
+	  (t
+	   (let ((no (eieio-speedbar-find-nearest-object)))
+	     (if no
+		 (eieio-speedbar-child-description no)))))))
 
-(defun eieio-speedbar-find-nearest-object (depth)
+(defun eieio-speedbar-find-nearest-object (&optional depth)
   "Search backwards to the first line associated with an object.
 Optional argument DEPTH is the current depth of the search."
   (save-excursion
+    (if (not depth)
+	(progn
+	  (beginning-of-line)
+	  (looking-at "^\\([0-9]+\\):")
+	  (setq depth (string-to-int (match-string 1)))))
     (while (and (not (object-p (speedbar-line-token)))
 		(> depth 0))
       (setq depth (1- depth))
