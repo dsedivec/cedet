@@ -25,7 +25,7 @@
 ;;              675 Mass Ave.
 ;;              Cambridge, MA 02139, USA.
 ;;
-;; Please send bug reports, etc. to zappo@gnu.ai.mit.edu.
+;; Please send bug reports, etc. to zappo@gnu.org
 ;;
 
 ;;; Commentary:
@@ -101,13 +101,17 @@
 ;; which allow speedbar to create specialized lists for special modes
 ;; that are not file-related.
 ;;
-;;    See optional file `speedbcfg.el' for interactive buffers
-;; allowing simple configuration of colors and features of speedbar.
-;;
 ;;    AUC-TEX users: The imenu tags for AUC-TEX mode don't work very
 ;; well.  Use the imenu keywords from tex-mode.el for better results.
 ;;
 ;; This file requires the library package assoc (association lists)
+;; and the package custom (for easy configuration of speedbar)
+;;     http://www.dina.kvl.dk/~abraham/custom/
+;;
+;; If you do not have custom installed, you can still get face colors
+;; by modifying the faces directly in your .emacs file, or setting
+;; them in your .Xdefaults file.  See the end of this file for
+;; the face names, and their default colors.
 
 ;;; Speedbar updates can be found at:
 ;; ftp://ftp.ultranet.com/pub/zappo/speedbar*.tar.gz
