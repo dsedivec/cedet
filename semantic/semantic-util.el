@@ -295,6 +295,8 @@ Available override symbols:
  `find-nonterminal'      (buffer token & parent)  find token in buffer.
  `summerize-nonterminal' (token & parent)         return summery string.
  `prototype-nonterminal' (token)                  return a prototype string.
+ `prototype-file'        (buffer)                 return a file in which
+ 	                                          prototypes are placed
 
 Parameters mean:
 
@@ -428,6 +430,25 @@ This functin must be overloaded, though it need not be used."
 	(funcall s token)
       ;; Bad hack, but it should sorta work...
       (semantic-summerize-nonterminal token) )))
+
+(defun semantic-prototype-file (buffer)
+  "Return a file in which prototypes belonging to BUFFER should be placed.
+Default behavior (if not overriden) looks for a token specifying the
+prototype file, or the existence of an EDE variable indicating which
+file prototypes belong in."
+  (let ((s (semantic-fetch-overload 'prototype-nonterminal)))
+    (if s
+	(funcall s buffer)
+      ;; Else, perform some default behaviors
+      (if (and (fboundp 'ede-header-file) ede-minor-mode)
+	  (save-excursion
+	    (set-buffer buffer)
+	    (ede-header-file))
+	;; No EDE options for a quick answer.  Search.
+	(save-excursion
+	  (set-buffer buffer)
+	  (if (re-search-forward "::Header:: \\([a-zA-Z0-9.]+\\)" nil t)
+	      (match-string 1)))))))
 
 ;;; Hacks
 ;;
