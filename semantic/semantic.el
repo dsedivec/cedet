@@ -606,9 +606,11 @@ COLLECTION is the list of things collected so far."
       (delete-overlay ol2))
     ret))
 
-(defun bovinate ()
-  "Bovinate the current buffer.  Show output in a temp buffer."
-  (interactive)
+(defun bovinate (&optional clear)
+  "Bovinate the current buffer.  Show output in a temp buffer.
+Optional argument CLEAR will clear the cache before bovinating."
+  (interactive "P")
+  (if clear (semantic-clear-toplevel-cache))
   (let ((out (semantic-bovinate-toplevel nil t)))
     (pop-to-buffer "*BOVINATE*")
     (require 'pp)
