@@ -3,7 +3,7 @@
 ;; Copyright (C) 1996, 1997 Eric M. Ludlam
 ;;
 ;; Author: Eric M. Ludlam <zappo@gnu.ai.mit.edu>
-;; Version: 0.4.5
+;; Version: 0.4.6
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 ;;
@@ -221,6 +221,7 @@
 ;;        always rescanning directories.
 ;; 0.4.5 XEmacs bugfixes and enhancements.
 ;;       Window Title simplified.
+;; 0.4.6 Fixed problems w/ dedicated minibuffer frame.
 ;;       Fixed errors reported by checkdoc.
 
 ;;; TODO:
