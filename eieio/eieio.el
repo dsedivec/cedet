@@ -166,6 +166,8 @@
 ;;;           creation time.
 ;;;        New `eieio-doc' file will create texinfo documentation
 ;;;           describing a class hierarchy
+;;;        Modifies existing `lisp-imenu-generic-expression' to include
+;;;           defmethod.
 
 ;;;
 ;;; Variable declarations.  These variables are used to hold the call
@@ -1203,6 +1205,24 @@ remember  to prepend a space."
 	    )
 	  )
 
+;;;
+;;; Interfacing with imenu in emacs lisp mode
+;;;
+(defun eieio-update-lisp-imenu-expression ()
+  "Examines `lisp-imenu-generic-expression' and modifies it to include
+a scan for `defmethod'."
+  (let ((exp lisp-imenu-generic-expression))
+    (while exp
+      ;; it's of the form '( ( title expr indx ) ... )
+      (let* ((subcar (cdr (car exp)))
+	     (substr (car subcar)))
+	(if (and (not (string-match "|method\\\\" substr))
+		 (string-match "|advice\\\\" substr))
+	    (setcar subcar 
+		    (replace-match "|advice\\|method\\" t t substr 0))))
+      (setq exp (cdr exp)))))
+
+(eieio-update-lisp-imenu-expression)
 
 ;;;
 ;;; Autoloading some external symbols
