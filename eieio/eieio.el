@@ -5,7 +5,7 @@
 ;; Copyright (C) 1995,1996, 1998, 1999 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
-;; Version: 0.14
+;; Version: 0.14.1
 ;; RCS: $Id$
 ;; Keywords: OO, lisp
 ;;
@@ -44,7 +44,7 @@
 ;;; Code:
 (eval-when-compile (require 'cl))
 
-(defvar eieio-version "0.14"
+(defvar eieio-version "0.14.1"
   "Current version of EIEIO.")
 (defun eieio-version ()
   "Display the current version of EIEIO."
