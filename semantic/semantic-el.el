@@ -34,7 +34,6 @@
 ;; 
 
 (require 'semantic)
-(require 'semantic-inc)
 (require 'backquote)
 
 ;;; Code:
@@ -477,7 +476,7 @@
 	    (t nil))
     nil))
 
-(defcustom semantic-inc-default-c-path '("/usr/include" "/usr/dt/include"
+(defcustom semantic-default-c-path '("/usr/include" "/usr/dt/include"
 					 "/usr/X11R6/include")
   "Default set of include paths for C code.
 Used by `semantic-inc' to define an include path.  This should
@@ -492,7 +491,7 @@ machine."
    (setq semantic-toplevel-bovine-table semantic-toplevel-c-bovine-table
 	 semantic-expand-nonterminal 'semantic-expand-c-nonterminal
 	 semantic-flex-extensions semantic-flex-c-extensions
-	 semantic-inc-include-path semantic-inc-default-c-path
+	 semantic-dependency-include-path semantic-default-c-path
 	 )))
 
 (provide 'semantic-ex)
