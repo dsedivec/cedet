@@ -644,8 +644,8 @@ If NULL-ON-ERROR is a symbol, set it to nil if we cannot create a timer."
     (setq dframe-client-functions (delete fn dframe-client-functions)))
   ;; Now decided what to do about the timout.
   (if (or
-       ;; We have no timer, and a new timeout, start er up
-       (and (not dframe-timer) timeout)
+       ;; We have a timer, restart the timer with the new time.
+       timeout
        ;; We have a timer, an off is requested, and no client
        ;; functions are left, shut er down.
        (and dframe-timer (not timeout) dframe-client-functions))
