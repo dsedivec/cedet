@@ -1,6 +1,6 @@
 ;;; eieio-custom.el -- eieio object customization
 
-;;; Copyright (C) 1999, 2000 Eric M. Ludlam
+;;; Copyright (C) 1999, 2000, 2001 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
 ;; RCS: $Id$
@@ -25,16 +25,12 @@
 ;;              Cambridge, MA 02139, USA.
 ;;
 ;; Please send bug reports, etc. to zappo@gnu.org
-;;
-;; Updates can be found at:
-;;    ftp://ftp.ultranet.com/pub/zappo
 
 ;;; Commentary:
 ;;
-;;   This contains support customization of eieio objects.  Enabling your
-;; object to be customizable requires use of the added class slot
-;; attirbute :custom
-;;
+;;   This contains support customization of eieio objects.  Enabling
+;; your object to be customizable requires use of the slot attirbute
+;; `:custom'.
 
 (require 'eieio)
 (require 'widget)
@@ -456,7 +452,6 @@ Return the symbol for the group, or nil"
 	    (completing-read (concat (oref obj name)  " Custom Group: ")
 			     g nil t nil 'eieio-read-custom-group-history)
 	    g)))))
-    
 
 (provide 'eieio-custom)
 

@@ -1,7 +1,7 @@
 ;;; eieio-comp.el -- eieio routines to help with byte compilation
 
 ;;;
-;; Copyright (C) 1995,1996, 1998, 1999, 2000 Eric M. Ludlam
+;; Copyright (C) 1995,1996, 1998, 1999, 2000, 2001 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
 ;; RCS: $Id$
@@ -26,9 +26,6 @@
 ;;              Cambridge, MA 02139, USA.
 ;;
 ;; Please send bug reports, etc. to zappo@gnu.org
-;;
-;; Updates can be found at:
-;;    ftp://ftp.ultranet.com/pub/zappo
 
 ;;; Commentary:
 ;;  
