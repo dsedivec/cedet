@@ -68,7 +68,8 @@
       (add-hook 'semantic-init-hooks (lambda ()
 				       (which-func-mode 1))))
 
-  (when (eq window-system 'x)
+  (when (and (eq window-system 'x)
+	     (locate-library "imenu"))
     (add-hook 'semantic-init-hooks (lambda ()
 				     (imenu-add-to-menubar "TOKENS"))))
 
