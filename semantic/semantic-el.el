@@ -161,27 +161,14 @@
     (structparts
      ( semantic-list
        ,(lambda (vals start end)
-	  
-	  (semantic-bovinate-from-nonterminal (car (nth 0 vals)) (cdr (nth 0 vals)) 'structsubparts)
-	  ))
+	  (append 
+	   (semantic-bovinate-from-nonterminal-full (car (nth 0 vals)) (cdr (nth 0 vals)) 'structsubparts)
+	   
+	   (list start end))))
      ) ; end structparts
     (structsubparts
-     ( open-paren "{" close-paren "}"
-		  ,(lambda (vals start end)
-		     (append  (list nil)
-			      (list start end))))
-     ( open-paren "{" structsubparts
-		  ,(lambda (vals start end)
-		     (append  (nth 1 vals)
-			      (list start end))))
-     ( variabledef punctuation ";" structsubparts
-		   ,(lambda (vals start end)
-		      (append  ( append ( semantic-expand-c-nonterminal (nth 0 vals)) (nth 2 vals))
-			       (list start end))))
-     ( variabledef punctuation ";" close-paren "}"
-		   ,(lambda (vals start end)
-		      (append  ( semantic-expand-c-nonterminal (nth 0 vals))
-			       (list start end))))
+     ( variable)
+     ( define)
      ) ; end structsubparts
     (enumparts
      ( semantic-list
