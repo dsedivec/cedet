@@ -60,7 +60,7 @@ MFILENAME is the makefile to generate."
        ((eq (oref this makefile-type) 'Makefile)
 	(let ((df (apply 'append
 			 (mapcar (lambda (tg)
-				   (ede-proj-makefile-dependecy-files tg))
+				   (ede-proj-makefile-dependency-files tg))
 				 mt))))
 	  (insert "DISTDIR=" (oref this name) "-" (oref this version) "\n")
 	  (ede-proj-makefile-insert-variables this)
@@ -171,12 +171,12 @@ MFILENAME is the makefile to generate."
 
 ;;; DEPENDENCY FILE GENERATOR LISTS
 ;;
-(defmethod ede-proj-makefile-dependecy-files ((this ede-proj-target))
+(defmethod ede-proj-makefile-dependency-files ((this ede-proj-target))
   "Return a list of source files to convert to dependencies.
 Argument THIS is the target to get sources from."
   nil)
 
-(defmethod ede-proj-makefile-dependecy-files
+(defmethod ede-proj-makefile-dependency-files
   ((this ede-proj-target-makefile-objectcode))
   "Return a list of source files to convert to dependencies.
 Argument THIS is the target to get sources from."
@@ -302,6 +302,7 @@ These are removed with make clean."
 
 (defmethod ede-proj-makefile-insert-rules ((this ede-makefile-rule))
   "Insert rules needed for THIS rule object."
+  (if (oref this phony) (insert ".PHONY: (oref this target)\n"))
   (insert (oref this target) ": " (oref this dependencies) "\n\t"
 	  (mapconcat (lambda (c) c) (oref this rules) "\n\t")
 	  "\n\n"))
@@ -310,11 +311,6 @@ These are removed with make clean."
   ((this ede-proj-target-makefile-objectcode))
   "Insert rules needed by THIS target."
   (call-next-method)
-; This cheesy dependency is no longer necessary.
-;  (if (oref this headers)
-;      (insert "$(" (ede-name this) "_OBJ): "
-;	      (mapconcat (lambda (a) a) (oref this headers) " ")
-;	      "\n\n"))
   (insert (ede-name this) ": $(" (ede-name this) "_OBJ)\n"
 	  ;; Compile line
 	  "\t$(LINK) "
