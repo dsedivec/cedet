@@ -1291,6 +1291,8 @@ Optional argument CLEAR will clear the cache before bovinating." t)
   "Bovinate the current buffer and run in debug mode." t)
 (autoload 'senator-minor-mode "senator"
   "Minor mode for the SEmantic NAvigaTOR." t)
+(autoload 'global-semanticdb-minor-mode "semanticdb"
+  "Mode saving token lists between sessions." t)
 
 (provide 'semantic)
 
