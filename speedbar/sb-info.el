@@ -154,7 +154,7 @@ The INDENT level is ignored."
 	  (let ((pop-up-frames t)) (select-window (display-buffer buff)))
 	(dframe-select-attached-frame speedbar-frame)
 	(switch-to-buffer buff)))
-    (if (string-match "^(\\([^)]+\\))\\([^.]+\\)$" node)
+    (if (string-match "^(\\([^)]+\\))\\([^,:]+\\)$" node)
 	(let ((file (match-string 1 node))
 	      (node (match-string 2 node)))
 	  (Info-find-node file node)
@@ -194,7 +194,7 @@ Optional THISFILE represends the filename of"
     (if (not (equal major-mode 'Info-mode))
 	(Info-mode))
     ;; Get the node into this buffer
-    (if (string-match "^(\\([^)]+\\))\\([^.]+\\)$" nodespec)
+    (if (string-match "^(\\([^)]+\\))\\([^,:]+\\)$" nodespec)
 	(let ((file (match-string 1 nodespec))
 	      (node (match-string 2 nodespec)))
 	  (Info-find-node file node))
