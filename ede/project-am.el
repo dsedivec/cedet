@@ -637,14 +637,15 @@ Argument FILE is the file to extract the end directory name from."
 
 (defmethod ede-buffer-header-file((this project-am-objectcode) buffer)
   "There are no default header files."
-  (let ((s (oref this source))
-	(found nil))
-    (while (and s (not found))
-      ;; Add more logic here if applicable.
-      (if (string-match "\\.\\(h\\|H\\|hh\\|hpp\\)" (car s))
-	  (setq found (car s)))
-      (setq s (cdr s)))
-    found))
+  (or (call-next-method)
+      (let ((s (oref this source))
+	    (found nil))
+	(while (and s (not found))
+	  ;; Add more logic here if applicable.
+	  (if (string-match "\\.\\(h\\|H\\|hh\\|hpp\\)" (car s))
+	      (setq found (car s)))
+	  (setq s (cdr s)))
+	found)))
 
 
 ;;; Makefile editing and scanning commands
