@@ -36,20 +36,11 @@
 ;; files are displayed.  These functions provide rmail specific support,
 ;; showing links and addresses in the side-bar.
 ;;
-;;   To provide special service to all the modes supported by this file,
-;; put the following in your .emacs file.
-;;
-;; (require 'speedbspec)
-;;
-;;   This will load in the known functions, and the mode-enabling code
-;; into 'change-major-mode-hook.
-;;
 ;;   This file requires speedbar.
 
 ;;; Change log:
-;; 0.1 - first revision copied from speedbspec.el V 0.1.1
-
-(require 'speedbspec)
+;; 0.1   - first revision copied from speedbspec.el V 0.1.1
+;; 0.1.1 - removed require speedbspec.
 
 ;;; Code:
 (defvar rmail-speedbar-last-user nil
