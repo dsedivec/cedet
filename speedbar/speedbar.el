@@ -3209,7 +3209,7 @@ This may require traversing backwards from DEPTH and combining the default
 directory with these items.  This function is replaceable in
 `speedbar-mode-functions-list' as `speedbar-line-path'"
   (let ((rf (speedbar-fetch-replacement-function 'speedbar-line-path)))
-    (if rf (funcall rf) "")))
+    (if rf (funcall rf depth) default-directory)))
       
 (defun speedbar-files-line-path (&optional depth)
   "Retrieve the pathname associated with the current line.
@@ -3853,7 +3853,7 @@ Optional argument DEPTH specifies the current depth of the back search."
       nil
     (let* ((bn (speedbar-line-text))
 	   (buffer (if bn (get-buffer bn))))
-      (if buffer (buffer-file-name buffer)))))
+      (if buffer (file-name-directory (buffer-file-name buffer))))))
 
 (defun speedbar-buffer-click (text token indent)
   "When the users clicks on a buffer-button in speedbar.
