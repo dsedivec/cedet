@@ -187,7 +187,7 @@ Optional MODIFIERS is additional text needed for variables."
 	       (setq parts (cdr parts)))))
 	  ((eq tt 'variable)
 	   (if type
-	       (let ((mods (semantic-token-variable-modifier token 'typemodifiers)))
+	       (let ((mods (semantic-token-variable-extra-spec token 'typemodifiers)))
 		 (semantic-sb-maybe-token-to-button type indent "@" mods)))
 	   ;; default value here
 	   )
