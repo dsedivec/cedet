@@ -961,17 +961,18 @@ as (symbol start-expression .  end-expresssion)."
     (while (< (point) end)
       (cond (;; comment end is also EOL for some languages.
 	     (looking-at "\\(\\s-\\|\\s>\\)+"))
-	    ((let ((fe semantic-flex-extensions)
-		   (r nil))
-	       (while fe
-		 (if (looking-at (car (car fe)))
-		     (setq ts (cons (funcall (cdr (car fe))) ts)
-			   r t
-			   fe nil
-			   ep (point)))
-		 (setq fe (cdr fe)))
-	       (if (and r (not (car ts))) (setq ts (cdr ts)))
-	       r))
+	    ((and semantic-flex-extensions
+		  (let ((fe semantic-flex-extensions)
+			(r nil))
+		    (while fe
+		      (if (looking-at (car (car fe)))
+			  (setq ts (cons (funcall (cdr (car fe))) ts)
+				r t
+				fe nil
+				ep (point)))
+		      (setq fe (cdr fe)))
+		    (if (and r (not (car ts))) (setq ts (cdr ts)))
+		    r))
 	    ((looking-at "\\(\\sw\\|\\s_\\)+")
 	     (setq ts (cons (cons 'symbol
 				  (cons (match-beginning 0) (match-end 0)))
