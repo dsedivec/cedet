@@ -58,6 +58,10 @@
 
 ;;; Change Log:
 ;;;
+;;; 1.7 - By Eric Ludlam <zappo@gnu.org>
+;;;       In `speedbar-fetch-dynamic-texinfo', set the buffer to file
+;;;       to correspond to a speedbar change.
+;;;
 ;;; 1.6 - By Eric Ludlam <zappo@gnu.org>
 ;;;       speedbar-insert-texinfo-list no longer sets sthm to nil.
 ;;;       speedbar-format-texinfo-list uses new positioned group for
@@ -120,6 +124,7 @@
 ;; This function along with it's parter, speedbar-insert-texinfo-list, are
 ;; designed to be added to the speedbar-dynamic-tags-function-list list.
 (defun speedbar-fetch-dynamic-texinfo ( filename )
+  (set-buffer (find-file-noselect filename))
   (if (not (eq major-mode 'texinfo-mode))
       t
     (condition-case nil
