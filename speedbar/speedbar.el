@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1996, 97, 98 Free Software Foundation
 
 ;; Author: Eric M. Ludlam <zappo@gnu.ai.mit.edu>
-;; Version: 0.6.3.a
+;; Version: 0.6.3.b
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
@@ -2150,7 +2150,7 @@ If new functions are added, their state needs to be updated here."
 	       speedbar-last-selected-file
 	       (re-search-forward
 		(concat " \\(" (regexp-quote speedbar-last-selected-file)
-			"\\)" speedbar-indicator-regex "\n")
+			"\\)\\(" speedbar-indicator-regex "\\)?\n")
 		nil t))
 	      (put-text-property (match-beginning 1)
 				 (match-end 1)
@@ -2190,8 +2190,8 @@ updated."
 	  (speedbar-with-writable
 	    (goto-char (point-min))
 	    (if (re-search-forward
-		 (concat " \\(" (regexp-quote newcf) "\\)"
-			 speedbar-indicator-regex "\n") nil t)
+		 (concat " \\(" (regexp-quote newcf) "\\)\\("
+			 speedbar-indicator-regex "\\)?$") nil t)
 		  ;; put the property on it
 		  (put-text-property (match-beginning 1)
 				     (match-end 1)
@@ -2537,7 +2537,7 @@ Otherwise do not move and return nil."
 	(let ((nd (file-name-nondirectory file)))
 	  (if (re-search-forward
 	       (concat "] \\(" (regexp-quote nd)
-		       "\\)" speedbar-indicator-regex "$")
+		       "\\)\\(" speedbar-indicator-regex "\\)$")
 	       nil t)
 	      (progn
 		(speedbar-position-cursor-on-line)
@@ -2586,7 +2586,7 @@ directory with these items."
       (while (and nomatch
 		  (re-search-forward
 		   (concat "[]>] \\(" (regexp-quote fname)
-			   "\\)" speedbar-indicator-regex "$")
+			   "\\)\\(" speedbar-indicator-regex "\\)?$")
 		   nil t))
 	(beginning-of-line)
 	(looking-at "\\([0-9]+\\):")
