@@ -6,7 +6,7 @@
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
-(defvar speedbar-version "0.13beta3"
+(defvar speedbar-version "0.13"
   "The current version of speedbar.")
 
 ;; This file is part of GNU Emacs.
