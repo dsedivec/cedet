@@ -118,10 +118,10 @@
 	(list 0)))
      )					; end opt-stars
     (declmods
-     ( symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volitile\\|signed\\|unsigned\\)" declmods
+     ( symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volatile\\|signed\\|unsigned\\)" declmods
 	      ,(semantic-lambda
 		( cons (nth 0 vals) (nth 1 vals))))
-     ( symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volitile\\|signed\\|unsigned\\)"
+     ( symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volatile\\|signed\\|unsigned\\)"
 	      ,(semantic-lambda
 		(list (nth 0 vals))))
      (
