@@ -25,7 +25,7 @@
 
 ;;; Commentary:
 ;;
-;; Handle Emacs Lisp in and EDE Project file.
+;; Handle texinfo in and EDE Project file.
 
 ;;; Code:
 (defclass ede-proj-target-makefile-info (ede-proj-target-makefile)

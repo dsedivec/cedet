@@ -25,7 +25,8 @@
 
 ;;; Commentary:
 ;;
-;; Handle Emacs Lisp in and EDE Project file.
+;; Handle shared object libraries in and EDE Project file.
+;; Tries to deal with libtool and non-libtool situations.
 
 (require 'ede-proj-prog)
 

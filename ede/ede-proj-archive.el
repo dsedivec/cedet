@@ -25,7 +25,7 @@
 
 ;;; Commentary:
 ;;
-;; Handle Emacs Lisp in and EDE Project file.
+;; Handle object code archives in and EDE Project file.
 
 (require 'ede-proj-obj)
 

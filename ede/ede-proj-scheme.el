@@ -25,7 +25,8 @@
 
 ;;; Commentary:
 ;;
-;; Handle scheme (Guile)  in and EDE Project file.
+;; Handle scheme (Guile) in and EDE Project file.
+;; This is a specialized do nothing class.
 
 ;;; Code:
 (defclass ede-proj-target-scheme (ede-proj-target)

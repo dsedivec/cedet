@@ -25,7 +25,9 @@
 
 ;;; Commentary:
 ;;
-;; Handle miscelaneous non compilable projects in and EDE Project file.
+;; Handle miscelaneous compilable projects in and EDE Project file.
+;; This misc target lets the user link in custom makefiles to an EDE
+;; project.
 
 ;;; Code:
 (defclass ede-proj-target-makefile-miscelaneous (ede-proj-target-makefile)
