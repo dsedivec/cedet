@@ -616,6 +616,10 @@ SOURCEFILE is the file name from whence tokstream came."
   (kill-all-local-variables)
   (setq major-mode 'semantic-bnf-mode
 	mode-name "BNF")
+  (make-local-variable 'comment-start)
+  (setq comment-start "#")
+  (make-local-variable 'comment-start-skip)
+  (setq comment-start-skip "# *")
   (set-syntax-table semantic-bnf-syntax-table)
   (use-local-map semantic-bnf-map)
   (make-local-variable 'semantic-toplevel-bovine-table)
