@@ -148,6 +148,7 @@ These command lines continue to additional lines when the end with \\"
 	'((variable . "Variables")
 	  (function . "Rules")
 	  (include . "Dependencies"))
+	imenu-create-index-function 'semantic-create-imenu-index
 	))
 
 (add-hook 'makefile-mode-hook 'semantic-default-make-setup)
@@ -157,5 +158,3 @@ These command lines continue to additional lines when the end with \\"
 (provide 'semantic-make)
 
 ;;; semantic-make.el ends here
-
-
