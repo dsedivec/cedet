@@ -211,7 +211,9 @@ A plain child is a child element which is not an EIEIO object."
 
 (defmethod eieio-speedbar-object-buttonname ((object ede-project))
   "Return a string to use as a speedbar button for OBJECT."
-  (concat (ede-name object) " " (oref object version)))
+  (if (ede-parent-project object)
+      (ede-name object)
+    (concat (ede-name object) " " (oref object version))))
 
 (defmethod eieio-speedbar-object-buttonname ((object ede-target))
   "Return a string to use as a speedbar button for OBJECT."
