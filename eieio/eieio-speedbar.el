@@ -251,13 +251,13 @@ and take the apropriate action."
 	       "The type of expansion button used for objects of this class.
 Possible values are those symbols supported by the `exp-button-type' argument
 to `speedbar-make-tag-line'."
-	       :allocation class)
+	       :allocation :class)
    (buttonface :initform speedbar-tag-face
 	       :type (or symbol face)
 	       :documentation
 	       "The face used on the textual part of the button for this class.
 See `speedbar-make-tag-line' for details."
-	       :allocation class)
+	       :allocation :class)
    (expanded :initform nil
 	     :type boolean
 	     :documentation
