@@ -76,21 +76,6 @@ Argument CH-PREFIX is another character prefix to display."
 	(eieio-browse-tree (car chl) fprefix lprefix))
     ))
 
-(defun eieio-thing-to-string (thing)
-  "Convert THING into a string.
-If THING is an object, use `object-print' instead, if THING is a class,
-then use `class-name' instead, if THING is a list of stuff, try those."
-  (if (object-p thing) (object-print thing)
-    (if (class-p thing) (class-name thing)
-      (if (and thing (listp thing))
-	  (let ((op "("))
-	    (while thing
-	      (setq op (concat op " " (eieio-thing-to-string (car thing))))
-	      (setq thing (cdr thing)))
-	    (concat op ")"))
-	(format "%S" thing))))
-  )
-
 (defun eieio-describe-class (class)
   "Describe a CLASS defined by a string or symbol.
 If CLASS is actually an object, then also display current values of that obect."
