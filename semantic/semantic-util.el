@@ -54,7 +54,7 @@
   `(nth 4 ,token))
 
 (defmacro semantic-token-type-modifiers (token)
-  "Retrieve the parent of the type TOKEN."
+  "Retrieve the non-type modifiers of the type TOKEN."
   `(nth 5 ,token))
 
 (defmacro semantic-token-function-args (token)
@@ -62,13 +62,13 @@
   `(nth 3 ,token))
 
 (defmacro semantic-token-function-modifiers (token)
-  "Retrieve extra modifiers for the function TOKEN."
+  "Retrieve non-type modifiers for the function TOKEN."
   `(nth 4 ,token))
 
 (defmacro semantic-token-function-throws (token)
   "Optional details if this function has a THROWS type.
 Determines if it is available based on the length of TOKEN."
-  `(if (>= (length ,token) (+ 5 3))
+  `(if (>= (length ,token) (+ 6 3))
        (nth 5 ,token)
      nil))
 
@@ -81,7 +81,7 @@ Determines if it is available based on the length of TOKEN."
   `(nth 4 ,token))
 
 (defmacro semantic-token-variable-modifiers (token)
-  "Retrieve extra modifiers for the variable TOKEN."
+  "Retrieve non-type modifiers for the variable TOKEN."
   `(nth 5 ,token))
 
 (defmacro semantic-token-include-system (token)
