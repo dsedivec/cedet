@@ -401,11 +401,13 @@ string can be replaced with `Imports'.")
 (defvar semantic-flex-depth 0
   "Default flexing depth.
 This specifies how many lists to create tokens in.")
+(make-variable-buffer-local 'semantic-flex-depth)
 
 (defvar semantic-ignore-comments t
   "Default comment handling.
 t means to strip comments when flexing.  Nil means to keep comments
 as part of the token stream.")
+(make-variable-buffer-local 'semantic-ignore-comments)
 
 (defvar semantic-expand-nonterminal nil
   "Function to call for each returned Non-terminal.
