@@ -328,6 +328,13 @@ METHOD is the method that was attempting to be called."
     nil
   (error "oset-default -> oref/oref-default comparison failed."))
 
+;; After setting 'water to 'moose, make sure a new object has
+;; the right stuff.
+(oset-default (object-class a) water 'penguin)
+(if (eq (oref (class-a "foo") water) 'penguin)
+    nil
+  (error "oset-default, new instance value failed."))
+
 (defmethod slot-unbound ((a class-a) &rest foo)
   "If a slot in A is unbound, ignore FOO."
   ;; Disable the old slot-unbound so we can run this test
