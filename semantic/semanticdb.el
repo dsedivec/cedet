@@ -145,8 +145,8 @@ Restore the overlays after writting.
 Argument OBJ is the object to write."
   (let ((b (get-file-buffer (oref obj file))))
     (save-excursion
-      (if b (progn (set-buffer b) (semantic-deoverlay-cache))))
-    (oset obj pointmax (point-max))
+      (if b (progn (set-buffer b) (semantic-deoverlay-cache)
+		   (oset obj pointmax (point-max)))))
     (call-next-method)
     (save-excursion
       (if b (progn (set-buffer b) (semantic-overlay-cache))))
