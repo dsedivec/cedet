@@ -1183,6 +1183,7 @@ in the selected file.
 						       speedbar-buffer)
 						   (speedbar-frame-mode -1)))))
 	      t t)
+    (toggle-read-only 1)
     (speedbar-set-mode-line-format)
     (if speedbar-xemacsp
 	(progn
@@ -1819,7 +1820,6 @@ to track file check ins, and will change the mode line to match
 (defmacro speedbar-with-writable (&rest forms)
   "Allow the buffer to be writable and evaluate FORMS."
   (list 'let '((inhibit-read-only t))
-	'(toggle-read-only -1)
 	(cons 'progn forms)))
 (put 'speedbar-with-writable 'lisp-indent-function 0)
 
