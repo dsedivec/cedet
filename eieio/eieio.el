@@ -847,6 +847,21 @@ This is useful when you need to do completing read on an object group."
       (setq list (cdr list)))
     (nreverse assoclist)))
 
+(defun object-assoc-list-safe (field list)
+  "Return an association list with the contents of FIELD as the key element.
+LIST must be a list of objects, but those objects do not need to have
+FIELD in it.  If it does not, then that element is left out of the association
+list."
+  (if (not (listp list)) (signal 'wrong-type-argument (list 'listp list)))
+  (let ((assoclist nil))
+    (while list
+      (if (slot-exists-p (car list) field)
+	  (setq assoclist (cons (cons (oref-engine (car list) field)
+				      (car list))
+				assoclist)))
+      (setq list (cdr list)))
+    (nreverse assoclist)))
+
 
 ;;; EIEIO internal search functions
 ;;
