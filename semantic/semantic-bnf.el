@@ -103,6 +103,16 @@
 	       (list (nth 1 vals) 'put
 		     (nth 2 vals)
 		     (nth 3 vals))))
+     (symbol "put" symbol symbol string
+	     ,(semantic-lambda
+	       (list (nth 1 vals) 'put
+		     (nth 2 vals)
+		     (nth 3 vals))))
+     (symbol "put" symbol symbol semantic-list
+	     ,(semantic-lambda
+	       (list (nth 1 vals) 'put
+		     (nth 2 vals)
+		     (semantic-flex-text (cons 1 (nth 3 vals))))))
      (symbol "outputfile" symbol punctuation "." symbol "\\bel\\b"
 	     ,(semantic-lambda
 	       (list (concat (nth 1 vals) ".el") 'outputfile)))
