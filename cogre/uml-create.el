@@ -105,10 +105,16 @@ Optional argument FIELDS are not used."
 
 (defmethod cogre-uml-stoken->uml ((class cogre-semantic-class) stoken &optional text)
   "For CLASS convert a Semantic token STOKEN into a uml definition.
+
 Optional TEXT property is passed down."
   (call-next-method class stoken
-		    (semantic-uml-abbreviate-nonterminal
-		     stoken nil t))
+		    (save-excursion
+		      (let ((tb (semantic-token-buffer stoken)))
+			(if tb (set-buffer tb))
+			(semantic-uml-abbreviate-nonterminal
+			 stoken
+			 (oref class class)
+			 t))))
   )
 
 (defmethod cogre-entered ((class cogre-semantic-class) start end)
