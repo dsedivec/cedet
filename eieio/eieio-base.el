@@ -198,6 +198,7 @@ Optional argument FILE overrides the file name specified in the object
 instance."
   (save-excursion
     (let ((b (set-buffer (get-buffer-create " *tmp object write*")))
+	  (default-directory (file-name-directory (oref this file)))
 	  (cfn (oref this file)))
       (unwind-protect
 	  (save-excursion
