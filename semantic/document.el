@@ -126,7 +126,7 @@ When non-nil, query for a new documentation file."
 		     "defvar"))
 		  ((eq tt 'function)
 		   (if (semantic-token-extra-spec nonterm 'user-visible)
-		       "deffn Comamnd"
+		       "deffn Command"
 		     "defun"))
 		  ((eq tt 'type)
 		   "deftype")
