@@ -38,7 +38,7 @@
 ;; Installtation procedure:
 ;;   Install speedbar 0.11 or later.
 ;;   Add the following to your ~/.emacs file:
-;;   (eval-after-load "speedbar" (load-library "sb-texinfo"))
+;;   (eval-after-load "speedbar" '(load-library "sb-texinfo"))
 
 ;; Known Problems:
 ;;   Does not look inside files included via @include directive.
@@ -57,6 +57,11 @@
 ;;   you do not use texinfo mode provided by auctex!
 
 ;;; Change Log:
+;;;
+;;; 1.5 - speedbar-tag-hierarchy-method is set to nil by
+;;;       speedbar-insert-texinfo-list as well as
+;;;       speedbar-fetch-dynamic-texinfo.  This is needed in order to
+;;;       have the texinfo nodes displayed in correct order.
 ;;;
 ;;; 1.4 - speedbar-tag-hierarchy-method is now set to nil by
 ;;;       speedbar-fetch-dynamic-texinfo after making it buffer local
@@ -182,9 +187,10 @@
 	    new-list)))
 
 (defun speedbar-insert-texinfo-list (indent lst)
-  (speedbar-insert-generic-list indent (speedbar-format-texinfo-list lst indent)
-				'speedbar-tag-expand
-				'speedbar-tag-find))
+  (let (speedbar-tag-hierarchy-method)
+    (speedbar-insert-generic-list indent (speedbar-format-texinfo-list lst indent)
+				  'speedbar-tag-expand
+				  'speedbar-tag-find)))
 
 ;;; sb-texinfo.el ends here
 
