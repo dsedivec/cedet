@@ -264,7 +264,7 @@ TEXT TOKEN and INDENT are the details."
     ;; Reset the timer with a new timeout when cliking a file
     ;; in case the user was navigating directories, we can cancel
     ;; that other timer.
-    (speedbar-set-timer dframe-update-speed)
+    ;; (speedbar-set-timer dframe-update-speed)
     ;;(recenter)
     (speedbar-maybee-jump-to-attached-frame)
     (run-hooks 'speedbar-visiting-tag-hook)))
@@ -328,15 +328,13 @@ to create much wiser decisions about how to sort and group these items."
 (defun semantic-fetch-dynamic-bovine (file)
   "Load FILE into a buffer, and generate tags using the Semantic Bovinator.
 Returns the tag list, or t for an error."
-  ;; Load this AND compile it in
   (save-excursion
     (set-buffer (find-file-noselect file))
-    (if dframe-power-click (setq semantic-toplevel-bovine-cache))
-    (if (not semantic-toplevel-bovine-table)
+    (if (or (not (featurep 'semantic)) (not semantic-toplevel-bovine-table))
 	t
+      (if speedbar-power-click (semantic-clear-toplevel-cache))
       (condition-case nil
-	  (semantic-bucketize
-	   (semantic-bovinate-toplevel))
+	  (semantic-bucketize (semantic-bovinate-toplevel))
 	(error t)))))
 
 ;; Link ourselves into the tagging process.
