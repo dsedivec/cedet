@@ -597,14 +597,14 @@ to toggle this value.")
 (defvar speedbar-easymenu-definition-base
   '("Speedbar"
     ["Update" speedbar-refresh t]
-    ["Toggle Auto Update" speedbar-toggle-updates
+    ["Auto Update" speedbar-toggle-updates
      :style toggle :selected speedbar-do-update]
     )
   "Base part of the speedbar menu.")
 
 (defvar speedbar-easymenu-definition-special
   '(["Edit Item On Line" speedbar-edit-line t]
-    ["Toggle Show All Files" speedbar-toggle-show-all-files
+    ["Show All Files" speedbar-toggle-show-all-files
      :style toggle :selected speedbar-show-unknown-files]
     ["Expand Item" speedbar-expand-line
      (save-excursion (beginning-of-line)
