@@ -1,6 +1,7 @@
 # BNF grammar for Java
 #
-# Copyright (C) 2000 Paul F. Kinnucan, Jr.
+# Copyright (C) 2000, 2001 Paul F. Kinnucan, Jr.
+# Copyright (C) 2001 David Ponce
 #
 # Author: Paul F. Kinnucan, Jr. <paulk@mathworks.com>
 #         David Ponce <david@dponce.com>
@@ -595,6 +596,9 @@ expression: unary_expression operators_expression_opt
           ;
 
 # $Log$
+# Revision 1.8  2001/04/13 22:11:00  ponced
+# Updated copyrights.
+#
 # Revision 1.7  2001/04/13 10:29:17  ponced
 # Added keyword summaries.
 #
