@@ -28,6 +28,10 @@ Copyright @copyright{} 1996 Eric M. Ludlam
 @node Top, , , (dir)Top
 @comment  node-name,  next,  previous,  up
 
+NOTE: dialog mode, despite it's coolness, has been overrun by the 
+      custom/widget package and will not be heavilly support in the
+      future unless there is some overwhelming need.
+
 Dialog mode and its support files can create complex user interface
 definitions which reside in simple emacs buffers as text.  These
 interfaces can be controlled using the keyboard or mouse.
