@@ -65,9 +65,9 @@
   (setq w3-speedbar-key-map (speedbar-make-specialized-keymap))
 
   ;; Basic features.
-  (define-key rmail-speedbar-key-map "e" 'speedbar-edit-line)
-  (define-key rmail-speedbar-key-map "r" 'speedbar-edit-line)
-  (define-key rmail-speedbar-key-map "\C-m" 'speedbar-edit-line)
+  (define-key w3-speedbar-key-map "e" 'speedbar-edit-line)
+  (define-key w3-speedbar-key-map "r" 'speedbar-edit-line)
+  (define-key w3-speedbar-key-map "\C-m" 'speedbar-edit-line)
   )
 
 (defvar w3-speedbar-menu-items
