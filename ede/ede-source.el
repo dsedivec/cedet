@@ -48,6 +48,14 @@ Such as \"C\" or \"Emacs Lisp\"")
 		     "Emacs regex matching auxiliary source code this target accepts.
 Aux source are source code files needed for compilation, which are not comiled
 themselves.")
+   (enable-subdirectories :initarg :enable-subdirectories
+			  :initform nil
+			  :type boolean
+			  :documentation
+			  "Non nil if this sourcecode type uses subdirectores.
+If sourcecode always lives near the target creating it, this should be nil.
+If sourcecode can, or typically lives in a subdirectory of the owning
+target, set this to t.")
    (garbagepattern :initarg :garbagepattern
 		   :initform nil
 		   :type list
