@@ -1438,7 +1438,10 @@ viewing by apropos, and describe-variables, and the like."
 			       (concat "    type = "
 				       (format "%S" (aref types i)))
 			     "")
-			   "    default = " (format "%S" (car deflt))
+			   (if (eq (car deflt) eieio-unbound)
+			       ""
+			     (concat "    default = "
+				     (format "%S" (car deflt))))
 			   (if (car docs) (concat "\n  " (car docs)) "")))
       (setq names (cdr names)
 	    docs (cdr docs)
