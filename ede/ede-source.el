@@ -27,10 +27,10 @@
 ;; will be maintained, and used to track target objects, what they accept,
 ;; and what compilers can be used.
 
-(require 'eieio)
+(require 'eieio-base)
 
 ;;; Code:
-(defclass ede-sourcecode ()
+(defclass ede-sourcecode (eieio-instance-inheritor)
   ((name :initarg :name
 	 :type string
 	 :documentation
