@@ -160,7 +160,7 @@
     (structparts
      ( semantic-list
        ,(lambda (vals start end)
-	  (append 
+	  (append
 	   (semantic-bovinate-from-nonterminal-full (car (nth 0 vals)) (cdr (nth 0 vals)) 'structsubparts)
 	   
 	   (list start end))))
@@ -485,6 +485,15 @@ machine."
   :group 'c
   :type '(repeat (string :tag "Path")))
 
+(defcustom semantic-default-c-built-in-types
+  '("void" "char" "int"  "float" "double"
+    ;; Some psuedo types.
+    "const" "volatile" "static" "unsigned" "signed"
+    )
+  "Default set of built in types for C."
+  :group 'c
+  :type '(repeat (string :tag "Type")))
+
 (add-hook
  'c-mode-hook
  (lambda ()
@@ -492,6 +501,7 @@ machine."
 	 semantic-expand-nonterminal 'semantic-expand-c-nonterminal
 	 semantic-flex-extensions semantic-flex-c-extensions
 	 semantic-dependency-include-path semantic-default-c-path
+	 semantic-default-built-in-types semantic-default-c-built-in-types
 	 )))
 
 (provide 'semantic-ex)
