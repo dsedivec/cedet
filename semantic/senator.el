@@ -802,8 +802,9 @@ WINDOW'S frame."
                (cy (/ 1.0 (float (frame-char-height f)))))
           (setq xoffset (- x (car wpos))
                 yoffset (float (- y (cdr wpos))))
-          ;; If Emacs 21 add to YOFFSET the heights of header lines
-          ;; above WINDOW.
+          ;; If Emacs 21 add to:
+          ;; - XOFFSET the WINDOW left margin width.
+          ;; - YOFFSET the height of header lines above WINDOW.
           (if (> emacs-major-version 20)
               (progn
                 (setq wpos    (cons (+ left xoffset) 0.0)
@@ -812,7 +813,10 @@ WINDOW'S frame."
                   (if (eq (coordinates-in-window-p wpos window)
                           'header-line)
                       (setq yoffset (+ yoffset cy)))
-                  (setcdr wpos (+ (cdr wpos) cy)))))
+                  (setcdr wpos (+ (cdr wpos) cy)))
+                (setq xoffset (+ xoffset
+                                 (or (car (window-margins window))
+                                     0)))))
           (setq yoffset (floor yoffset))))
     (cons xoffset yoffset)))
 
