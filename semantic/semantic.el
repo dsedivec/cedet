@@ -627,7 +627,7 @@ COLLECTION is the list of things collected so far."
 	  (set-buffer (marker-buffer semantic-bovinate-debug-table))
 	  (goto-char semantic-bovinate-debug-table)
 	  (re-search-forward
-	   (concat "^\\s-*\\((\\|'((\\)\\(" (symbol-name nonterminal)
+	   (concat "^\\s-*\\((\\|['`]((\\)\\(" (symbol-name nonterminal)
 		   "\\)[ \t\n]+(")
 	   nil t)
 	  (setq ol2 (make-overlay (match-beginning 2) (match-end 2)))
