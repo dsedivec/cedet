@@ -28,6 +28,7 @@
 ;; Handle auxiliary files (README, FAQ, etc) in and EDE Project file.
 
 (require 'ede-proj)
+(require 'ede-pmake)
 
 ;;; Code:
 (defclass ede-proj-target-aux (ede-proj-target)
