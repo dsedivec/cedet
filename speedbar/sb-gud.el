@@ -45,6 +45,7 @@
 ;;; Change log:
 ;; 0.1   - First revision
 ;; 0.1.1 - Removed dependency on speedbspec.
+;; 0.1.2 - Changed to handle keymap feature.
 
 ;;; Code:
 (defvar gud-last-speedbar-buffer nil
@@ -53,6 +54,19 @@
 (defvar gud-last-speedbar-stackframe nil
   "Description of the currently displayed GUD stack.
 t means that there is no stack, and we are in display-file mode.")
+
+(defvar gud-speedbar-key-map nil
+  "Keymap used when in the buffers display mode.")
+
+(if gud-speedbar-key-map
+    nil
+  (setq gud-speedbar-key-map (speedbar-make-specialized-keymap))
+
+  ;; Basic tree features
+  (define-key gud-speedbar-key-map "j" 'speedbar-edit-line)
+  (define-key gud-speedbar-key-map "e" 'speedbar-edit-line)
+  (define-key gud-speedbar-key-map "\C-m" 'speedbar-edit-line)
+  )
 
 (defvar gud-speedbar-menu-items
   ;; Note to self.  Add expand, and turn off items when not available.
