@@ -36,10 +36,7 @@
 
 ;;; Class Definitions:
 (defclass ede-proj-target (ede-target)
-  ((source :initarg :source
-	   :custom (repeat object)
-	   :documentation "Source files in this target.")
-   (dirty :initform nil
+  ((dirty :initform nil
 	  :documentation "Non-nil when generated files needs updating.")
    )
   "Abstract class for ede-proj targets.")
