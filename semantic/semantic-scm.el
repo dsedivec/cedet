@@ -56,7 +56,7 @@
   (list ( nth ( length (nth 1 vals)) (nth 1 vals)) 'provide nil)))
  ( LOAD string
   ,(semantic-lambda
-  (list ( file-name-nondirectory ( read (nth 2 vals))) 'require ( read (nth 2 vals)))))
+  (list ( file-name-nondirectory ( read (nth 1 vals))) 'require ( read (nth 1 vals)))))
  ( symbol
   ,(semantic-lambda
   (list (nth 0 vals) 'code)))
@@ -89,7 +89,7 @@
  ( string)
  ) ; end expression
  )
-   "Top level bovination table for scheme.")
+    "Top level bovination table for scheme.")
 
 (defvar semantic-scheme-keyword-table
   (semantic-flex-make-keyword-table 
