@@ -471,7 +471,8 @@ Return a list ((DB-TABLE . TOKEN-OR-TOKEN-LIST) ...)."
       ;; Calculate what database to use.
       ;; Something simple and dumb for now.
       (setq databases (list semanticdb-current-database)))
-  (let ((ret nil))
+  (let ((ret nil)
+        (case-fold-search semantic-case-fold))
     (while databases
       (let* ((files (oref (car databases) tables))
 	     (found nil)
