@@ -59,6 +59,12 @@
       )
   (error nil))
 
+;; Because semantic imenu tokens will hose the current imenu handling
+;; code in speedbar, force semantic-sb in.
+(if (featurep 'speedbar)
+    (require 'semantic-sb)
+  (add-hook 'speedbar-load-hook (lambda () (require 'semantic-sb))))
+
 (defgroup semantic-imenu nil
   "Parser Generator Imenu interface."
   :group 'semantic
