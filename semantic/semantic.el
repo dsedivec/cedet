@@ -451,7 +451,7 @@ ie, the symbol 'variable, 'function, 'type, or other."
   "Retrieve the documentation of TOKEN.
 Optional argument BUFFER indicates where to get the text from.
 If not provided, then only the POSITION can be provided."
-  (let ((p (nth (- (length token) 3) token)))
+  (let ((p (nth (- (length token) 2) token)))
     (if (and p buffer)
 	(save-excursion
 	  (set-buffer buffer)
