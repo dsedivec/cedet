@@ -212,7 +212,7 @@ Optional argument NOTYPECHECK specifies not to make subgroups under types."
 (require 'advice)
 
 (defvar semantic-which-function
-  (lambda (l) (mapconcat 'semantic-abbreviate-nonterminal ol "."))
+  (lambda (l) (mapconcat 'semantic-abbreviate-nonterminal l "."))
   "Function to convert semantic tokens into `which-function' text.")
 
 (defadvice which-function (around semantic-which activate)
