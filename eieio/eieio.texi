@@ -1009,9 +1009,6 @@ recursive functions.
 @item chart
 Draw bar charts from data.  Examples include displaying sizes of emacs
 values, file distribution, and rmail distributions.
-@item dbif
-Database interface object for emacs.  So far, on psql (PostgreSQL) is
-supported with @file{psql.el}
 @end table
 
 @node Function Index,  , Demo Programs, Top
