@@ -81,7 +81,7 @@
   "Buffer local variable containing the definition of the toplevel shell.
 This shell is active in the current buffer.  There can be only one
 toplevel shell definition in a given buffer.  It should maintain a
-buffer-local value as any buffer may wish to have embedded widgets."
+buffer-local value as any buffer may wish to have embedded widgets.")
 (make-variable-buffer-local 'widget-toplevel-shell)
 
 (defvar dialog-current-parent nil

@@ -65,7 +65,7 @@ different values of state")
 ;;;
 ;;; Specialized data types
 ;;;
-(defclass data-symbol (data-object)
+(defclass data-object-symbol (data-object)
   ((symbol :initarg :symbol
 	   :initform nil
 	   :docstring "Symbol whose value changes in parallel to :value"
