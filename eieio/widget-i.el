@@ -681,11 +681,9 @@ help about this widget."
   (if (eq major-mode 'dialog-mode)
       (save-excursion
 	;; now draw the indicator
-	(let* ((val1 (oref this state))
-	       (val2 (get-value val1)))
-	  (goto-xy (oref this rx) (oref this ry))
-	  (insert-overwrite-face (oref this option-indicator) 
-				 (oref this ind-face)))
+	(goto-xy (oref this rx) (oref this ry))
+	(insert-overwrite-face (oref this option-indicator) 
+			       (oref this ind-face))
 	;; draw the rest
 	(call-next-method))))
 
@@ -998,7 +996,6 @@ help about this widget."
 	  ;; In this case, we have a one-keystroke edit
 	  (let ((cp (- (current-column) (oref this rx)))
 		(mo (oref this value))
-		(ov (get-value (oref this value)))
 		(mv nil)
 		(rp nil)
 		;; make sure no new lines are added
