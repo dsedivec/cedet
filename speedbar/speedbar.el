@@ -1762,7 +1762,7 @@ nil if not applicable."
       (if (re-search-forward "{[+-]} \\([^\n]+\\)$"
 			     (save-excursion(end-of-line)(point)) t)
 	  (speedbar-message "Group of tags \"%s\"" (match-string 1))
-	(if (re-search-forward " [()|@] \\([^\n]+\\)$" nil t)
+	(if (re-search-forward " [+-]?[()|@] \\([^\n]+\\)$" nil t)
 	    (let ((detail (match-string 1))
 		  (parent (save-excursion
 			    (beginning-of-line)
@@ -3594,7 +3594,7 @@ interested in."
 			(string-to-int (buffer-substring-no-properties
 					(match-beginning 0) (match-end 0)))
 		      0))
-	(setq exp (format "^%d:\\s-*[[{<]\\([?+-]\\)[]>}]" depth)))
+	(setq exp (format "^%d:" depth)))
       (save-excursion
 	(end-of-line)
 	(if (re-search-backward exp nil t)
@@ -3606,7 +3606,7 @@ interested in."
 	  (while (and (not (re-search-forward exp nil t))
 		      (>= depth 0))
 	    (setq depth (1- depth))
-	    (setq exp (format "^%d:\\s-*[[{<]\\([?+-]\\)[]>}]" depth)))
+	    (setq exp (format "^%d:" depth)))
 	  (if (/= (point) p)
 	      (setq end (point))
 	    (setq end (point-max)))))
