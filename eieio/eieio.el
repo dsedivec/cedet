@@ -1206,8 +1206,12 @@ remember  to prepend a space."
 	  )
 
 ;;;
-;;; Interfacing with imenu in emacs lisp mode
+;;; Interfacing with imenu in emacs lisp mode 
+;;;    (Only if the expression is defined)
 ;;;
+(if (eval-when-compile (boundp 'list-imenu-generic-expression))
+(progn
+
 (defun eieio-update-lisp-imenu-expression ()
   "Examines `lisp-imenu-generic-expression' and modifies it to include
 a scan for `defmethod'."
@@ -1224,6 +1228,7 @@ a scan for `defmethod'."
 
 (eieio-update-lisp-imenu-expression)
 
+))
 ;;;
 ;;; Autoloading some external symbols
 ;;;
