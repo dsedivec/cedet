@@ -522,11 +522,13 @@ CACHE-VAR and BUFFER-VAR are symbols as in `dframe-frame-mode'"
   (save-excursion
     (set-buffer (symbol-value buffer-var))
     (rename-buffer (buffer-name) t)
-    (set buffer-var nil)
-    (set frame-var nil)
-    (set cache-var nil)
-    
-    ))
+    (let ((oldframe (symbol-value frame-var)))
+      (set buffer-var nil)
+      (set frame-var nil)
+      (set cache-var nil)
+      (make-variable-buffer-local frame-var)
+      (set frame-var oldframe)
+      )))
 
 
 ;;; Utilities
@@ -575,7 +577,7 @@ If the current frame's buffer uses DESIRED-MAJOR-MODE, then use that frame."
 (defun dframe-attached-frame (frame)
   "Return the attached frame belonging to the dframe controlled frame FRAME."
   (save-excursion
-    (select-frame frame)
+    (if frame (select-frame frame))
     dframe-attached-frame))
 
 (defun dframe-select-attached-frame (frame)
