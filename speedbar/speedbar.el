@@ -2696,6 +2696,9 @@ the file being checked."
   "Return t if we should bother checking PATH for version control files.
 This can be overloaded to add new types of version control systems."
   (or
+   ;; Local CVS available in Emacs 21
+   (and (fboundp 'vc-state)
+	(file-exists-p (concat path "CVS/")))
    ;; Local RCS
    (file-exists-p (concat path "RCS/"))
    ;; Local SCCS
@@ -2715,16 +2718,23 @@ You can add new VC systems by overriding this function.  You can
 optimize this function by overriding it and only doing those checks
 that will occur on your system."
   (or
-   ;; RCS file name
-   (file-exists-p (concat path "RCS/" name ",v"))
-   (file-exists-p (concat path "RCS/" name))
-   ;; Local SCCS file name
-   (file-exists-p (concat path "SCCS/s." name))
-   ;; Remote SCCS file name
-   (let ((proj-dir (getenv "PROJECTDIR")))
-     (if proj-dir
-         (file-exists-p (concat proj-dir "/SCCS/s." name))
-       nil))
+   (if (fboundp 'vc-state)
+       ;; Emacs 21 handles VC state in a nice way.
+       (condition-case nil
+	   (not (eq 'up-to-date (vc-state (concat path name))))
+	 ;; An error means not in a VC system
+	 (error nil))
+     (or
+      ;; RCS file name
+      (file-exists-p (concat path "RCS/" name ",v"))
+      (file-exists-p (concat path "RCS/" name))
+      ;; Local SCCS file name
+      (file-exists-p (concat path "SCCS/s." name))
+      ;; Remote SCCS file name
+      (let ((proj-dir (getenv "PROJECTDIR")))
+	(if proj-dir
+	    (file-exists-p (concat proj-dir "/SCCS/s." name))
+	  nil))))
    ;; User extension
    (run-hook-with-args 'speedbar-vc-in-control-hook path name)
    ))
