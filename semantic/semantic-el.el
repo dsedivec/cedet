@@ -60,9 +60,11 @@
 Return a bovination list to use."
   (let* ((rt (read (buffer-substring (car sl) (cdr sl)))) ; read text
 	 (ts (car rt)) ; type symbol
-	 (ss (if (listp (nth 1 rt))
-		 (nth 1 (nth 1 rt))
-		(nth 1 rt))) ; symbol name
+	 (tss (nth 1 rt))
+	 (ss (if (not (listp tss)) tss
+	       (if (eq (car tss) 'quote)
+		   (nth 1 tss)
+		 (car tss))))
 	 (sn (format "%S" ss))
 	 )
     (cond
@@ -133,8 +135,8 @@ Return a bovination list to use."
       )
      ((eq ts 'defstruct)
       ;; structs
-      (list sn 'type "struct" (semantic-elisp-desymbolify (nth 3 rt))
-	    (semantic-elisp-desymbolify (nth 2 rt))
+      (list sn 'type "struct" (semantic-elisp-desymbolify (nthcdr 2 rt))
+	    nil ;(semantic-elisp-desymbolify (nth 2 rt))
 	    nil (nth 4 rt))
       )
      ;; Now for other stuff
