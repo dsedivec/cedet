@@ -394,10 +394,29 @@ A registered widget has marked the area of text under point. If the
 text is not marked, the default keybinding is run instead."
   (interactive)
   (dialog-with-writeable
-    (let ((dispatch (get-text-property (point) 'widget-object)))
-      (if (and dispatch (oref dispatch handle-motion))
-	  (input dispatch (if last-input-char last-input-char
-			    last-input-event))
+    (let* ((dispatch (get-text-property (point) 'widget-object))
+	   (hm (and dispatch (oref dispatch handle-motion))))
+      (if (and dispatch hm)
+	  ;; if the object's motion is traditional, handle it here,
+	  ;; but if we exceede the boundaries of the widget, run it's
+	  ;; input event with it so it can scroll.
+	  (if (eq hm 'traditional)
+	      (let ((command (dialog-lookup-key global-map
+						(if last-input-char
+						    last-input-char
+						  last-input-event)))
+		    (p (point)))
+		(command-execute command t)
+		(if (eq dispatch (get-text-property (point) 'widget-object))
+		    nil
+		  (goto-char p)
+		  (input dispatch (if last-input-char last-input-char
+				    last-input-event))))
+	    ;; run the input of the found object.
+	    (input dispatch (if last-input-char last-input-char
+			      last-input-event)))
+	;; do normal keys here since the widget doesn't care about the
+	;; maybe key set.
 	(let ((command (dialog-lookup-key global-map
 					  (if last-input-char last-input-char
 					    last-input-event)))
