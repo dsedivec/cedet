@@ -6,7 +6,7 @@
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 
-(defvar semantic-version "1.4beta7"
+(defvar semantic-version "1.4beta8"
   "Current version of Semantic.")
 
 ;; This file is not part of GNU Emacs.
