@@ -1646,7 +1646,7 @@ Assumes that the current buffer is the speedbar buffer"
       (progn
 	(message "Refreshing speedbar...done")
 	(sit-for 0)
-	(message nil)))))
+	(message nil))))
 
 (defun speedbar-item-load ()
   "Load the item under the cursor or mouse if it is a lisp file."

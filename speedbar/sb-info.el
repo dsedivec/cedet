@@ -54,12 +54,26 @@
 (require 'info)
 
 ;;; Code:
+(defvar Info-speedbar-key-map nil
+  "Keymap used when in the info display mode.")
+
+(if Info-speedbar-key-map
+b    nil
+  (setq Info-speedbar-key-map (speedbar-make-specialized-keymap))
+
+  ;; Basic tree features
+  (define-key Info-speedbar-key-map "e" 'speedbar-edit-line)
+  (define-key Info-speedbar-key-map "\C-m" 'speedbar-edit-line)
+  (define-key Info-speedbar-key-map "+" 'speedbar-expand-line)
+  (define-key Info-speedbar-key-map "-" 'speedbar-contract-line)
+  )
+
 (defvar Info-speedbar-menu-items
-  '(["Browse Item On Line" speedbar-edit-line t]
-    ["Expand Item" speedbar-expand-line
+  '(["Browse Node" speedbar-edit-line t]
+    ["Expand Node" speedbar-expand-line
      (save-excursion (beginning-of-line)
 		     (looking-at "[0-9]+: *.\\+. "))]
-    ["Contract Item" speedbar-contract-line
+    ["Contract Node" speedbar-contract-line
      (save-excursion (beginning-of-line)
 		     (looking-at "[0-9]+: *.-. "))]
     )
@@ -75,7 +89,8 @@ This will add a speedbar major display mode."
   (speedbar-frame-mode 1)
   ;; Make sure our special speedbar major mode is loaded
   (speedbar-add-expansion-list '("Info" Info-speedbar-menu-items
-				 nil Info-speedbar-hierarchy-buttons))
+				 Info-speedbar-key-map
+				 Info-speedbar-hierarchy-buttons))
   ;; Now, throw us into RPM mode on speedbar.
   (speedbar-change-initial-expansion-list "Info")
   )
