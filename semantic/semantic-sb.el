@@ -115,7 +115,11 @@ Optional PREFIX is used to specify special marker characters."
 		  (if (semantic-token-variable-default token)
 		      (speedbar-insert-button "=" nil nil nil nil t)))
 		 ((eq type 'function)
-		  (speedbar-insert-button "()" nil nil nil nil t)))))))
+		  (speedbar-insert-button "()" nil nil nil nil t))
+		 ((and (eq type 'include)
+		       (semantic-token-include-system token))
+		  (speedbar-insert-button "<>" nil nil nil nil t))
+		 )))))
   
 (defun semantic-sb-speedbar-data-line (depth button text &optional
 					     text-fun text-data)
