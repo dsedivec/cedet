@@ -1714,6 +1714,7 @@ it from the speedbar buffer."
   "Display info about a tag that is on the current line.
 nil if not applicable."
   (save-excursion
+    (beginning-of-line)
     (if (re-search-forward " > \\([^ ]+\\)$"
 			   (save-excursion(end-of-line)(point)) t)
 	(let ((tag (match-string 1))
