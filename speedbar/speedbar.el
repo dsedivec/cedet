@@ -1,9 +1,9 @@
 ;;; speedbar --- quick access to files and tags
 
-;;; Copyright (C) 1996, 97 Free Software Foundation
+;;; Copyright (C) 1996, 97, 98 Free Software Foundation
 ;;
 ;; Author: Eric M. Ludlam <zappo@gnu.ai.mit.edu>
-;; Version: 0.6
+;; Version: 0.6.2
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 ;;
@@ -313,6 +313,7 @@
 ;;       XEmacs double-click capability (Hrvoje Niksic <hniksic@srce.hr>)
 ;;       General documentation fixup.
 ;; 0.6.1 Fixed button-3 menu for Emacs 20.
+;; 0.6.2 Added autoload tag to `speedbar-get-focus'
 
 ;;; TODO:
 ;; - More functions to create buttons and options
@@ -973,6 +974,21 @@ supported at a time.
 	  (set-window-dedicated-p (selected-window) t))
 	(speedbar-set-timer speedbar-update-speed)))))
 
+;;;###autoload
+(defun speedbar-get-focus ()
+  "Change frame focus to or from the speedbar frame.
+If the selected frame is not speedbar, then speedbar frame is
+selected.  If the speedbar frame is active, then select the attached frame."
+  (interactive)
+  (if (eq (selected-frame) speedbar-frame)
+      (if (frame-live-p speedbar-attached-frame)
+	  (select-frame speedbar-attached-frame))
+    ;; make sure we have a frame
+    (if (not (frame-live-p speedbar-frame)) (speedbar-frame-mode 1))
+    ;; go there
+    (select-frame speedbar-frame))
+  (other-frame 0))
+
 (defun speedbar-close-frame ()
   "Turn off a currently active speedbar."
   (interactive)
@@ -1214,20 +1230,6 @@ Must be bound to event E."
     (if (< emacs-major-version 20)
 	(mouse-major-mode-menu e)
       (mouse-major-mode-menu e nil))))
-
-(defun speedbar-get-focus ()
-  "Change frame focus to or from the speedbar frame.
-If the selected frame is not speedbar, then speedbar frame is
-selected.  If the speedbar frame is active, then select the attached frame."
-  (interactive)
-  (if (eq (selected-frame) speedbar-frame)
-      (if (frame-live-p speedbar-attached-frame)
-	  (select-frame speedbar-attached-frame))
-    ;; make sure we have a frame
-    (if (not (frame-live-p speedbar-frame)) (speedbar-frame-mode 1))
-    ;; go there
-    (select-frame speedbar-frame))
-  (other-frame 0))
 
 (defun speedbar-next (arg)
   "Move to the next ARGth line in a speedbar buffer."
