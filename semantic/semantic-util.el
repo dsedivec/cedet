@@ -87,7 +87,7 @@ Determines if it is available based on the length of TOKEN."
 (defmacro semantic-token-variable-optsuffix (token)
   "Optional details if this variable has bit fields, or array dimentions.
 Determines if it is available based on the length of TOKEN."
-  `(if (>= (length ,token) (+ 7 3))
+  `(if (>= (length ,token) (+ 7 2))
        (nth 6 ,token)
      nil))
 
