@@ -1,6 +1,6 @@
 ;;; semantic.el --- Semantic buffer evaluator.
 
-;;; Copyright (C) 1999 Eric M. Ludlam
+;;; Copyright (C) 1999, 2000 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Version: 0.1
@@ -718,7 +718,8 @@ list of semantic tokens found."
       (if (listp (car lte))
 	  ;; In this case, we have an EMPTY match!  Make stuff up.
 	  (setq cvl (list nil)))
-      (while (and lte (not (listp (car lte))))
+      (while (and lte (not (or (byte-code-function-p (car lte))
+			       (listp (car lte)))))
 	;; debugging!
 	(if (and lte semantic-edebug)
 	    ;; The below reference to nonterminal is a hack and the byte
