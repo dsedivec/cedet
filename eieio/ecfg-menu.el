@@ -69,6 +69,8 @@
     '("Calendar" . econfig-calendar))
   (define-key econfig-keymap [ mail ]
     '("Mail" . econfig-mail))
+  (define-key econfig-keymap [ rmail ]
+    '("RMail" . econfig-rmail))
   (define-key econfig-keymap [ programs ]
     '("Program Editing" . econfig-programmer))
   (define-key econfig-keymap [ editing ]
@@ -82,6 +84,7 @@
 (autoload 'econfig-programmer "e-config" "configuration dialog" t)
 (autoload 'econfig-calendar "e-config" "configuration dialog" t)
 (autoload 'econfig-mail "e-config" "configuration dialog" t)
+(autoload 'econfig-rmail "e-config" "configuration dialog" t)
 (autoload 'econfig-font-lock-faces "e-config" "configuration dialog" t)
 (autoload 'econfig-info-faces "e-config" "configuration dialog" t)
 (autoload 'econfig-calendar-faces "e-config" "configuration dialog" t)
