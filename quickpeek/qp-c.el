@@ -34,6 +34,11 @@
     (list 'quickpeek-functional-form
 	  (save-excursion
 	    (quickpeek-beginning-of-defun)
+	    (if (save-excursion
+		  (forward-sexp -1)
+		  (looking-at "else"))
+		  ;; In this case, we are in an #ifed body
+		  (c-up-conditional 1))
 	    (if (re-search-backward
 		 "\\(\\s-\\|^\\)\\**\\(\\w+\\)\\s-*("
 		 (save-excursion (re-search-backward "(" nil t)
