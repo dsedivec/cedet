@@ -46,7 +46,7 @@
     (rule
      ( symbol colons elements commands
 	      ,(lambda (vals start end)
-		 (append  (list (nth 0 vals) 'function nil (nth 2 vals) nil)
+		 (append  (list (nth 0 vals) 'function nil (nth 2 vals) nil nil)
 			  (list start end))))
      ) ; end rule
     (conditional
@@ -65,6 +65,10 @@
      ) ; end conditional
     (equals
      ( punctuation ":" punctuation "="
+		   ,(lambda (vals start end)
+		      (append 
+		       (list start end))))
+     ( punctuation "+" punctuation "="
 		   ,(lambda (vals start end)
 		      (append 
 		       (list start end))))
