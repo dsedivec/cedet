@@ -35,6 +35,8 @@
 ;;  This provides some classes that can be used as a parent which
 ;; will automatically provide SPEEDBAR support for any list of objects
 ;; of that type.
+;;
+;; This file requires speedbar version 0.10 or later.
 
 ;;; Creating a new speedbar mode based on a pre-existing object hierarchy
 ;;
