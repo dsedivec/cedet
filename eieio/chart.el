@@ -92,7 +92,7 @@ background color.")
   "If pixmaps are allowed, display these background pixmaps.  Useful
 if new emacs is used on B&W display")
 
-(if (not chart-face-list)
+(if (and window-system (not chart-face-list))
     (let ((cl chart-face-color-list)
 	  (pl chart-face-pixmap-list)
 	  nf)
