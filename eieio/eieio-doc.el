@@ -246,13 +246,13 @@ Return t if it does, and return 'default if the default has changed."
 	(scoped-class (class-parent class))
 	(eieio-skip-typecheck))
     (condition-case nil
-	(setq df (oref-default-engine (class-parent class) slot)
+	(setq df (eieio-oref-default (class-parent class) slot)
 	      err nil)
       (invalid-slot-name (setq df nil))
       (error (setq df nil)))
     (if err
 	nil
-      (if (equal df (oref-default-engine class slot))
+      (if (equal df (eieio-oref-default class slot))
 	  t
 	'default))))
 

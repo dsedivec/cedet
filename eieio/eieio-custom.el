@@ -178,7 +178,7 @@ This is the next line of documentation.")
       (if (car fcust)
 	  (progn
 	    ;; Only customized fields have widgets
-	    (oset-engine obj (car fields)
+	    (eieio-oset obj (car fields)
 			 (car (widget-apply (car chil) :value-inline)))
 	    ;; Two widets per field.  The slot value, and the doc.
 	    (setq chil (cdr (cdr chil)))))
