@@ -52,7 +52,7 @@
   "The last user to be displayed in the speedbar.")
 
 (defvar rmail-speedbar-key-map nil
-  "Keymap used when in the buffers display mode.")
+  "Keymap used when in rmail display mode.")
 
 (if rmail-speedbar-key-map
     nil
