@@ -655,21 +655,22 @@ the current results on a parse error."
 	;; Clever reparse failed, queuing full reparse.
 	(setq semantic-toplevel-bovine-cache-check t)
       (setq new (car (cdr new)))
+      (semantic-raw-to-cooked-token new)
       (let ((oo (semantic-token-overlay token))
-	    (o nil))
-	(setcdr token (cdr new))
-	(setcar token (car new))
-	(semantic-raw-to-cooked-token token)
-	(setq o (semantic-token-overlay token))
+	    (o (semantic-token-overlay new)))
 	;; Copy all properties of the old overlay here.
 	;; I think I can use plists in emacs, but not in XEmacs.
 	;; Ack!
-	(semantic-overlay-put o 'face (semantic-overlay-get o 'face))
-	(semantic-overlay-put o 'old-face (semantic-overlay-get o 'old-face))
-	(semantic-overlay-put o 'intangible (semantic-overlay-get o 'intangible))
-	(semantic-overlay-put o 'invisible (semantic-overlay-get o 'invisible))
-	;; Free the old overlay
-	(semantic-delete-overlay-maybe oo)
+	(semantic-overlay-put o 'face (semantic-overlay-get oo 'face))
+	(semantic-overlay-put o 'old-face (semantic-overlay-get oo 'old-face))
+	(semantic-overlay-put o 'intangible (semantic-overlay-get oo 'intangible))
+	(semantic-overlay-put o 'invisible (semantic-overlay-get oo 'invisible))
+	;; Free the old overlay(s)
+	(semantic-deoverlay-token token)
+	;; Splice into the main list.
+	(setcdr token (cdr new))
+	(setcar token (car new))
+	;; Hooks
 	(run-hook-with-args 'semantic-clean-token-hooks token)
 	)
       )))
