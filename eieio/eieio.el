@@ -1843,6 +1843,7 @@ this object."
 	(princ "'")
 	(prin1 list))
     (princ "(list ")
+    (if (object-p (car list)) (princ "\n "))
     (while list
       (if (object-p (car list))
 	  (object-write (car list))
@@ -1991,7 +1992,7 @@ Optional argument COMMENT is a header line comment."
     (while (> cs1 0)
       (setq abdest (concat "../" abdest)
 	    cs1 (1- cs1)))
-    abdest))
+    absrc))
 
 (defmethod eieio-persistent-save ((this eieio-persistent) &optional file)
   "Save persistent object THIS to disk.
