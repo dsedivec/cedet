@@ -896,7 +896,7 @@ help about this widget."
 	   )
 	  ((eq (oref this direction) 'vertical)
 	   (if (not w) (oset this width 1))
-	   (if (not h) (oset this height (width 2)))
+	   (if (not h) (oset this height length))
 	   )
 	  (t
 	   (error "Value %S for field direction in %s invalid"
