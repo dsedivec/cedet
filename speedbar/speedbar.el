@@ -126,7 +126,7 @@
 ;; Some useful functions when writing expand functions, and click
 ;; functions are `speedbar-change-expand-button-char',
 ;; `speedbar-delete-subblock', and `speedbar-center-buffer-smartly'.
-;; The variable `dframe-power-click' is set to t in your functions
+;; The variable `speedbar-power-click' is set to t in your functions
 ;; when the user shift-clicks.  This indications anything from
 ;; refreshing cached data to making a buffer appear in a new frame.
 ;;
@@ -3055,7 +3055,8 @@ directory with these items."
 With universal argument ARG, flush cached data."
   (interactive "P")
   (beginning-of-line)
-  (let ((dframe-power-click arg))
+  (let* ((dframe-power-click arg)
+	 (speedbar-power-click arg))
     (condition-case nil
 	(progn
 	  (re-search-forward ":\\s-*.\\+. "
