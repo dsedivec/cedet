@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1996, 97, 98 Free Software Foundation
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; Version: 0.7f
+;; Version: 0.7g
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
@@ -567,12 +567,14 @@ use etags instead.  Etags support is not as robust as imenu support."
 (defcustom speedbar-track-mouse-flag t
   "*Non-nil means to display info about the line under the mouse."
   :group 'speedbar
-  :type 'boolean
-  :set (lambda (sym val)
-	 (save-excursion
-	   (set-buffer speedbar-buffer)
-	   (setq track-mouse val)
-	   (set sym val))))
+  :type 'boolean)
+
+;;; I cannot make track-mouse a buffer-local variable.
+;;;  :set (lambda (sym val)
+;;;	 (save-excursion
+;;;	   (set-buffer speedbar-buffer)
+;;;	   (setq track-mouse val)
+;;;	   (set sym val))))
 
 (defcustom speedbar-sort-tags nil
   "*If Non-nil, sort tags in the speedbar display. *Obsolete*."
