@@ -95,7 +95,7 @@ MFILENAME is the makefile to generate."
 	      (insert "\n\n# End of Makefile\n"))))
        ((eq (oref this makefile-type) 'Makefile.in)
 	)
-       ((eq (oref this makefile-type 'Makefile.am))
+       ((eq (oref this makefile-type) 'Makefile.am)
 	)
        (t (error "Unknown makefile type when generating Makefile")))
       (goto-char (point-min))
