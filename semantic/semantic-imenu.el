@@ -63,23 +63,24 @@ Optional argument STREAM STREAM is an optional stream of tokens used to create m
 	 item name
 	 depend-index
 	 index)
-  (while buckets
-    (setq name (car (car buckets))
-	  item (cdr (car buckets)))
-    ;; If we have types, then first make a bucket of types,
-    ;; then the bucket of submenues full of types
-    (if (and item (eq (semantic-token-token (car item)) 'type))
-	(setq index (cons (cons (concat "*" name "Def*")
-				(semantic-create-imenu-subindex item t))
-			  index)))
-    ;; Add the sublist of items
-    (setq index (if item
-		    (cons (cons name (semantic-create-imenu-subindex item))
-			  index)
-		  index)
-	  buckets (cdr buckets)))
-  (nreverse index)))
-	    
+    (cond
+     ((null buckets)
+      nil)
+     ((cdr-safe buckets) ;; if buckets has more than one item in it.
+      (while buckets
+	(setq name (car (car buckets))
+	      item (cdr (car buckets)))
+	;; Add the sublist of items
+	(if item
+	    (setq index (cons (cons name (semantic-create-imenu-subindex item))
+			      index)))
+	(setq buckets (cdr buckets)))
+      (nreverse index))
+     (t
+      (setq name (car (car buckets))
+	    item (cdr (car buckets)))
+      (semantic-create-imenu-subindex item)))))
+
 (defun semantic-create-imenu-subindex (tokens &optional notypecheck)
   "From TOKENS, create an imenu index of interesting things.
 Optional argument NOTYPECHECK specifies not to make subgroups under types."
@@ -90,11 +91,12 @@ Optional argument NOTYPECHECK specifies not to make subgroups under types."
 	       (eq (semantic-token-token token) 'type)
                (setq parts (semantic-token-type-parts token)))
           (setq index (cons (cons
-                             (funcall semantic-imenu-summary-function
-				      token)
-                             (if semantic-imenu-bucketize-type-parts
-                                 (semantic-create-imenu-index parts)
-                               (semantic-create-imenu-subindex parts)))
+                             (funcall semantic-imenu-summary-function token)
+                             ;; Add a menu for getting at the type definitions
+			     (cons (cons "*typedef*" (semantic-token-start token))
+				   (if semantic-imenu-bucketize-type-parts
+				       (semantic-create-imenu-index parts)
+				     (semantic-create-imenu-subindex parts))))
                             index))
         (setq index (cons (cons (funcall semantic-imenu-summary-function token)
                                 (semantic-token-start token))
