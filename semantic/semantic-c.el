@@ -138,9 +138,15 @@
      ( typesimple
        ,(semantic-lambda
 	 (nth 0 vals)))
-     ( symbol "\\<\\(struct\\|union\\|enum\\)\\>" symbol
+     ( STRUCT symbol
 	      ,(semantic-lambda
 		(list (nth 1 vals) 'type (nth 0 vals))))
+     ( UNION symbol
+	     ,(semantic-lambda
+	       (list (nth 1 vals) 'type (nth 0 vals))))
+     ( ENUM symbol
+	    ,(semantic-lambda
+	      (list (nth 1 vals) 'type (nth 0 vals))))
      ( symbol
        ,(semantic-lambda
 	 (list (nth 0 vals))))
