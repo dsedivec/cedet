@@ -39,11 +39,10 @@
   `((bovine-toplevel
      ( include)
      ( macro)
-     ( comment)
+     ( type)
      ( function)
      ( variable)
      ( prototype)
-     ( type)
      ( define)
      )					; end declaration
     (include
