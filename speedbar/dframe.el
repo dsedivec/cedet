@@ -911,7 +911,7 @@ This overrides the default behavior of `switch-to-buffer' which is
 broken because of the dedicated frame."
   (interactive)
   ;; Assume we are in the dedicated frame.
-  (other-window 0)
+  (other-frame 1)
   ;; Now switch buffers
   (if buffer
       (switch-to-buffer buffer)
