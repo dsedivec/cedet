@@ -374,8 +374,8 @@
  ( NEW qualified_name semantic-list "\\`(")
  ) ; end class_instance_creation_expression
  (array_creation_expression
- ( NEW qualified_name dims array_initializer)
- ( NEW qualified_name dims)
+ ( NEW array_type array_initializer)
+ ( NEW array_type)
  ) ; end array_creation_expression
  (dims_opt
  ( dims
@@ -423,7 +423,7 @@
  ( unary_expression operators_expression_opt)
  ) ; end expression
  )
-    "Java language specification.")
+      "Java language specification.")
 
 ;; Generated keyword table
 (defvar semantic-java-keyword-table
