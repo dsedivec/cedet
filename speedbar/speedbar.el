@@ -1033,8 +1033,17 @@ supported at a time.
 				(x-sensitive-text-pointer-shape
 				 x-pointer-hand2))
 			    (make-frame params)))))
-		  (if (listp cfx) (setq cfx (eval cfx)))
-		  (if (listp cfy) (setq cfx (eval cfy)))
+		  ;; If cfx is a list, that means we grow from a specific edge
+		  ;; of the display.  Convert that to the distance from the
+		  ;; left side of the display.
+		  (if (consp cfx)
+		      (setq cfx 
+			    (if (eq (car cfx) '-)
+				;; A - means distance from the right edge
+				;; of the display, or DW - cfx - framewidth
+				(- (x-display-pixel-width) (car (cdr cfx))
+				   (frame-pixel-width))
+			      (car (cdr cfx)))))
 		  (if (and window-system (not (eq window-system 'pc)))
 		      (set-frame-position frame
 					  ;; Decide which side to put it
