@@ -1023,7 +1023,7 @@ Fills in OBJ's FIELD with it's default value."
       (eieio-barf-if-slot-unbound
        (let ((val (nth (- c 3) (aref (class-v cl) class-public-d))))
 	 (eieio-default-eval-maybe val))
-       obj (aref obj object-class) 'oref-default))))
+       obj cl 'oref-default))))
 
 (defun eieio-default-eval-maybe (val)
   "Check VAL, and return what `oref-default' would provide."
