@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1999, 2000 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; Version: 0.1
+;; Version: 1.1
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 
@@ -338,6 +338,10 @@ TOP-LEVEL ENTRIES:
  (\"FILE\" include \"DOCSTRING\" START END)
    In C, an #include statement.  In elisp, a require statement.
    Indicates additional locations of sources or definitions.
+
+ (\"NAME\" package DETAIL \"DOCSTRING\" START END)
+   In Emacs Lisp, a `provide' statement.  DETAIL might be an
+   associated file name.
 
 OTHER ENTRIES:")
 (make-variable-buffer-local 'semantic-toplevel-bovine-table)
