@@ -1,11 +1,13 @@
 ;;; sb-info --- Speedbar support for Info
 
-;; Copyright (C) 1997 Free Software Foundation
+;; Copyright (C) 1997, 1998 Free Software Foundation
 ;;
 ;; Author: Eric M. Ludlam <zappo@gnu.ai.mit.edu>
 ;; Version: 0.1
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
+;;
+;; This file is part of GNU Emacs.
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
