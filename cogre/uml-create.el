@@ -199,7 +199,7 @@ customizing the object, or performing some complex task."
 
 (defun cogre-uml-source-display-bottom (m)
   "Display point M in a small buffer on the bottom of the current frame."
-  (if (cdr (window-list))
+  (if (not (eq (next-window) (selected-window)))
       (cogre-uml-source-display-other-window m)
     (split-window-vertically (- (window-height)
 				cogre-uml-source-display-window-size
