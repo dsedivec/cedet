@@ -216,7 +216,7 @@ TYPE is a string."
 		       (semantic-bovinate-toplevel nil t))
 		   streamorbuffer))
 	(nl nil) (ts nil))
-    (if (member type semantic-default-c-built-in-types)
+    (if (member type semantic-default-built-in-types)
 	(setq nl (list (list type 'type "built in")))
       (while stream
 	(setq ts (semantic-token-type (car stream)))
