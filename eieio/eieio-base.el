@@ -47,7 +47,7 @@
 ;; error if a slot is unbound.
 (defclass eieio-instance-inheritor ()
   ((parent-instance :initarg :parent-instance
-		    :type eieio-instance-inheritor
+		    :type eieio-instance-inheritor-child
 		    :documentation
 		    "The parent of this instance.
 If a slot of this class is reference, and is unbound, then  the parent
