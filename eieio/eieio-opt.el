@@ -41,7 +41,7 @@
 
 (defun eieio-browse (&optional root-class)
   "Create an object browser window which shows all objects starting
-with root-class, or eieio-default-superclass if none is given."
+with root-class, or `eieio-default-superclass' if none is given."
   (interactive (if current-prefix-arg
 		   (list (read (completing-read "Class: " 
 						(eieio-build-class-alist)
