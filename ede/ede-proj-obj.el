@@ -29,6 +29,9 @@
 ;; and EDE Project file.
 
 (require 'ede-proj)
+;; (require 'ede-pmake)
+;; The above require is needed for ede-pmake-varname, but introduces
+;; a circular dependency.  Leave it be.
 
 ;;; Code:
 (defclass ede-proj-target-makefile-objectcode (ede-proj-target-makefile)
