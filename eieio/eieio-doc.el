@@ -164,7 +164,8 @@ Argument LEVEL is the current level of recursion we have hit."
 	 (anchor nil)
 	 )
     ;; doc of the class itself
-    (insert (eieiodoc-texify-docstring (aref cv 2) class) "\n\n@table @asis\n")
+    (insert (eieiodoc-texify-docstring (documentation class) class)
+	    "\n\n@table @asis\n")
     (if names
 	(progn
 	  (setq anchor (point))
@@ -338,7 +339,7 @@ that class.
  t          => @code{t}
  :tag       => @code{:tag}
  [ stuff ]  => @code{[ stuff ]}
- Key        => @kbd{Key}        (key is C-h, M-h, SPC, RET, TAB and the like)"
+ Key        => @kbd{Key}"
   (while (string-match "`\\([-a-zA-Z0-9]+\\)'" string)
     (let* ((vs (substring string (match-beginning 1) (match-end 1)))
 	   (v (intern-soft vs)))
