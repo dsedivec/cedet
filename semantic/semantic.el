@@ -410,6 +410,10 @@ If not provided, then only the POSITION can be provided."
 	  (semantic-flex-text (car (semantic-flex p (1+ p)))))
       p)))
 
+(defmacro semantic-token-extent (token)
+  "Retrieve the extent (START END) of TOKEN."
+  `(nthcdr (- (length ,token) 2) ,token))
+
 (defmacro semantic-token-start (token)
   "Retrieve the start location of TOKEN."
   `(nth (- (length ,token) 2) ,token))
