@@ -420,7 +420,9 @@ Optional RETURNTYPE is a return value to match against also."
     (if (listp option)
 	(if (semantic-token-p option)
 	    option
-	  (setq option (car option)))
+          ;; `semanticdb-find-nonterminal-by-name' returns a list
+          ;; ((DB-TABLE . TOKEN) ...)
+	  (setq option (cdr (car option))))
       (if (stringp option)
 	  (list option 'variable)
 	))))
