@@ -46,10 +46,25 @@ Some useful functions are:
   :group 'imenu
   :type 'function)
 
+(defcustom semantic-imenu-bucketize-file t
+  "*Non-nil if tokens in a file are to be grouped into buckets."
+  :group 'imenu
+  :group 'semantic
+  :type 'bool)
+
+(defcustom semantic-imenu-buckets-to-submenu t
+  "*Non-nil if buckets of tokens are to be turned into submenus.
+This option is ignored if `semantic-imenu-bucketize-file' is nil."
+  :group 'imenu
+  :group 'semantic
+  :type 'bool)
+
 (defcustom semantic-imenu-bucketize-type-parts t
   "*Non-nil if elements of a type should be placed grouped into buckets.
-Nil means to keep them in the same order."
+Nil means to keep them in the same order.
+Overriden to nil if `semantic-imenu-bucketize-file' is nil."
   :group 'imenu
+  :group 'semantic
   :type 'bool)
 
 ;;; Code:
@@ -58,28 +73,46 @@ Nil means to keep them in the same order."
   "Create an imenu index for any buffer which supports Semantic.
 Uses the output of the Semantic Bovinator to create the index.
 Optional argument STREAM STREAM is an optional stream of tokens used to create menus."
-  (let* ((tokens (or stream (semantic-bovinate-toplevel nil t t)))
-	 (buckets (semantic-bucketize tokens))
-	 item name
-	 depend-index
-	 index)
-    (cond
-     ((null buckets)
-      nil)
-     ((cdr-safe buckets) ;; if buckets has more than one item in it.
-      (while buckets
-	(setq name (car (car buckets))
-	      item (cdr (car buckets)))
-	;; Add the sublist of items
-	(if item
-	    (setq index (cons (cons name (semantic-create-imenu-subindex item))
-			      index)))
-	(setq buckets (cdr buckets)))
-      (nreverse index))
-     (t
-      (setq name (car (car buckets))
-	    item (cdr (car buckets)))
-      (semantic-create-imenu-subindex item)))))
+  (let ((tokens (or stream (semantic-bovinate-toplevel nil t t))))
+    (if semantic-imenu-bucketize-file
+	(let ((buckets (semantic-bucketize tokens))
+	      item name
+	      depend-index
+	      index)
+	  (cond
+	   ((null buckets)
+	    nil)
+	   ((cdr-safe buckets) ;; if buckets has more than one item in it.
+	    (while buckets
+	      (setq name (car (car buckets))
+		    item (cdr (car buckets)))
+	      (if semantic-imenu-buckets-to-submenu
+		  (progn
+		    ;; Make submenus
+		    (if item
+			(setq index
+			      (cons (cons name
+					  (semantic-create-imenu-subindex item))
+				    index))))
+		;; Glom everything together with "---" between
+		(if item
+		    (setq index
+			  (append index
+				  (cons
+				   '("---")
+				   (semantic-create-imenu-subindex item))))
+		  ))
+	      (setq buckets (cdr buckets)))
+	    (if semantic-imenu-buckets-to-submenu
+		(nreverse index)
+	      index))
+	   (t
+	    (setq name (car (car buckets))
+		  item (cdr (car buckets)))
+	    (semantic-create-imenu-subindex item))))
+      ;; Else, group everything together
+      (semantic-create-imenu-subindex tokens t))))
+    
 
 (defun semantic-create-imenu-subindex (tokens &optional notypecheck)
   "From TOKENS, create an imenu index of interesting things.
@@ -94,9 +127,11 @@ Optional argument NOTYPECHECK specifies not to make subgroups under types."
                              (funcall semantic-imenu-summary-function token)
                              ;; Add a menu for getting at the type definitions
 			     (cons (cons "*typedef*" (semantic-token-start token))
-				   (if semantic-imenu-bucketize-type-parts
+				   (if (and semantic-imenu-bucketize-type-parts
+					    semantic-imenu-bucketize-file)
 				       (semantic-create-imenu-index parts)
-				     (semantic-create-imenu-subindex parts))))
+				     (semantic-create-imenu-subindex
+				      (reverse parts)))))
                             index))
         (setq index (cons (cons (funcall semantic-imenu-summary-function token)
                                 (semantic-token-start token))
