@@ -45,13 +45,28 @@
 ;;; Change log:
 ;; 0.1   - first revision copied from speedbspec.el V 0.1.1
 ;; 0.1.1 - removed require speedbspec.
+;; 0.1.2 - Changed to handle new keymap feature.
 
 ;;; Code:
 (defvar rmail-speedbar-last-user nil
   "The last user to be displayed in the speedbar.")
 
+(defvar rmail-speedbar-key-map nil
+  "Keymap used when in the buffers display mode.")
+
+(if rmail-speedbar-key-map
+    nil
+  (setq rmail-speedbar-key-map (speedbar-make-specialized-keymap))
+
+  ;; Basic tree features
+  (define-key rmail-speedbar-key-map "e" 'speedbar-edit-line)
+  (define-key rmail-speedbar-key-map "r" 'speedbar-edit-line)
+  (define-key rmail-speedbar-key-map "\C-m" 'speedbar-edit-line)
+  (define-key rmail-speedbar-key-map "M" 'rmail-move-message-to-folder-on-line)
+  )
+
 (defvar rmail-speedbar-menu-items
-  '(["Browse Item On Line" speedbar-edit-line t]
+  '(["Read Folder" speedbar-edit-line t]
     ["Move message to folder" rmail-move-message-to-folder-on-line
      (save-excursion (beginning-of-line)
 		     (looking-at "<M> "))])
