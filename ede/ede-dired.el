@@ -68,7 +68,9 @@
 If ARG is nil, toggle, if it is a positive number, force on, if
 negative, force off."
   (interactive "P")
-  (if (not (eq major-mode 'dired-mode)) (error "Not in DIRED mode"))
+  (if (not (or (eq major-mode 'dired-mode)
+	       (eq major-mode 'vc-dired-mode)))
+      (error "Not in DIRED mode"))
   (setq ede-dired-minor-mode
 	(not (or (and (null arg) ede-dired-minor-mode)
 		 (<= (prefix-numeric-value arg) 0)))))
