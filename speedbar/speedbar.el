@@ -3640,7 +3640,7 @@ Returns the tag list, or t for an error."
   (require 'semantic)
   (save-excursion
     (set-buffer (find-file-noselect file))
-    ;(if speedbar-power-click (setq imenu--index-alist nil))
+    (if speedbar-power-click (setq semantic-toplevel-bovine-cache))
     (if (not semantic-toplevel-bovine-table)
 	t
       (condition-case nil
