@@ -141,9 +141,6 @@ Argument NEWFUNC is a function I cannot devine at this time."
       (setq fp (oref fp parent)))
     fp))
 
-;;; end of lisp
-(provide 'call-tree)
-
 (provide 'call-tree)
 
 ;;; call-tree.el ends here
