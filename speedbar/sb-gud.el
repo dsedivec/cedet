@@ -160,8 +160,8 @@ off the specialized speedbar mode."
 	(let ((e (car gud-gdb-fetched-stack-frame-list))
 	      (name nil) (num nil))
 	  (if (not (or
-		    (string-match "^#\\([0-9]+\\) +[0-9a-fx]+ in \\([0-9a-zA-Z_]+\\) (" e)
-		    (string-match "^#\\([0-9]+\\) +\\([0-9a-zA-Z_]+\\) (" e)))
+		    (string-match "^#\\([0-9]+\\) +[0-9a-fx]+ in \\([:0-9a-zA-Z_]+\\) (" e)
+		    (string-match "^#\\([0-9]+\\) +\\([:0-9a-zA-Z_]+\\) (" e)))
 	      (if (not (string-match
 			"at \\([-0-9a-zA-Z_.]+\\):\\([0-9]+\\)$" e))
 		  nil
