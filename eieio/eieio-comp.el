@@ -38,8 +38,9 @@
 ;; It will output a function call to `eieio-defmethod' with the byte
 ;; compiled function as a parameter.
 
-;; Some compatibility stuff
 ;;; Code:
+
+;; Some compatibility stuff
 (if (not (fboundp 'byte-compile-compiled-obj-to-list))
     (defun byte-compile-compiled-obj-to-list (moose) nil))
 
