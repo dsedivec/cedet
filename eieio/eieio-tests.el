@@ -100,6 +100,15 @@
 (defvar a  (class-a "aye"))
 (defvar b (class-b "fooby"))
 
+(condition-case nil
+    (progn
+      ;; Try make-instance on these guys...
+      (make-instance 'class-ab)
+      (make-instance 'class-a :water 'cho)
+      (make-instance 'class-b "a name")
+      )
+  (error "make-instance error."))
+
 ;; Play with call-next-method
 (defmethod class-cn ((a class-a))
   "Try calling `call-next-method' when there isn't one.
