@@ -36,6 +36,9 @@
 ;;
 ;; These macros extract parts from the default token types as
 ;; described by `semantic-toplevel-bovine-table'
+
+;; Check semantic.el for the other token information extraction functions.
+
 (defun semantic-token-type (token)
   "Retrieve the type of TOKEN."
   (if (member (semantic-token-token token)
@@ -286,7 +289,7 @@ DEFAULT is the default choice.  If no default is given, one is read
 from under point.
 STREAM is the list of tokens to complete from."
   (semantic-read-symbol
-   prompt default (semantic-find-nonterminal-by-type 'varible stream)))
+   prompt default (semantic-find-nonterminal-by-type 'variable stream)))
 
 (defun semantic-read-function (prompt &optional default stream)
   "Read a function name from the user for the current buffer.
