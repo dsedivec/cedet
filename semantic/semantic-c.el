@@ -327,8 +327,7 @@
 				      mods
 				      suffix
 				      (semantic-token-docstring nonterm)
-				      (semantic-token-start nonterm)
-				      (semantic-token-end nonterm))
+				      (semantic-token-overlay nonterm))
 				vl))
 		 (setq lst (cdr lst)))
 	       vl))
