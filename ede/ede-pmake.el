@@ -255,8 +255,7 @@ Use CONFIGURATION as the current configuration to query."
   "Insert the source variables needed by THIS.
 Optional argument MORESOURCE is a list of additional sources to add to the
 sources variable."
-  (let ((sv (ede-proj-makefile-sourcevar this))
-	(addcr t))
+  (let ((sv (ede-proj-makefile-sourcevar this)))
     ;; This variable may be shared between targets
     (ede-pmake-insert-variable-shared (cond ((listp sv) (car sv))
 					    (t sv))
