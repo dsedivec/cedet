@@ -2041,7 +2041,7 @@ interested in."
 ;;;
 ;;; Tag Management -- Imenu
 ;;;
-(if (eval-when-compile (string-match "XEmacs" emacs-version))
+(if  (string-match "XEmacs" emacs-version)
 
     nil
 
@@ -2049,7 +2049,7 @@ interested in."
   "Use the imenu package to load in file, and extract all the items
 tags we wish to display in the speedbar package."
   ;; Load this AND compile it in
-  (eval-and-compile (require 'imenu))
+  (require 'imenu)
   (save-excursion
     (set-buffer (find-file-noselect file))
     (condition-case nil
