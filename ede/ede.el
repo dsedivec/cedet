@@ -865,7 +865,8 @@ If TARGET belongs to a subproject, return that project file."
     (let ((s (oref proj subproj))
 	  (ans nil))
       (while (and s (not ans))
-	(setq ans (ede-target-in-project-p (car s))))
+	(setq ans (ede-target-in-project-p (car s) target))
+	(setq s (cdr s)))
       ans)))
 
 (defun ede-target-parent (target)
