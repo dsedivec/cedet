@@ -977,11 +977,12 @@ Argument NONTERM is the nonterminal symbol to start with.
 Optional argument DEPTH is the depth of lists to dive into.
 Whan used in a `lambda' of a MATCH-LIST, there is no need to include
 a START and END part."
-  (semantic-bovinate-nonterminals (semantic-flex start end (or depth 1))
-				  nonterm
-				  depth
-				  ;; Compiler will complain.
-				  trashcomments))
+  (nreverse
+   (semantic-bovinate-nonterminals (semantic-flex start end (or depth 1))
+				   nonterm
+				   depth
+				   ;; Compiler will complain.
+				   trashcomments)))
     
 
 ;;; Semantic Flexing
