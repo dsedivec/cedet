@@ -98,6 +98,7 @@
 
 ;;; Code:
 (require 'eieio)
+(require 'eieio-custom)
 (require 'speedbar)
 
 ;;; Support a way of adding generic object based modes into speedbar.
@@ -373,13 +374,14 @@ Optional argument DEPTH is the current depth of the search."
     (if (not depth)
 	(progn
 	  (beginning-of-line)
-	  (looking-at "^\\([0-9]+\\):")
-	  (setq depth (string-to-int (match-string 1)))))
-    (while (and (not (object-p (speedbar-line-token)))
-		(> depth 0))
-      (setq depth (1- depth))
-      (re-search-backward (format "^%d:" depth) nil t))
-    (speedbar-line-token)))
+	  (when (looking-at "^\\([0-9]+\\):")
+	    (setq depth (string-to-int (match-string 1))))))
+    (when depth
+      (while (and (not (object-p (speedbar-line-token)))
+		  (> depth 0))
+	(setq depth (1- depth))
+	(re-search-backward (format "^%d:" depth) nil t))
+      (speedbar-line-token))))
 
 (defun eieio-speedbar-line-path (&optional depth)
   "If applicable, return the path to the file the cursor is on.
