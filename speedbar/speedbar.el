@@ -398,7 +398,6 @@ Parameters not listed here which will be added automatically are
 is attached to."
   :group 'speedbar
   :type '(repeat (sexp :tag "Parameter")))
-)
 
 (defcustom speedbar-use-imenu-flag (stringp (locate-library "imenu"))
   "*Non-nil means use imenu for file parsing.  nil to use etags.
