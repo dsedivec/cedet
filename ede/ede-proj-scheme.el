@@ -28,7 +28,8 @@
 ;; Handle scheme (Guile) in and EDE Project file.
 ;; This is a specialized do nothing class.
 
-(eval-and-compile (require 'ede-proj))
+(require 'ede-proj)
+(require 'autoconf-edit)
 
 ;;; Code:
 (defclass ede-proj-target-scheme (ede-proj-target)
