@@ -21,6 +21,9 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.21  2000/12/10 20:53:08  zappo
+# Fix spelling errors.
+#
 # Revision 1.20  2000/10/30 01:34:23  zappo
 # Tidied up opt-array stuff.
 #
@@ -182,15 +185,15 @@ opt-stars : STAR opt-stars
 	    ( 0 )
           ;
 
-declmods : symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volitile\\|signed\\|unsigned\\)" declmods
+declmods : symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volatile\\|signed\\|unsigned\\)" declmods
 	   ( ,(cons $1 $2 ) )
-	 | symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volitile\\|signed\\|unsigned\\)"
+	 | symbol "\\(_+\\)?\\(extern\\|static\\|const\\|volatile\\|signed\\|unsigned\\)"
 	   ( $1 )
 	 | EMPTY
 	   ()
 	 ;
 
-# dont deal with the stars just yet.
+# Don't deal with the stars just yet.
 typeform : typeformbase opt-stars
 	   ( ,$1 )
 	 ;
@@ -302,8 +305,8 @@ opt-expression : expression
 	       | EMPTY ( nil )
 	       ;
 
-# Use expressiosn for parsing only.  Don't actually return anything
-# for now.  Hopefully we can't fix this later.
+# Use expression for parsing only.  Don't actually return anything
+# for now.  Hopefully we can fix this later.
 expression : symbol
 	     ( nil )
            | punctuation "[!*&~]" symbol
