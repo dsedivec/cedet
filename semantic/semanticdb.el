@@ -374,6 +374,27 @@ If ARG is nil, then toggle."
       (funcall fn (car (cdr (car h))) (car (car h)))
       (setq h (cdr h)))))
 
+(defun semanticdb-toggle-global-mode ()
+  "Toggle use of the Semantic Database feature.
+Update the environment of Semantic enabled buffers accordingly."
+  (interactive)
+  (if (semanticdb-minor-mode-p)
+      (progn
+        ;; Update databases before disabling semanticdb.
+        (semantic-map-buffers #'semanticdb-kill-hook)
+        ;; Save the databases.
+        (semanticdb-save-all-db)))
+  ;; Toggle semanticdb minor mode.
+  (global-semanticdb-minor-mode)
+  ;; Update the environment of Semantic enabled buffers.
+  (semantic-map-buffers
+   #'(lambda ()
+       ;; Set up semanticdb environment if enabled.
+       (if (semanticdb-minor-mode-p)
+           (semanticdb-semantic-init-hook-fcn))
+       ;; Clear imenu cache to redraw the imenu.
+       (semantic-imenu-flush-fcn))))
+
 ;;; Utilities
 ;;
 ;; Line all the semantic-util 'find-nonterminal...' type functions, but
