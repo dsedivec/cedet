@@ -949,6 +949,7 @@ supported at a time.
     (speedbar-update-contents)
     (speedbar-set-timer dframe-update-speed)
     )
+  (set (make-local-variable 'automatic-hscrolling) nil) ; Emacs 21
   ;; reset the selection variable
   (setq speedbar-last-selected-file nil))
 
@@ -1062,8 +1063,9 @@ in the selected file.
     (toggle-read-only 1)
     (speedbar-set-mode-line-format)
     ;; Add in our dframe hooks.
-    (setq dframe-track-mouse-function #'speedbar-track-mouse
-	  dframe-help-echo-function #'speedbar-item-info
+    (if speedbar-track-mouse-flag
+	(setq dframe-track-mouse-function #'speedbar-track-mouse))
+    (setq dframe-help-echo-function #'speedbar-item-info
 	  dframe-mouse-click-function #'speedbar-click
 	  dframe-mouse-position-function #'speedbar-position-cursor-on-line)
     ;;no auto-show for Emacs
