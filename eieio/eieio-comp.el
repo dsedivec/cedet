@@ -41,11 +41,13 @@
 ;;; Code:
 
 ;; Some compatibility stuff
-(if (not (fboundp 'byte-compile-compiled-obj-to-list))
-    (defun byte-compile-compiled-obj-to-list (moose) nil))
+(eval-and-compile
+  (if (not (fboundp 'byte-compile-compiled-obj-to-list))
+      (defun byte-compile-compiled-obj-to-list (moose) nil))
 
-(if (not (boundp 'byte-compile-outbuffer))
-    (defvar byte-compile-outbuffer nil))
+  (if (not (boundp 'byte-compile-outbuffer))
+      (defvar byte-compile-outbuffer nil))
+  )
 
 ;; This teaches the byte compiler how to do this sort of thing.
 (put 'defmethod 'byte-hunk-handler 'byte-compile-file-form-defmethod)
