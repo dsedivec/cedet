@@ -1899,6 +1899,37 @@ All slots are unbound, except those initialized with PARAMS."
     nobj))
 
 
+;;; eieio-instance-tracker
+;;
+(defclass eieio-instance-tracker ()
+  ((tracking-symbol :type symbol
+		    :allocation class
+		    :documentation
+		    "The symbol used to maintain a list of our instances.
+The instance list is treated as a variable, with new instances added to it.")
+   )
+  "This special class enables instance tracking.
+Inheritors from this class must overload `tracking-symbol' which is
+a variable symbol used to store a list of all instances.")
+
+(defmethod initialize-instance :AFTER ((this eieio-instance-tracker)
+				       &rest fields)
+  "Make sure THIS is in our master list of this class."
+  ;; Theoretically, this is never called twice for a given instance.
+  (add-to-list (oref this tracking-symbol) this t))
+
+(defmethod delete-instance ((this eieio-instance-tracker))
+  "Remove THIS from the master list of this class."
+  (set (oref this tracking-symbol)
+       (delq this (symbol-value (oref this tracking-symbol)))))
+
+;; In retrospect, this is a silly function.
+(defsubst eieio-instance-tracker-find (key field list-symbol)
+  "Find KEY as an element of FIELD in the objects in LIST-SYMBOL.
+Returns the first match."
+  (object-assoc key field (symbol-value list-symbol)))
+
+
 ;;; eieio-persistent
 ;;
 (defclass eieio-persistent ()
