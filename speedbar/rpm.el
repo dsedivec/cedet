@@ -65,9 +65,12 @@ Source RPM\\|URL\\) *:" 0 font-lock-variable-name-face)
 (defun rpm-info (package)
   "View RPM PACKAGE information in the current buffer."
   (interactive "sPackage: ")
+  (toggle-read-only -1)
   (call-process "rpm" nil t nil "-qil" package)
   (goto-char (point-min))
-  (rpm-mode))
+  (rpm-mode)
+  (set-buffer-modified-p nil)
+  (toggle-read-only 1))
 
 (defun rpm-mode ()
   "Major mode for viewing package information."
