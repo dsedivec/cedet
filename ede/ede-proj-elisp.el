@@ -29,7 +29,9 @@
 
 ;;; Code:
 (defclass ede-proj-target-elisp (ede-proj-target-makefile)
-  ((load-path :initarg :load-path
+  ((menu :initform nil)
+   (keybindings :initform nil)
+   (load-path :initarg :load-path
 	      :initform nil
 	      :type list
 	      :custom (repeat string)

@@ -29,7 +29,9 @@
 
 ;;; Code:
 (defclass ede-proj-target-makefile-info (ede-proj-target-makefile)
-  ((mainmenu :initarg :mainmenu
+  ((menu :initform nil)
+   (keybindings :initform nil)
+   (mainmenu :initarg :mainmenu
 	     :initform ""
 	     :type string
 	     :custom string
