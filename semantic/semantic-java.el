@@ -36,7 +36,8 @@
 (eval-when-compile
   (require 'semantic-ctxt)
   (require 'semantic-imenu)
-  (require 'document))
+  (require 'document)
+  (require 'senator))
 
 ;; Generated parser table
 (defvar semantic-toplevel-java-bovine-table
@@ -428,7 +429,7 @@
  ( unary_expression operators_expression_opt)
  ) ; end expression
  )
-            "Java language specification.")
+              "Java language specification.")
 
 ;; Generated keyword table
 (defvar semantic-java-keyword-table
@@ -910,6 +911,8 @@ removed from the result list."
                                         (function . "Methods")
                                         (include  . "Imports")
                                         (package  . "Package"))
+     ;; Semantic navigation inside 'type children
+     senator-step-at-token-ids '(function variable)
      )
     ;; Needed by `semantic-find-doc-snarf-comment'.
     (set (make-local-variable 'block-comment-end) "\\s-*\\*/")
