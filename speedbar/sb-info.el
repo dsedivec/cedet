@@ -97,9 +97,10 @@
   "Initialize speedbar to display an info node browser.
 This will add a speedbar major display mode."
   (interactive)
+  (require 'speedbar)
   ;; Make sure that speedbar is active
   (speedbar-frame-mode 1)
-  ;; Now, throw us into RPM mode on speedbar.
+  ;; Now, throw us into Info mode on speedbar.
   (speedbar-change-initial-expansion-list "Info")
   )
 
@@ -118,9 +119,13 @@ specific node to expand."
     ;; being known at creation time.
     (if (not node)
 	(speedbar-with-writable (insert "Info Nodes:\n")))
-    (let ((completions nil))
-      (setq completions
-	    (Info-speedbar-fetch-file-nodes (or node '"(dir)top")))
+    (let ((completions nil)
+	  (cf (selected-frame)))
+      (select-frame speedbar-attached-frame)
+      (save-window-excursion
+	(setq completions
+	      (Info-speedbar-fetch-file-nodes (or node '"(dir)top"))))
+      (select-frame cf)
       (if completions
 	  (speedbar-with-writable
 	   (while completions
