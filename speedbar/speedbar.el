@@ -3159,7 +3159,7 @@ Optional argument P is where to start the search from."
     (if p (goto-char p))
     (beginning-of-line)
     (if (looking-at (concat
-		     "\\([0-9]+\\): *[[<][-+?][]>] \\([^ \n]+\\)\\("
+		     "\\([0-9]+\\): *[[<{][-+?][]>}] \\([^ \n]+\\)\\("
 		     speedbar-indicator-regex "\\)?"))
 	(match-string 2)
       nil)))
@@ -3171,7 +3171,7 @@ Optional argument P is where to start the search from."
     (if p (goto-char p))
     (beginning-of-line)
     (if (looking-at (concat
-		     "\\([0-9]+\\): *[[<][-+?][]>] \\([^ \n]+\\)\\("
+		     "\\([0-9]+\\): *[[<{][-+?][]>}] \\([^ \n]+\\)\\("
 		     speedbar-indicator-regex "\\)?"))
 	(progn
 	  (goto-char (match-beginning 2))
