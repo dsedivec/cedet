@@ -32,43 +32,6 @@
 ;; files are displayed.  These items can be clicked on with mouse-2
 ;; in order to make the last active frame display that file location.
 ;;
-;; Starting Speedbar:
-;;
-;;   If speedbar came to you as a part of Emacs, simply type
-;; `M-x speedbar', and it will be autoloaded for you.
-;;
-;;   If speedbar is not a part of your distribution, then add
-;; this to your .emacs file:
-;;
-;;   (autoload 'speedbar-frame-mode "speedbar" "Popup a speedbar frame" t)
-;;   (autoload 'speedbar-get-focus "speedbar" "Jump to speedbar frame" t)
-;;
-;;   If you want to choose it from a menu, such as "Tools", you can do this:
-;;
-;;   Emacs:
-;;   (define-key-after (lookup-key global-map [menu-bar tools])
-;;      [speedbar] '("Speedbar" . speedbar-frame-mode) [calendar])
-;;
-;;   XEmacs:
-;;   (add-menu-button '("Tools")
-;;		      ["Speedbar" speedbar-frame-mode
-;;		       :style toggle
-;;		       :selected (and (boundp 'speedbar-frame)
-;;				      (frame-live-p speedbar-frame)
-;;				      (frame-visible-p speedbar-frame))]
-;;		      "--")
-;;
-;;   If you want to access speedbar using only the keyboard, do this:
-;;
-;;   (global-set-key [(f4)] 'speedbar-get-focus)
-;;
-;;   This will let you hit f4 (or whatever key you choose) to jump
-;; focus to the speedbar frame.  Pressing it again will bring you back
-;; to the attached frame.  Pressing RET or e to jump to a file
-;; or tag will move you back to the attached frame.  The command
-;; `speedbar-get-focus' will also create a speedbar frame if it does
-;; not exist.
-;;
 ;; Customizing Speedbar:
 ;;
 ;;   Once a speedbar frame is active, it takes advantage of idle time
@@ -1925,8 +1888,8 @@ position to insert a new item, and that the new item will end with a CR"
     (let* ((exp-button (cond ((eq exp-button-type 'bracket) "[%c]")
 			     ((eq exp-button-type 'angle) "<%c>")
 			     ((eq exp-button-type 'curly) "{%c}")
-			     ((eq exp-button-type 'expandtag) "%c>")
-			     ((eq exp-button-type 'statictag) "=>")
+			     ((eq exp-button-type 'expandtag) " %c>")
+			     ((eq exp-button-type 'statictag) " =>")
 			     (t ">")))
 	   (buttxt (format exp-button exp-button-char))
 	   (start (point))
