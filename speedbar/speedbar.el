@@ -1414,7 +1414,7 @@ cell of the form ( 'DIRLIST . 'FILELIST )"
       (setq lst (cdr lst)))))
 
 (defun speedbar-default-directory-list (directory index)
-  "Inserts files for DIRECTORY with level INDEX at point"
+  "Inserts files for DIRECTORY with level INDEX at point."
   (speedbar-insert-files-at-point
    (speedbar-file-lists directory) index)
   (speedbar-reset-scanners)
@@ -2377,7 +2377,7 @@ regular expression EXPR"
       )))
 
 (defun speedbar-parse-tex-string ()
-  "Parse a Tex string.  Only find data which is relevant"
+  "Parse a Tex string.  Only find data which is relevant."
   (save-excursion
     (let ((bound (save-excursion (end-of-line) (point))))
       (cond ((re-search-forward "\\(section\\|chapter\\|cite\\)\\s-*{[^\C-?}]*}?" bound t)
