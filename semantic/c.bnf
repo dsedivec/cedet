@@ -21,6 +21,9 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.24  2001/01/31 15:26:10  zappo
+# Added `codeblock' rule and `%scopestart'.
+#
 # Revision 1.23  2001/01/24 21:08:41  zappo
 # Added support for new token formats that use ASSOC.
 #
@@ -38,6 +41,7 @@
 #
 
 %start         declaration
+%scopestart    codeblock
 %outputfile    semantic-c.el
 %parsetable    semantic-toplevel-c-bovine-table
 %keywordtable  semantic-c-keyword-table
@@ -80,6 +84,13 @@ declaration : include
 	    | prototype
 	    | define
 	    ;
+
+codeblock : macro
+	  | define
+	  | variable
+	  | prototype
+	  | type # type is less likely to be used here.
+	  ;
 		
 include : HASH INCLUDE punctuation "<" filename punctuation ">"
 	  ( ,$4 include t nil )
