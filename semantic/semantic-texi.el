@@ -264,7 +264,11 @@ If TOKEN is nil, determine a token based on the current position."
   (if (not (eq (semantic-token-token token) 'def))
       (error "Only deffns (or defun or defvar) can be updated"))
   (let* ((name (semantic-token-name token))
-	 (toks (semanticdb-find-nonterminal-by-name name nil t nil t t))
+	 (toks (mapcar
+                #'cdr
+                ;; `semanticdb-find-nonterminal-by-name' returns a
+                ;; list ((DB-TABLE . TOKEN) ...)
+                (semanticdb-find-nonterminal-by-name name nil t nil t t)))
 	 (docstring nil)
 	 (doctok nil))
     (save-excursion
@@ -347,7 +351,11 @@ If TOKEN is nil, it is derived from the deffn under POINT."
   (if (not (eq (semantic-token-token token) 'def))
       (error "Only deffns (or defun or defvar) can be updated"))
   (let* ((name (semantic-token-name token))
-	 (toks (semanticdb-find-nonterminal-by-name name nil t nil t t))
+	 (toks (mapcar
+                #'cdr
+                ;; `semanticdb-find-nonterminal-by-name' returns a
+                ;; list ((DB-TABLE . TOKEN) ...)
+                (semanticdb-find-nonterminal-by-name name nil t nil t t)))
 	 (done nil)
 	 )
     (save-excursion
