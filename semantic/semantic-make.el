@@ -36,83 +36,68 @@
      ( variable)
      ( rule)
      ( conditional)
-     ) ; end bovine-toplevel
+     ) ; end Makefile
     (variable
      ( symbol equals elements
-	      ,(lambda (vals start end)
-		 (append  (list (nth 0 vals) 'variable nil nil (nth 2 vals) nil nil)
-			  (list start end))))
+	      ,(semantic-lambda
+		 (list (nth 0 vals) 'variable nil nil (nth 2 vals) nil nil)))
      ) ; end variable
     (rule
      ( symbol colons elements commands
-	      ,(lambda (vals start end)
-		 (append  (list (nth 0 vals) 'function nil (nth 2 vals) nil nil)
-			  (list start end))))
+	      ,(semantic-lambda
+		 (list (nth 0 vals) 'function nil (nth 2 vals) nil nil)))
      ) ; end rule
     (conditional
      ( symbol "if" symbol newline
-	      ,(lambda (vals start end)
-		 (append  (list nil)
-			  (list start end))))
+	      ,(semantic-lambda
+		 (list nil)))
      ( symbol "else" newline
-	      ,(lambda (vals start end)
-		 (append  (list nil)
-			  (list start end))))
+	      ,(semantic-lambda
+		 (list nil)))
      ( symbol "endif" newline
-	      ,(lambda (vals start end)
-		 (append  (list nil)
-			  (list start end))))
+	      ,(semantic-lambda
+		 (list nil)))
      ) ; end conditional
     (equals
      ( punctuation ":" punctuation "="
-		   ,(lambda (vals start end)
-		      (append 
-		       (list start end))))
+		   ,(semantic-lambda
+		     ))
      ( punctuation "+" punctuation "="
-		   ,(lambda (vals start end)
-		      (append 
-		       (list start end))))
+		   ,(semantic-lambda
+		     ))
      ( punctuation "="
-		   ,(lambda (vals start end)
-		      (append 
-		       (list start end))))
+		   ,(semantic-lambda
+		     ))
      ) ; end equals
     (colons
      ( punctuation ":" punctuation ":"
-		   ,(lambda (vals start end)
-		      (append 
-		       (list start end))))
+		   ,(semantic-lambda
+		     ))
      ( punctuation ":"
-		   ,(lambda (vals start end)
-		      (append 
-		       (list start end))))
+		   ,(semantic-lambda
+		     ))
      ) ; end colons
     (elements
      ( symbol elements
-	      ,(lambda (vals start end)
-		 (append  (list (nth 0 vals)) (nth 1 vals)
-			  (list start end))))
+	      ,(semantic-lambda
+		 (list (nth 0 vals)) (nth 1 vals)))
      ( symbol newline
-	      ,(lambda (vals start end)
-		 (append  (list (nth 0 vals))
-			  (list start end))))
+	      ,(semantic-lambda
+		 (list (nth 0 vals))))
      ( newline
-       ,(lambda (vals start end)
-	  (append 
-	   (list start end))))
+       ,(semantic-lambda
+	 ))
      ) ; end elements
     (commands
      ( shell-command newline commands
-		     ,(lambda (vals start end)
-			(append  (list (nth 0 vals)) (nth 1 vals)
-				 (list start end))))
+		     ,(semantic-lambda
+		        (list (nth 0 vals)) (nth 1 vals)))
      (
-      ,(lambda (vals start end)
-	 (append 
-	  (list start end))))
+      ,(semantic-lambda
+	))
      ) ; end commands
     )
-"Table for parsing Makefiles.")
+  "Table for parsing Makefiles.")
 
 (defvar semantic-flex-make-extentions
   '(("^\\(\t\\)" . semantic-flex-make-command)
@@ -135,8 +120,14 @@ These command lines continue to additional lines when the end with \\"
 
 (defun semantic-default-make-setup ()
   "Set up a Makefile buffer for parsing with semantic."
-  (setq semantic-toplevel-bovine-table semantic-toplevel-make-bovine-table
-	semantic-flex-extensions semantic-flex-make-extentions
+  (setq semantic-flex-extensions semantic-flex-make-extentions)
+  ;; Code generated from make.bnf
+  (setq semantic-toplevel-bovine-table semantic-toplevel-make-bovine-table)
+  (setq semantic-flex-enable-newlines t
+	semantic-symbol->name-assoc-list '((variable . "Variables")
+					   (function . "Rules")
+					   (include . "Dependencies"))
+	semantic-case-fold t
 	semantic-flex-syntax-modifications '((?. "_")
 					     (?= ".")
 					     (?/ "_")
@@ -148,12 +139,11 @@ These command lines continue to additional lines when the end with \\"
 					     (?$ "_")
 					     )
 	semantic-flex-enable-newlines t
-	semantic-symbol->name-assoc-list
-	'((variable . "Variables")
-	  (function . "Rules")
-	  (include . "Dependencies"))
 	imenu-create-index-function 'semantic-create-imenu-index
-	))
+	)
+
+  ;; End code generated from make.bnf
+  )
 
 (add-hook 'makefile-mode-hook 'semantic-default-make-setup)
 
