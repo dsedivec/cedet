@@ -258,7 +258,7 @@ UNTRUSTED"
     (if buffer (set-buffer buffer))
     (if (not start) (setq start (point)))
     (let ((os start) (ol nil))
-      (while (and os (not ol))
+      (while (and os (< os (point-max)) (not ol))
 	(setq os (semantic-overlay-next-change os))
 	(when os
 	  ;; Get overlays at position
@@ -283,7 +283,7 @@ UNTRUSTED"
     (if buffer (set-buffer buffer))
     (if (not start) (setq start (point)))
     (let ((os start) (ol nil))
-      (while (and os (not ol))
+      (while (and os (> os (point-min)) (not ol))
 	(setq os (semantic-overlay-previous-change os))
 	(when os
 	  ;; Get overlays at position
