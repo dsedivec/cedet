@@ -309,6 +309,8 @@ Argument LIST-O-O is the list of objects to choose from."
 		 (cons 'ede-minor-mode
 		       ede-minor-keymap))))
 
+(autoload 'ede-dired-minor-mode "ede-dired" "EDE commands for dired" t)
+
 (defun ede-minor-mode (&optional arg)
   "Project Automake minor mode.
 If this file is contained, or could be contained in an automake
