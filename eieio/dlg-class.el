@@ -374,6 +374,7 @@ the variables we are editing."
 	(progn
 	  (goto-char (match-beginning 1))
 	  (delete-region (point) (match-end 1))
+	  (if (and (listp val) (not (eq val nil))) (insert "'"))
 	  (insert (format "%S" val)))
       (if (re-search-forward (concat "(setq[ \t\n]+"
 				     (symbol-name (oref this symbol))
@@ -385,10 +386,10 @@ the variables we are editing."
 			     (forward-char 1)
 			     (forward-sexp 1)
 			     (point)))
-	    (if (listp val) (insert "'"))
+	    (if (and (listp val) (not (eq val nil))) (insert "'"))
 	    (insert (format "%S" val)))
 	(goto-char (point-max))
-	(insert (format (if (listp val)
+	(insert (format (if (and (not (eq val nil)) (listp val))
 			    "\n(setq %s '%S)"
 			  "\n(setq %s %S)")
 			(symbol-name (oref this symbol))
