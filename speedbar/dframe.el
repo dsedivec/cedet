@@ -231,7 +231,6 @@ Local to those buffers, as a function called that created it.")
 (defun dframe-update-keymap (map)
   "Update the keymap MAP for dframe default bindings."
   ;; Frame control
-  (define-key map "t" 'dframe-toggle-updates)
   (define-key map "q" 'dframe-close-frame)
   (define-key map "Q" 'delete-frame)
 
