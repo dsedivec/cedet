@@ -52,6 +52,10 @@
 
 (autoload 'global-semanticdb-minor-mode "semanticdb" nil t)
 (autoload 'semantic-show-dirty-mode "semantic-util" nil t)
+(autoload 'semantic-change-function-mark-dirty "semantic-util")
+
+;; This turns on semantic partial reparsing
+(add-hook 'semantic-change-hooks #'semantic-change-function-mark-dirty)
 
 (defvar semantic-load-turn-everything-on nil
   "Non-nil means turn on all features in the semantic package.")
@@ -59,8 +63,8 @@
 (when semantic-load-turn-everything-on
   (add-hook 'semantic-init-hooks (lambda ()
 				   (senator-minor-mode 1)))
-  (add-hook 'semantic-init-hooks 'turn-on-eldoc-mode)
-  (if (fboundp 'which-func-mode)
+  (add-hook 'semantic-init-hooks #'turn-on-eldoc-mode)
+  (if (fboundp #'which-func-mode)
       (add-hook 'semantic-init-hooks (lambda ()
 				       (which-func-mode 1))))
 
