@@ -211,6 +211,16 @@ These variables are used in the makefile when a configuration becomes active.")
     :custom boolean
     :documentation
     "Non-nil to do implement automatic dependencies in the Makefile.")
+   (menu :initform
+	 (
+	  [ "Regenerate Makefiles" ede-proj-regenerate t ]
+	  [ "Update Version" ede-update-version ede-object ]
+	  [ "Rescan Project Files" ede-rescan-toplevel t ]
+	  [ "Edit Projectfile" ede-edit-file-target
+	    (and ede-object
+		 (or (listp ede-object)
+		     (not (obj-of-class-p ede-object ede-project)))) ])
+	 )
    )
   "The EDE-PROJ project definition class.")
 
@@ -424,6 +434,14 @@ Optional argument COMMAND is the s the alternate command to use."
 
 ;;; Compiler and source code generators
 ;;
+(defmethod ede-want-file-auxiliary-p ((this ede-target) file)
+  "Return non-nil if THIS target wants FILE."
+  ;; By default, all targets reference the source object, and let it decide.
+  (let ((src (ede-target-sourcecode this)))
+    (while (and src (not (ede-want-file-auxiliary-p (car src) file)))
+      (setq src (cdr src)))
+    src))
+
 (defmethod ede-proj-compilers ((obj ede-proj-target))
   "List of compilers being used by OBJ.
 If the `compiler' slot is empty, concoct one on a first match found
