@@ -1825,7 +1825,7 @@ Optional argument NOESCAPE is passed to `prin1-to-string' when appropriate."
 ;;; Autoloading some external symbols, and hooking into the help system
 ;;
 
-(autoload 'eieio-help-mode-augmentation-mayee "eieio-opt" "For buffers thrown into help mode, augment for eieio.")
+(autoload 'eieio-help-mode-augmentation-maybee "eieio-opt" "For buffers thrown into help mode, augment for eieio.")
 (autoload 'eieio-browse "eieio-opt" "Create an object browser window" t)
 (autoload 'eieio-describe-class "eieio-opt" "Describe CLASS defined by a string or symbol" t)
 (autoload 'describe-class "eieio-opt" "Describe CLASS defined by a string or symbol" t)
