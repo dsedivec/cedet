@@ -8,6 +8,8 @@
 ;; Version: 0.15
 ;; RCS: $Id$
 ;; Keywords: OO, lisp
+(defvar eieio-version "0.15"
+  "Current version of EIEIO.")
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -44,8 +46,6 @@
 (eval-when-compile (require 'cl))
 
 ;;; Code:
-(defvar eieio-version "0.15"
-  "Current version of EIEIO.")
 (defun eieio-version ()
   "Display the current version of EIEIO."
   (interactive)
