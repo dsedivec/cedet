@@ -36,7 +36,7 @@
 ;; interface.
 
 ;; Installtation procedure:
-;;   Install speedbar 0.11 or later.
+;;   Install speedbar 0.12 or later.
 ;;   Add the following to your ~/.emacs file:
 ;;   (eval-after-load "speedbar" '(load-library "sb-texinfo"))
 
@@ -58,7 +58,7 @@
 
 ;;; Change Log:
 ;;;
-;;; 1.6 - Eric Ludlam
+;;; 1.6 - By Eric Ludlam <zappo@gnu.org>
 ;;;       speedbar-insert-texinfo-list no longer sets sthm to nil.
 ;;;       speedbar-format-texinfo-list uses new positioned group for
 ;;;       any chapter w/ sections (etc)  Also set new
