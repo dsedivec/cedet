@@ -8,7 +8,7 @@
 ;; Version: 0.17
 ;; RCS: $Id$
 ;; Keywords: OO, lisp
-(defvar eieio-version "0.17"
+(defvar eieio-version "0.17beta1"
   "Current version of EIEIO.")
 ;;
 ;; This program is free software; you can redistribute it and/or modify
