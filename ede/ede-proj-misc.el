@@ -29,6 +29,8 @@
 ;; This misc target lets the user link in custom makefiles to an EDE
 ;; project.
 
+(eval-and-compile (require 'ede-proj))
+
 ;;; Code:
 (defclass ede-proj-target-makefile-miscelaneous (ede-proj-target-makefile)
   ((submakefile :initarg :submakefile

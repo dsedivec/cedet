@@ -28,6 +28,8 @@
 ;; Handles a supperclass of target types which create object code in
 ;; and EDE Project file.
 
+(eval-and-compile (require 'ede-proj))
+
 ;;; Code:
 (defclass ede-proj-target-makefile-objectcode (ede-proj-target-makefile)
   (;; Give this a new default
@@ -73,7 +75,8 @@ FILE must be massaged by `ede-convert-path'."
   ;; This will do sources, and save the project for us.
   (call-next-method))
 
-(defmethod ede-proj-makefile-sourcevar ((this ede-proj-target-makefile-objectcode))
+(defmethod ede-proj-makefile-sourcevar
+  ((this ede-proj-target-makefile-objectcode))
   "Return the variable name for THIS's sources."
   (concat (ede-pmake-varname this) "_SOURCE"))
 

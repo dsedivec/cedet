@@ -27,6 +27,8 @@
 ;;
 ;; Handle texinfo in and EDE Project file.
 
+(eval-and-compile (require 'ede-proj))
+
 ;;; Code:
 (defclass ede-proj-target-makefile-info (ede-proj-target-makefile)
   ((menu :initform nil)
