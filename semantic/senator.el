@@ -1934,6 +1934,19 @@ found, nil otherwise."
 
   ) ;; End of GNU Emacs 21 lazy highlighting
 
+ (;; XEmacs 21.4 lazy highlighting
+  (fboundp 'isearch-highlight-all-cleanup)
+       
+  ;; Provide this function used by senator
+  (defun senator-lazy-highlight-update ()
+    "Force lazy highlight update."
+    (funcall 'isearch-highlight-all-cleanup)
+    (set 'isearch-highlight-last-string nil)
+    (setq isearch-adjusted t)
+    (isearch-update))
+
+  ) ;; End of XEmacs 21.4 lazy highlighting
+
  (;; GNU Emacs 20 lazy highlighting via ishl
   (fboundp 'ishl-cleanup)
        
