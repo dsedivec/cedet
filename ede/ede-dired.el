@@ -52,13 +52,14 @@
   (easy-menu-define
    ede-dired-menu ede-dired-keymap "EDE Dired Minor Mode Menu"
    '("Project"
-     ["Create a new target" ede-new-target (ede-current-project) ]
-     ["Add files to project" ede-dired-add-to-target (ede-current-project) ]
-     ["Compile project" ede-compile-project (ede-current-project) ]
-     ["Make distribution" ede-make-dist (ede-current-project) ]
-     "---"
-     ["Speedbar project" ede-speedbar (ede-current-project) ]
-     ["Customize Project" ede-customize-project (ede-current-project) ]
+     [ "Add files to target" ede-dired-add-to-target (ede-current-project) ]
+     ( "Build" :filter ede-build-forms-menu)
+     "-"
+     [ "Create Project" ede-new (not (ede-current-project)) ]
+     [ "Create Target" ede-new-target (ede-current-project) ]
+     "-"
+     ( "Customize Project" :filter ede-customize-forms-menu )
+     [ "View Project Tree" ede-speedbar (ede-current-project) ]
      ))
   )
 
