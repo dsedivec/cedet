@@ -388,7 +388,6 @@ is attached to."
 ;; Emacs frame parameters
 (defcustom speedbar-frame-parameters '((minibuffer . nil)
 				       (width . 20)
-				       (scroll-bar-width . 10)
 				       (border-width . 0)
 				       (menu-bar-lines . 0)
 				       (unsplittable . t))
