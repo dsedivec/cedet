@@ -544,15 +544,16 @@ selecting FRAME."
   (if (eq (selected-frame) (symbol-value frame-var))
       (if (frame-live-p dframe-attached-frame)
 	  (select-frame dframe-attached-frame))
-    ;; If updates are off, then refresh the frame (they want it now...)
-    (run-hooks 'hook)
     ;; make sure we have a frame
     (if (not (frame-live-p (symbol-value frame-var)))
 	(funcall activator 1))
     ;; go there
     (select-frame (symbol-value frame-var))
     )
-  (other-frame 0))
+  (other-frame 0)
+  ;; If updates are off, then refresh the frame (they want it now...)
+  (run-hooks 'hook))
+
 
 (defun dframe-close-frame ()
   "Close the current frame if it is dedicated."
