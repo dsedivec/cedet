@@ -2624,9 +2624,10 @@ interrupted by the user."
       (let ((l (speedbar-initial-stealthy-functions))
 	    (speedbar-stealthy-update-recurse t))
 	(unwind-protect
-	    (while (and l (funcall (car l)))
-	      ;(sit-for 0)
-	      (setq l (cdr l)))
+	    (speedbar-with-writable
+	      (while (and l (funcall (car l)))
+		;;(sit-for 0)
+		(setq l (cdr l))))
 	  ;;(message "Exit with %S" (car l))
 	  ))))
 
