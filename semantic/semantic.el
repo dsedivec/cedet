@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1999, 2000 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; Version: 1.1
+;; Version: 1.3
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 
