@@ -234,6 +234,10 @@
 
 (require 'semantic-util)
 
+(defgroup semantic nil
+  "File and tag browser frame."
+  )
+
 ;;; Code:
 (defvar semantic-edebug nil
   "When non-nil, activate the interactive parsing debugger.
