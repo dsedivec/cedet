@@ -511,6 +511,14 @@ Find a nonterminal covinging @var{POSITION} within @var{STREAMORBUFFER}.
 the median calculation, and return nil.
 @end defun
 
+@defun semantic-find-innermost-nonterminal-by-position position streamorbuffer &optional nomedian
+Find a list of nonterminals covering @var{POSITION} within
+@var{STREAMORBUFFER}.  @var{POSITION} is a number, or marker.  If
+@var{NOMEDIAN} is non-@code{nil}, don't do the median calculation, and
+return nil.  This function will find the topmost item, and recurse until
+no more details are available of findable.
+@end defun
+
 @defun semantic-find-nonterminal-by-token token streamorbuffer
 Find all nonterminals with a token @var{TOKEN} within @var{STREAMORBUFFER}.
 @var{TOKEN} is a symbol.
