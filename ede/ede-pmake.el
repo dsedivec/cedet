@@ -62,12 +62,12 @@ MFILENAME is the makefile to generate."
       (setq depth (1+ depth)
 	    tmp (ede-parent-project tmp)))
     ;; Collect the targets that belong in a makefile.
-    (with-slots (targets) this
-      (while targets
-	(if (and (obj-of-class-p (car targets) 'ede-proj-target-makefile)
-		 (string= (oref (car targets) makefile) mfilename))
-	    (setq mt (cons (car targets) mt)))
-	(setq targets (cdr targets))))
+    (mapcar
+     (lambda (obj)
+       (if (and (obj-of-class-p obj 'ede-proj-target-makefile)
+		(string= (oref obj makefile) mfilename))
+	   (setq mt (cons obj mt))))
+     (oref this targets))
     ;; Fix the order so things compile in the right direction.
     (setq mt (nreverse mt))
     ;; Add in the header part of the Makefile*
