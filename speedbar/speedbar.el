@@ -1,4 +1,4 @@
-;;; speedbar --- quick access to files and tags
+;;; speedbar --- quick access to files and tags in a frame
 
 ;;; Copyright (C) 1996, 97, 98 Free Software Foundation
 
@@ -2340,13 +2340,13 @@ the file being checked."
     (let ((oa speedbar-obj-alist))
       (while (and oa (not (string-match (car (car oa)) fulln)))
 	(setq oa (cdr oa)))
-      (if (not (and oa (file-exists-p (concat (file-name-sans-extension fn)
+      (if (not (and oa (file-exists-p (concat (file-name-sans-extension fulln)
 					      (cdr (car oa))))))
 	  nil
 	;; Find out if the object is out of date or not.
-	(let ((date1 (nth 5 (file-attributes fn)))
+	(let ((date1 (nth 5 (file-attributes fulln)))
 	      (date2 (nth 5 (file-attributes (concat
-					      (file-name-sans-extension fn)
+					      (file-name-sans-extension fulln)
                                               (cdr (car oa)))))))
 	  (if (or (< (car date1) (car date2))
 		  (and (= (car date1) (car date2))
