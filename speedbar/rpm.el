@@ -1,6 +1,6 @@
 ;;; rpm.el --- Manage Red Hat packages in emacs
 
-;;; Copyright (C) 1998, 1999 Eric M. Ludlam
+;;; Copyright (C) 1998, 1999, 2000 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Version: 1.0
@@ -147,7 +147,7 @@ TEXT is the name of the package.  TOKEN and INDENT are ignored."
 	(progn
 	  (select-window bwin)
 	  (raise-frame (window-frame bwin)))
-      (if speedbar-power-click
+      (if dframe-power-click
 	  (let ((pop-up-frames t)) (select-window (display-buffer buff)))
 	(select-frame speedbar-attached-frame)
 	(switch-to-buffer buff)))
