@@ -78,6 +78,8 @@
 ;;;    See optional file `speedbcfg.el' for interactive buffers
 ;;; allowing simple configuration of colors and features of speedbar.
 ;;;
+;;;    AUC-TEX users: The imenu tags for AUC-TEX mode don't work very
+;;; well.  Use the imenu keywords from tex-mode.el for better results.
 
 ;;; Speedbar updates can be found at:
 ;;; ftp://ftp.ultranet.com/pub/zappo/speedbar*.el
