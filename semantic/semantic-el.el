@@ -115,23 +115,33 @@
 (defvar semantic-toplevel-c-bovine-table
   `((bovine-toplevel
      ( include)
-     ( type)
+     ( comment)
      ( variable)
      ( prototype)
      ( function)
+     ( type)
      ( define)
-     ( comment)
      ) ; end bovine-toplevel
     (include
-     ( punctuation "#" symbol "include" punctuation "<" symbol punctuation "\\." symbol punctuation ">"
+     ( punctuation "#" symbol "include" punctuation "<" filename punctuation ">"
 		   ,(lambda (vals start end)
-		      (append  (list ( concat (nth 3 vals) (nth 4 vals) (nth 5 vals)) 'include nil)
+		      (append  (nth 3 vals) (list 'include nil)
 			       (list start end))))
      ( punctuation "#" symbol "include" string
 		   ,(lambda (vals start end)
 		      (append  (list ( read (nth 2 vals)) 'include nil)
 			       (list start end))))
      ) ; end include
+    (filename
+     ( symbol punctuation "\\." symbol
+	      ,(lambda (vals start end)
+		 (append  (list ( concat (nth 0 vals) (nth 1 vals) (nth 2 vals)))
+			  (list start end))))
+     ( symbol punctuation "/" filename
+	      ,(lambda (vals start end)
+		 (append  (list ( concat (nth 0 vals) (nth 1 vals) ( car (nth 2 vals))))
+			  (list start end))))
+     ) ; end filename
     (structparts
      ( semantic-list
        ,(lambda (vals start end)
