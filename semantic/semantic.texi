@@ -373,6 +373,10 @@ Optional argument @var{BUFFER} indicates where to get the text from.
 If not provided, then only the @var{POSITION} can be provided.
 @end defun
 
+@defun semantic-token-extent token
+Retrieve the extent (@var{START} @var{END}) of @var{TOKEN}."
+@end defun
+
 @defun semantic-token-start token
 Retrieve the start location of @var{TOKEN}.
 @end defun
