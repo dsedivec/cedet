@@ -1,6 +1,6 @@
 ;;; ede-proj-info.el --- EDE Generic Project texinfo support
 
-;;;  Copyright (C) 1998, 1999  Eric M. Ludlam
+;;;  Copyright (C) 1998, 1999, 2000  Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Keywords: project, make
@@ -64,6 +64,12 @@ These are removed with make clean."
 	(setq mm (car (oref this source))))
     (insert "\n" (ede-name this) ": $(" (ede-pmake-varname this) "_INFOS)\n"
 	    "\tmakeinfo " mm "\n")))
+
+(defmethod ede-documentation ((this ede-proj-target-makefile-info))
+  "Return a list of files that provides documentation.
+Documentation is not for object THIS, but is provided by THIS for other
+files in the project."
+  (oref this source))
 
 (provide 'ede-proj-info)
 
