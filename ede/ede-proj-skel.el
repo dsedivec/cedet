@@ -33,9 +33,13 @@
 ;; override it.  If it is not commented out, you probably need it, but
 ;; there is no requirement that you impelement it.
 
-(eval-and-compile (require 'ede-proj))
+(require 'ede-proj)
 
 ;;; Code:
+;; This defines the class you will use.  In general, you probably
+;; want to inherit from `ede-proj-target-makefile', which has built it
+;; support for the creation of Makefile rules.  If your type will
+;; never use a Makefile, inherit from `ede-proj-target'.
 (defclass ede-proj-target-%NAME% (ede-proj-target-%PARENT%)
   (;; Use these two items to modify the target specificy menu.
    ;;(menu :initform nil)
@@ -45,6 +49,10 @@
    ;; Add your specialized fields here
    )
   "Class for ....")
+
+;; Register you class with the ede target manager.  This enables
+;; the creation of targets of your type for users.
+(ede-proj-register-target "%NAME%" ede-proj-target-%NAME%)
 
 ;;; COMPILER SUPPORT
 ;;
