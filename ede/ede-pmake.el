@@ -416,7 +416,7 @@ This allows customization of how these elements appear."
 	    (setq out
 		  (concat out "$(" (ede-compiler-intermediate-object-variable
 				    (car c)
-				    (ede-target-name this)) ")")
+				    (ede-pmake-varname this)) ")")
 		  c (cdr c)))
 	  out)
       (let ((sv (ede-proj-makefile-sourcevar this)))
