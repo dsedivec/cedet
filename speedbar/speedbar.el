@@ -3956,7 +3956,8 @@ If TEMP is non-nil, then clicking on a buffer restores the previous display."
 	       (fn (if known 'speedbar-tag-file nil))
 	       (fname (save-excursion (set-buffer (car bl))
 				      (buffer-file-name))))
-	  (speedbar-make-tag-line 'bracket expchar fn fname
+	  (speedbar-make-tag-line 'bracket expchar fn
+				  (if fname (file-name-nondirectory fname))
 				  (buffer-name (car bl))
 				  'speedbar-buffer-click temp
 				  'speedbar-file-face 0)))
