@@ -197,7 +197,7 @@
 	      (lambda (vals start end)
 		(append  (nth 1 vals) (list 'type (nth 0 vals) (nth 2 vals) nil nil)
 			 (list start end))))
-     ( symbol "typedef" type symbol
+     ( symbol "typedef" typeform symbol
 	      (lambda (vals start end)
 		(append  (list (nth 2 vals) 'type (nth 0 vals) nil (nth 1 vals) nil)
 			 (list start end))))
