@@ -204,7 +204,7 @@ contains a list of all bindings to that method type.)"
 (defmacro class-option (class option)
   "Return the value stored for CLASS' OPTION.
 Return nil if that option doesn't exist."
-  `(class-option-assoc ',option (aref (class-v ,class) class-options)))
+  `(class-option-assoc (aref (class-v ,class) class-options) ',option))
 
 
 ;;; Defining a new class
