@@ -260,7 +260,7 @@ TEXT TOKEN and INDENT are the details."
 	(parent (semantic-sb-detail-parent)))
     (speedbar-find-file-in-frame file)
     (save-excursion (speedbar-stealthy-updates))
-    (semantic-find-nonterminal (current-buffer) token parent)
+    (semantic-find-nonterminal token parent)
     ;; Reset the timer with a new timeout when cliking a file
     ;; in case the user was navigating directories, we can cancel
     ;; that other timer.

@@ -169,7 +169,7 @@
     )
   "Top level bovination table for elisp.")
 
-(defun semantic-elisp-find-dependency (buffer token)
+(defun semantic-elisp-find-dependency (token)
   "Find the file BUFFER depends on described by TOKEN."
   (let ((f (file-name-sans-extension
 	    (locate-library (semantic-token-name token)))))
