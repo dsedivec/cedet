@@ -289,7 +289,7 @@ INDENT is the current indentation level."
     ;; Reset the timer with a new timeout when cliking a file
     ;; in case the user was navigating directories, we can cancel
     ;; that other timer.
-    (speedbar-set-timer speedbar-update-speed)
+;    (speedbar-set-timer speedbar-update-speed)
     (goto-char token)
     (run-hooks 'speedbar-visiting-tag-hook)
     ;;(recenter)
