@@ -107,7 +107,7 @@
 	    (save-excursion
 	      (set-buffer (find-file-noselect
 			   (ede-expand-filename (ede-toplevel this)
-						"Makefile" t)))
+						"Makefile" t) t))
 	      (goto-char (point-min))
 	      ;; Here is the unique piece for our makefiles.
 	      (re-search-forward "For use with: make" nil t)))
