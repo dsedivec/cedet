@@ -166,7 +166,7 @@ Returns the newly created buffer"
 
 (defclass chart-axis-range (chart-axis)
   ((bounds :initarg :bounds
-	   :initform (0.0 . 50.0))
+	   :initform '(0.0 . 50.0))
    )
   "Class used to display an axis defined by a range of values")
 
