@@ -186,7 +186,7 @@ relevant to the buffer you are currently editing."
   :group 'dframe
   :type 'integer)
 
-(defcustom frame-activity-change-focus-flag nil
+(defcustom dframe-activity-change-focus-flag nil
   "*Non-nil means the selected frame will change based on activity.
 Thus, if a file is selected for edit, the buffer will appear in the
 selected frame and the focus will change to that frame."
