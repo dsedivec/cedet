@@ -647,6 +647,13 @@ Argument FILE is the file to extract the end directory name from."
 	  (setq s (cdr s)))
 	found)))
 
+(defmethod ede-documentation ((this project-am-texinfo))
+  "Return a list of files that provides documentation.
+Documentation is not for object THIS, but is provided by THIS for other
+files in the project."
+  (append (oref this source)
+	  (oref this include)))
+
 
 ;;; Makefile editing and scanning commands
 ;;
