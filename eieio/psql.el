@@ -199,17 +199,18 @@ separated by lines of ---- and cols of |"
 	    (progn
 	      (setq numrow (1+ numrow))
 	      (while (< colcnt numcol)
-		(if (re-search-forward 
-		     "[ ]+\\([^|]*[^ \t]\\)[ ]*|"
-		     (save-excursion (end-of-line) (point)) t)
-		    (setq sublst (cons
-				  (buffer-substring (match-beginning 1)
-						    (match-end 1))
-				  sublst))
+		(if (looking-at
+		     "[ ]*|[ ]+\\([^|]*[^ \t|]\\)[ ]*\\(|\\)")
+		    (progn
+		      (setq sublst (cons
+				    (buffer-substring (match-beginning 1)
+						      (match-end 1))
+				    sublst))
+		      (goto-char (match-beginning 2)))
 		  ;; In this case, there may be an embeded CR
 		  ;; in the field just printed...
 		  (if (looking-at
-		       "[ ]+\\([^|]*[^ \t\n]\\)[ ]*\\(|\\)")
+		       "|[ ]+\\([^|]*[^ \t\n]\\)[ ]*\\(|\\)")
 		      (progn
 			(setq sublst (cons
 				      (buffer-substring (match-beginning 1)
@@ -218,10 +219,10 @@ separated by lines of ---- and cols of |"
 			(goto-char (match-end 1)))
 		    ;; In this case, there may be nothing in between pipes
 		    ;; at all!
-		    (if (looking-at "[ \t\n]+\\(|\\)")
+		    (if (looking-at "|[ \t\n]+\\(|\\)")
 			(progn
-			  (setq sublst "" sublst)
-			  (goto-char (match-end 1)))
+			  (setq sublst (cons "" sublst))
+			  (goto-char (match-beginning 1)))
 		      (error "psql-parse-table: could not parse table!"))))
 		;; an error prevents us from getting here...
 		(if (< (nth colcnt sizelst) (length (car sublst)))
