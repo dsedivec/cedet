@@ -251,6 +251,9 @@ documented here are allowed.
   (throws .  \"text\") - For functions or methods in languages that support
      typed signal throwing.
 
+  (destructor . t) - This exists for functions which are destructor methods
+     in a class definition.
+
   (user-visible . t) - For functions in interpreted languages such as Emacs Lisp,
      this signals that a function or variable is user visible.  In Emacs Lisp,
      this means a function is `interactive'.")
