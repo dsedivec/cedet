@@ -45,7 +45,7 @@ eieio.info:
 
 dist: $(LISP) $(TEXINFO) $(STUFF)
 	mkdir eieio-$(VERSION)
-	cp $(LISP) $(TEXINFO) $(STUFF) eieio-$(VERSION)
+	cp $(LISP) $(LISPE) $(TEXINFO) $(STUFF) eieio-$(VERSION)
 	tar -cvzf eieio-$(VERSION).tar.gz eieio-$(VERSION)
 	rm -rf eieio-$(VERSION)
 
