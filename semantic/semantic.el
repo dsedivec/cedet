@@ -475,6 +475,10 @@ If not provided, then only the POSITION can be provided."
   "Retrieve the end location of TOKEN."
   `(semantic-overlay-end (semantic-token-overlay ,token)))
 
+(defmacro semantic-token-buffer (token)
+  "Retrieve the buffer TOKEN resides in."
+  `(semantic-overlay-buffer (semantic-token-overlay ,token)))
+
 (defun semantic-token-p (token)
   "Return non-nil if TOKEN is most likely a semantic token."
   (and (listp token)
