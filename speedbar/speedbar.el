@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1996, 97, 98, 99, 00 Free Software Foundation
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; Version: 0.11
+;; Version: 0.12
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
