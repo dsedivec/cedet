@@ -62,7 +62,7 @@ scheme-in-list: DEFINE symbol expression
 	      | DEFINE-MODULE name-args
 		( (nth (length $2) $2 ) provide nil)
 	      | LOAD string
-		( (file-name-nondirectory (read $3)) require (read $3) )
+		( (file-name-nondirectory (read $2)) require (read $2) )
 	      | symbol
 		( $1 code )
 	      ;
