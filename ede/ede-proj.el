@@ -350,7 +350,8 @@ Argument COMMAND is the command to use for compiling the target."
   "Compile the current target program OBJ.
 Optional argument COMMAND is the s the alternate command to use."
   (ede-proj-setup-buildenvironment (ede-current-project))
-  (compile (concat "make -f " (oref obj makefile) " " (ede-name obj))))
+  (compile (concat "make -f " (oref obj makefile) " "
+		   (ede-proj-makefile-target-name obj))))
 
 (defmethod project-debug-target ((obj ede-proj-target))
   "Run the current project target OBJ in a debugger."
