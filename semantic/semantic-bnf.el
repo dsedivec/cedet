@@ -477,7 +477,7 @@ SOURCEFILE is the file name from whence tokstream came."
       (error "Not valid outside the scope of a BNF file"))
   ;; Do the work
   (let* ((fname (file-name-nondirectory (buffer-file-name)))
-	 (tok (semantic-bovinate-toplevel 0 t t))
+	 (tok (semantic-bovinate-toplevel t))
 	 (bb (current-buffer))
 	 (dest (semantic-bnf-find-table-destination tok))
 	 (keydest (semantic-bnf-find-keyword-destination tok))
