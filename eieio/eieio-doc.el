@@ -32,6 +32,9 @@
 ;;; Commentary:
 ;;
 ;;  Outputs into the current buffer documentation in texinfo format
+
+(require 'eieio-opt)
+
 ;;  for a class, all it's children, and all it's slots.
 
 ;;; Code:
