@@ -27,7 +27,7 @@
 ;;
 ;; Handle object code archives in and EDE Project file.
 
-(eval-and-compile (require 'ede-proj-obj))
+(require 'ede-proj-obj)
 
 ;;; Code:
 (defclass ede-proj-target-makefile-archive

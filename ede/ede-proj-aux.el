@@ -27,7 +27,7 @@
 ;;
 ;; Handle auxiliary files (README, FAQ, etc) in and EDE Project file.
 
-(eval-and-compile (require 'ede-proj))
+(require 'ede-proj)
 
 ;;; Code:
 (defclass ede-proj-target-aux (ede-proj-target)
