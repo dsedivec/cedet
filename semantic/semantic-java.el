@@ -428,7 +428,7 @@
  ( unary_expression operators_expression_opt)
  ) ; end expression
  )
-           "Java language specification.")
+            "Java language specification.")
 
 ;; Generated keyword table
 (defvar semantic-java-keyword-table
@@ -538,7 +538,7 @@
      ("volatile" summary "Field declaration modifier: volatile <type> <name> ...")
      ("while" summary "while (<expr>) <stmt> | do <stmt> while (<expr>);")
      ("author" javadoc (seq 1 usage (type)))
-     ("version" javadoc (seq 2 usage (type) opt t))
+     ("version" javadoc (seq 2 usage (type)))
      ("param" javadoc (seq 3 usage (function) with-name t))
      ("return" javadoc (seq 4 usage (function)))
      ("exception" javadoc (seq 5 usage (function) with-name t))
