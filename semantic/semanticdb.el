@@ -348,7 +348,7 @@ Sets up the semanticdb environment."
 If there is a semantic cache, slurp out the overlays, an store
 it in our database.  If that buffer has not cache, ignore it, we'll
 handle it later if need be."
-  (if (and semantic-toplevel-bovine-table
+  (if (and (semantic-active-p)
 	   semantic-toplevel-bovine-cache
 	   semanticdb-current-table)
       (progn
