@@ -1083,12 +1083,13 @@ Return the new string."
 			(t "")
 			))
 	     )
-	(let ((pm (plist-member preprops face)))
+	(let ((pm (plist-get preprops face)))
 	  (when pm
 	    ;; We don't want to modify the face on this based
 	    ;; on the first character.
 	    (setcar (cdr pm) 'face)
-	    (setq preprops (delq 'face preprops))))
+	    (setq preprops (delq 'face preprops))
+	    (setq preprops (delq pm preprops))))
 	(setq string (concat sws string ews))
 	(add-text-properties 0 (length string) preprops string)
 	))
