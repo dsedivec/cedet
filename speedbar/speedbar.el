@@ -3609,8 +3609,9 @@ Optional argument DEPTH specifies the current depth of the back search."
 	      (if (save-excursion
 		    (end-of-line)
 		    (eq start (point)))
-		  (file-name-directory (or (buffer-file-name buffer)
-					   ""))
+		  (or (save-excursion (set-buffer buffer)
+				      default-directory)
+		      "")
 		(buffer-file-name buffer))))))))
 
 (defun speedbar-buffer-click (text token indent)
