@@ -58,6 +58,13 @@
 
 ;;; Change Log:
 ;;;
+;;; 1.6 - Eric Ludlam
+;;;       speedbar-insert-texinfo-list no longer sets sthm to nil.
+;;;       speedbar-format-texinfo-list uses new positioned group for
+;;;       any chapter w/ sections (etc)  Also set new
+;;;       speedbar-generic-list-{group-expand|tag}-button-list to
+;;;       nice values.
+;;;
 ;;; 1.5 - speedbar-tag-hierarchy-method is set to nil by
 ;;;       speedbar-insert-texinfo-list as well as
 ;;;       speedbar-fetch-dynamic-texinfo.  This is needed in order to
@@ -124,6 +131,13 @@
 	  (make-local-variable 'speedbar-tag-hierarchy-method)
 	  (setq speedbar-tag-hierarchy-method nil)
 
+	  (set (make-local-variable
+		'speedbar-generic-list-group-expand-button-type)
+	       'expandtag)
+	  (set (make-local-variable
+		'speedbar-generic-list-tag-button-type)
+	       'statictag)
+
 	  (let ((heading-to-level
 		 '(("top" . 0)
 		   ("chapter" . 0) ("section" . 1)
@@ -182,15 +196,14 @@
 		   (car x)
 		 (let ((head (car x)))
 		   (cons (car head)
-			 (cons head
+			 (cons (cdr head)
 			       (speedbar-format-texinfo-list (cdr x) level))))))
 	    new-list)))
 
 (defun speedbar-insert-texinfo-list (indent lst)
-  (let (speedbar-tag-hierarchy-method)
-    (speedbar-insert-generic-list indent (speedbar-format-texinfo-list lst indent)
-				  'speedbar-tag-expand
-				  'speedbar-tag-find)))
+  (speedbar-insert-generic-list indent (speedbar-format-texinfo-list lst indent)
+				'speedbar-tag-expand
+				'speedbar-tag-find))
 
 ;;; sb-texinfo.el ends here
 
