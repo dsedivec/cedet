@@ -804,6 +804,8 @@ Fills in OBJ's FIELD with it's default value."
 	    ;; return it verbatim
 	    val))))))
 
+;;; Slot type validation
+;;
 (defun eieio-perform-slot-validation (spec value)
   "Signal if SPEC does not match VALUE."
   ;; typep is in cl-macs
@@ -832,6 +834,14 @@ Checks the :type specifier."
     (if (not (eieio-perform-slot-validation st value))
 	(signal 'invalid-slot-type (list st value)))))
 
+;;; Missing types that are useful to me.
+;;
+(defun boolean-p (bool)
+  "Return non-nil if BOOL is nil or t."
+  (or (null bool) (eq bool t)))
+
+;;; Object Set macros
+;;
 (defmacro oset (obj field value)
   "Set the value in OBJ for slot FIELD to VALUE.
 FIELD is the slot name as specified in `defclass' or the tag created
@@ -998,6 +1008,15 @@ Therefore `slot-boundp' is really a macro calling `slot-exists-p'"
   "Non-nil if OBJECT contains SLOT."
   (let ((cv (class-v (object-class object))))
     (memq slot (aref cv class-public-a))))
+
+(defun find-class (symbol &optional errorp)
+  "Return the class that SYMBOL represents. (CLOS function)
+This actually just returns whatever SYMBOL has in it's value slot.
+If there is no class, nil is returned if ERRORP is nil."
+  (if (not (class-p symbol))
+      (if errorp (signal 'wrong-type-argument (list 'class-p class))
+	nil)
+    (class-v symbol)))
 
 ;;; Slightly more complex utility functions for objects
 ;;
