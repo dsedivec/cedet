@@ -918,6 +918,7 @@ Some common speedbar functions you might want to bind are:
 Edit the item on the current line.
 @item speedbar-expand-line
 Expand the item under the cursor.
+With universal argument @key{C-u}, flush cached data before expanding.
 @item speedbar-contract-line
 Contract the item under the cursor.
 @end table
