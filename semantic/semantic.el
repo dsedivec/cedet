@@ -511,13 +511,12 @@ The returned item may be an overlay or an unloaded buffer representation."
   (or semantic-toplevel-bovine-table
       semantic-bovinate-toplevel-override))
 
-(defun semantic-find-file-hook ()
+(defun semantic-new-buffer-fcn ()
   "Run in `find-file-hooks'.
 Runs `semantic-init-hook' if the major mode is setup to use semantic."
-  (when (semantic-active-p)
+  (when (and (semantic-active-p) (buffer-file-name))
     (setq semantic-toplevel-bovine-force-reparse t)
     (run-hooks 'semantic-init-hooks)))
-(add-hook 'find-file-hooks 'semantic-find-file-hook)
 
 (defvar semantic-changed-major-mode nil
   "List of modes whose `major-mode' has changed recently.")
@@ -543,7 +542,7 @@ This makes sure semantic-init type stuff can occur."
     (while semantic-changed-major-mode
       (set-buffer (car semantic-changed-major-mode))
       (setq semantic-changed-major-mode (cdr semantic-changed-major-mode))
-      (semantic-find-file-hook))))
+      (semantic-new-buffer-fcn))))
 
 (add-hook 'change-major-mode-hook 'semantic-change-major-mode-hook-function)
 
