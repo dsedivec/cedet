@@ -148,6 +148,23 @@ Instead, use `semantic-token-variable-extra-spec',
 	   (semantic-token-type-extra-spec token spec))
 	  (t nil))))
 
+;;; Misc. utilities
+;;
+(defun semantic-map-buffers (fun)
+  "Run function FUN for each Semantic enabled buffer found.
+FUN does not have arguments.  When FUN is entered `current-buffer' is
+the current Semantic enabled buffer found."
+  (let ((bl (buffer-list))
+        b)
+    (while bl
+      (setq b  (car bl)
+            bl (cdr bl))
+      (if (and (buffer-live-p b)
+               (buffer-file-name b))
+          (with-current-buffer b
+            (if (semantic-active-p)
+                (funcall fun)))))))
+
 ;;; Searching by Position APIs
 ;;
 ;; These functions will find nonterminals based on a position.
