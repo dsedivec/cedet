@@ -930,7 +930,11 @@ so far, to be used in the error recovery stack."
 		      (setq tev (car lte)
 			    lte (cdr lte))
 		      (if (string-match tev val)
-			  (setq cvl (cons val cvl)) ;append this value
+			  (setq cvl (cons
+				     (if (member (car lse)
+						 '(comment semantic-list))
+					 valdot val)
+				     cvl)) ;append this value
 			(semantic-overlay-stack-clear)
 			(setq lte nil cvl nil))) ;clear the entry (exit)
 		  (setq cvl (cons
