@@ -266,6 +266,12 @@ METHOD is the method that was attempting to be called."
      (eq (class-parents class-a) nil)
      (equal (class-parents class-ab) '(class-a class-b))
      (same-class-p a class-a)
+     (class-a-p a)
+     (not (class-a-p ab))
+     (class-a-child-p a)
+     (class-a-child-p ab)
+     (not (class-a-p "foo"))
+     (not (class-a-child-p "foo"))
      )
     nil
   (error "Inheritance tests: failed"))
