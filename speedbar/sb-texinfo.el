@@ -30,7 +30,7 @@
 ;; hierarchy of the texinfo document.
 ;;
 ;; This small add-on to speedbar provides an alternate way to view the
-;; document which shows the natural hierarchy of the document. This
+;; document which shows the natural hierarchy of the document.  This
 ;; shows the same information that `M-x texinfo-show-structure'
 ;; displays, but in the speedbar frame with the speedbar user
 ;; interface.
@@ -205,5 +205,6 @@
 				'speedbar-tag-expand
 				'speedbar-tag-find))
 
+(provide 'sb-texinfo)
 ;;; sb-texinfo.el ends here
 
