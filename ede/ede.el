@@ -140,11 +140,11 @@ type is required and the load function used.")
 ;;
 (defclass ede-target ()
   ((name :initarg :name
-	 :type (or string null)
+	 :type string
 	 :custom string
 	 :documentation "Name of this target.")
    (path :initarg :path
-	 :type (or string null)
+	 :type string
 	 :custom string
 	 :documentation "The path to this target.")
    (takes-compile-command
@@ -181,10 +181,11 @@ type is required and the load function used.")
 	    :custom string
 	    :documentation "The version number used when distributing files.")
    (file :initarg :file
-	 :type (or string null)
+	 :type string
 	 :documentation "File name where this project is stored.")
    ;; No initarg.  We don't want this saved.
-   (root :documentation "The root project file if this is a subproject.")
+   (root :initform nil
+	 :documentation "The root project file if this is a subproject.")
    ;; No initarg.  We don't want this saved in a file.
    (subproj :initform nil
 	    :type list
