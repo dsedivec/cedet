@@ -149,7 +149,7 @@ TEXT is the name of the package.  TOKEN and INDENT are ignored."
 	  (raise-frame (window-frame bwin)))
       (if dframe-power-click
 	  (let ((pop-up-frames t)) (select-window (display-buffer buff)))
-	(select-frame speedbar-attached-frame)
+	(dframe-select-attached-frame speedbar-frame)
 	(switch-to-buffer buff)))
     (erase-buffer)
     (rpm-info text)))
