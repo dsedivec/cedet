@@ -962,7 +962,7 @@ help about this widget."
 		  os
 		  (widget-bunch-o-chars (- tlen (length os)) ? ))))
     ;; insert the string
-    (insert-overwrite-face os (oref this face) (oref this focus-face))
+    (insert-overwrite-face os (oref this face) (oref this focus-face) this)
     ;; show more-characters this way strings
     (if nflag (insert-overwrite-face "v" (oref this spface))
       (if sflag (insert-overwrite-face ">" (oref this spface))
