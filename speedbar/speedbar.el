@@ -2155,7 +2155,7 @@ cell of the form ( 'DIRLIST . 'FILELIST )"
    ((eq method 'prefix-group)
     (let ((newlst nil)
 	  (sublst nil)
-3	  (work-list nil)
+ 	  (work-list nil)
 	  (junk-list nil)
 	  (short-group-list nil)
 	  (short-start-name nil)
