@@ -552,7 +552,11 @@ Optional argument PARENT is the parent type if TOKEN is a detail."
     (if s
 	(funcall s token parent)
       ;; FLESH THIS OUT MORE
-      (concat (capitalize (symbol-name tt)) ": "
+      (concat (or (capitalize
+		   (cdr-safe (assoc (semantic-token-token token)
+				    semantic-symbol->name-assoc-list)))
+		  (capitalize (symbol-name (semantic-token-token token))))
+	      ": "
 	      (semantic-prototype-nonterminal token)))))
 
 (defun semantic-prototype-nonterminal (token)
