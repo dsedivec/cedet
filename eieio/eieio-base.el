@@ -228,7 +228,8 @@ Argument SLOT-NAME is the slot that was attempted to be accessed.
 OPERATION is the type of access, such as `oref' or `oset'.
 NEW-VALUE is the value that was being set into SLOT if OPERATION were
 a set type."
-  (if (eq slot-name 'object-name)
+  (if (or (eq slot-name 'object-name)
+	  (eq slot-name :object-name))
       (cond ((eq operation 'oset)
 	     (if (not (stringp new-value))
 		 (signal 'invalid-slot-type
