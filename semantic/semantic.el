@@ -706,8 +706,8 @@ COLLECTION is the list of things collected so far."
 		  (t nil)))
 	  (other-window 1)
 	  )
-      (semantic-delete-overlay ol1)
-      (semantic-delete-overlay ol2))
+      (semantic-overlay-delete ol1)
+      (semantic-overlay-delete ol2))
     ret))
 
 (eval-when-compile (require 'pp))
