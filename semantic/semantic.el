@@ -416,6 +416,7 @@ COLLECTION is the list of things collected so far."
   (let ((ol1 nil) (ol2 nil))
     (unwind-protect
 	(progn
+	  (goto-char (car (cdr lse)))
 	  (setq ol1 (make-overlay (car (cdr lse)) (cdr (cdr lse))))
 	  (overlay-put ol1 'face 'highlight)
 	  (other-window 1)
@@ -430,7 +431,8 @@ COLLECTION is the list of things collected so far."
 	  (forward-list matchlen)
 	  (skip-chars-forward " \t\n(")
 	  (forward-sexp tokenlen)
-	  (read-event (format "%s: %S" (car s) collection))
+	  (message "%s: %S" (car s) collection))
+	  (read-event)
 	  (other-window 1)
 	  )
       (delete-overlay ol1)
