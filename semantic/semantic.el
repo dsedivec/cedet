@@ -386,15 +386,18 @@ The returned item may be an overlay or an unloaded buffer representation."
 
 ;;; Interfacing with the system
 ;;
+(defvar semantic-init-hooks nil
+  "*Hooks run when a buffer is initialized with a parsing table.")
+
 (defun semantic-find-file-hook ()
   "Run in `find-file-hooks'.
 Runs `semantic-init-hook' if the major mode is setup to use semantic."
   (if semantic-toplevel-bovine-table
-      (run-hooks 'semantic-init-hook)))
+      (run-hooks 'semantic-init-hooks)))
 (add-hook 'find-file-hooks 'semantic-find-file-hook)
 
 ;; Test the above hook.
-;;(add-hook 'semantic-init-hook (lambda () (message "init for semantic")))
+;;(add-hook 'semantic-init-hooks (lambda () (message "init for semantic")))
 
 ;;; Parsing functions
 ;;
