@@ -133,8 +133,11 @@ If one isn't found, create one."
 (defun semanticdb-save-db (&optional DB)
   "Write out the database DB to its file.
 If DB is not specified, then use the current database."
+  (message "Saving token summary for %s..." (object-name DB))
   (eieio-persistent-save (or DB semanticdb-current-database))
-  (run-hook-with-args 'semanticdb-save-database-hooks DB)
+  (run-hook-with-args 'semanticdb-save-database-hooks
+		      (or DB semanticdb-current-database))
+  (message "Saving token summary for %s...done" (object-name DB))
   )
 
 (defun semanticdb-save-all-db ()
@@ -154,7 +157,14 @@ Restore the overlays after writting.
 Argument OBJ is the object to write."
   (let ((b (get-file-buffer (semanticdb-full-filename obj))))
     (save-excursion
-      (if b (progn (set-buffer b) (semantic-deoverlay-cache)
+      (if b (progn (set-buffer b)
+		   (condition-case nil
+		       (semantic-deoverlay-cache)
+		     (error
+		      (condition-case nil
+			  (semantic-clear-toplevel-cache)
+			(error
+			 (semantic-set-toplevel-bovine-cache nil)))))
 		   (oset obj pointmax (point-max)))))
     (call-next-method)
     (save-excursion
