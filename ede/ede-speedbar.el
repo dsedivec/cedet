@@ -1,4 +1,4 @@
-;;; ede-speedbar.el --- Speebar viewing of EDE projects
+;;; ede-speedbar.el --- Speebar viewing of EDE projects
 
 ;;;  Copyright (C) 1998, 1999, 2000  Eric M. Ludlam
 
@@ -34,9 +34,8 @@
 ;;                          when it is expanded.
 
 ;;; Code:
-(require 'eieio-speedbar)
-
-(eval-when-compile (require 'speedbar))
+(eval-and-compile (require 'eieio-speedbar)
+		  (require 'speedbar))
 
 ;;; Speedbar support mode
 ;;

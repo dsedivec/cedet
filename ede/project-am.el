@@ -38,15 +38,17 @@
 
 ;;; History:
 ;; 
+
+(eval-and-compile
+  ;; Compatibility for makefile mode.
+  (condition-case nil
+      (require 'makefile "make-mode")
+    (error (require 'make-mode)))
+
+  (require 'eieio)
+  (require 'ede))
+
 (eval-when-compile (require 'ede-speedbar))
-
-;; Compatibility for makefile mode.
-(condition-case nil
-    (require 'makefile "make-mode")
-  (error (require 'make-mode)))
-(require 'eieio)
-(require 'ede)
-
 (eval-when-compile (require 'compile))
 
 ;; customization stuff
