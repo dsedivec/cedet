@@ -48,7 +48,7 @@
   :type '(repeat (sexp :tag "Parameter:")))
 
 (defcustom bigclock-update-flag dframe-have-timer-flag
-  "Flag determining if the clock will update."
+  "Non-nil means the clock will be able to update."
   :group 'bigclock
   :type 'boolean)
 
