@@ -1,6 +1,6 @@
 ;;; ede-proj-%NAME%.el --- EDE Generic Project ...
 
-;;;  Copyright (C) 1999, 2000  Eric M. Ludlam
+;;;  Copyright (C) 1999, 2000, 2001  Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Keywords: project, make
@@ -289,7 +289,7 @@
 ;; This function is used to find a header file in which prototypes from
 ;; BUFFER go.  This is used by advanced features for which this type
 ;; of behavior is useful.  This feature is used mainly by tools
-;; using the SEMANTIC BOVINATOR http://www.ultranet.com/~zappo/semantic.shtml
+;; using the SEMANTIC BOVINATOR http://cedet.sourceforge.net/semantic.shtml
 ;; to perform advanced language specific actions.
 ;;(defmethod ede-buffer-header-file((this ede-proj-target-%NAME%) buffer)
 ;;  "Return the name of a file in which prototypes go."
