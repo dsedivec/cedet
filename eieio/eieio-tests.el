@@ -33,6 +33,8 @@
 ;; Test the various features of EIEIO.  To run the tests, evaluate the
 ;; entire buffer.
 
+(require 'eieio-base)
+
 ;;; Code:
 
 ;;; Multiple Inheritance, and method signal testing
