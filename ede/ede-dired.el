@@ -32,6 +32,7 @@
 
 (require 'easymenu)
 (require 'dired)
+(require 'ede)
 
 ;;; Code:
 (defvar ede-dired-minor-mode nil
