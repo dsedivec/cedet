@@ -192,7 +192,7 @@ validation is done on that slot."
       (setq set-me t)
       (insert "@item " (if priv "Private: " "")
 	      (symbol-name ia))
-      (if (and typeo (not (eq type t)))
+      (if (and type (not (eq type t)))
 	  (insert "\nType: @code{" (format "%S" type) "}"))
       (insert "\nDefault Value: @code{"(format "%S" deflt) "}\n\n")
       (if (eq pv 'default)
