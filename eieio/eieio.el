@@ -1059,7 +1059,6 @@ Therefore `slot-boundp' is really a macro calling `slot-exists-p'"
 
 (defun find-class (symbol &optional errorp)
   "Return the class that SYMBOL represents. (CLOS function)
-This actually just returns whatever SYMBOL has in it's value slot.
 If there is no class, nil is returned if ERRORP is nil."
   (if (not (class-p symbol))
       (if errorp (signal 'wrong-type-argument (list 'class-p symbol))
