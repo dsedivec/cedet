@@ -567,7 +567,14 @@ Argument START, END, and LENGTH specify the bounds of the change."
 	     ;; If we are completely enclosed in this overlay, throw away.
 	     ((and (> start (semantic-token-start (car tl)))
 		   (< end (semantic-token-end (car tl))))
-	      nil)
+	      (if (and (eq (semantic-token-token (car tl)) 'type)
+		       (not (cdr tl))
+		       (semantic-token-type-parts (car tl)))
+		  ;; This is between two items in a type with
+		  ;; stuff in it.
+		  (setq semantic-toplevel-bovine-cache-check t)
+		;; This is ok, chuck it.
+		nil))
 	     ;; If we  cover the beginning or end of this item, we must
 	     ;; reparse this object.
 	     (t
