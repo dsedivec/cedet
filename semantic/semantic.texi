@@ -1506,6 +1506,15 @@ To use semanticdb, add the following to your @file{.emacs} file:
 (global-semanticdb-minor-mode 1)
 @end example
 
+If you have a tool which optionally uses the semantic database, it may
+be important to track if the database mode is turned on or off.
+
+@deffn Option semanticdb-mode-hooks
+Hooks run whenever @dfn{global-semanticdb-minor-mode} is run.
+Use @dfn{semanticdb-minor-mode-p} to determine if the mode has been turned
+on or off.
+@end deffn
+
 @subsection Searching
 
 You can search for tokens in the database using the following
