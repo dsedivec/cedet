@@ -703,7 +703,7 @@ It is generated from the variable `completion-ignored-extensions'")
   (append '(".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?"
 	    ".el" ".emacs" ".l" ".lsp" ".p" ".java")
 	  (if speedbar-use-imenu-flag
-	      '(".f\\(90\\|77\\|or]" ".ada" ".pl" ".tcl" ".m" ".scm" ".pm"
+	      '(".f\\(90\\|77\\|or\\)" ".ada" ".pl" ".tcl" ".m" ".scm" ".pm"
 		"Makefile\\(\\.in\\)?")))
   "*List of regular expressions which will match files supported by tagging.
 Do not prefix the `.' char with a double \\ to quote it, as the period
