@@ -29,6 +29,8 @@
 (require 'ede-pmake)
 (require 'ede-proj-prog)
 
+;;; THIS NEEDS WORK.  SEE ede-proj-obj.
+
 ;;; Code:
 (defclass ede-proj-target-makefile-shared-object
   (ede-proj-target-makefile-program)
@@ -48,10 +50,10 @@ Use ldlibs to add addition libraries.")
 	 :variables '(("CC_SHARED" . "gcc")
 		      ("C_SHARED_COMPILE" .
 		       "$(CC_SHARED) -shared $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)"))
-	 :linkvariables '(("C_SHARED_LINK" .
-			   "$(CC_SHARED) -shared $(CFLAGS) $(LDFLAGS) -L. -o $@ $^")
-			  )
-	 :commands '("$(C_SHARED_LINK) %s")
+;	 :linkvariables '(("C_SHARED_LINK" .
+;			   "$(CC_SHARED) -shared $(CFLAGS) $(LDFLAGS) -L. -o $@ $^")
+;			  )
+;	 :commands '("$(C_SHARED_LINK) %s")
 	 :autoconf '("AM_PROG_LIBTOOL")
 	 )
   "Compiler for C sourcecode.")
