@@ -1,7 +1,7 @@
 ;;; eieio-tests.el -- eieio tests routines
 
 ;;;
-;; Copyright (C) 1999 Eric M. Ludlam
+;; Copyright (C) 1999, 2000 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
 ;; RCS: $Id$
@@ -63,6 +63,30 @@
   ((amphibian :initform "frog"
 	      :documentation "Detail about amphibian on land and water."))
   "Class A and B combined.")
+
+
+;;; Defining a class with a slot tag error
+;;
+(let ((eieio-error-unsupported-class-tags t))
+  (condition-case nil
+      (progn
+	(defclass class-error ()
+	  ((error-slot :initarg :error-slot
+		       :badslottag 1))
+	  "A class with a bad slot tag.")
+	(error "No error was thrown for badslottag"))
+    (invalid-slot-type nil)))
+
+(let ((eieio-error-unsupported-class-tags nil))
+  (condition-case nil
+      (progn
+	(defclass class-error ()
+	  ((error-slot :initarg :error-slot
+		       :badslottag 1))
+	  "A class with a bad slot tag."))
+    (invalid-slot-type
+     (error "invalid-slot-type thrown when eieio-error-unsupported-class-tags is nil")
+     )))
 
 
 ;;; Perform method testing
@@ -318,7 +342,6 @@ METHOD is the method that was attempting to be called."
       (class-c "C2" :moose "not a symbol")
       (error "A string was set on a symbol slot during init."))
   (invalid-slot-type nil))
-
 
 
 (message "All tests passed.")
