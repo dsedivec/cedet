@@ -1107,16 +1107,24 @@ in the selected file.
     (run-hooks 'speedbar-mode-hook))
   speedbar-buffer)
 
-(defun speedbar-message (fmt &rest args)
+(defmacro speedbar-message (fmt &rest args)
   "Like message, but for use in the speedbar frame.
 Argument FMT is the format string, and ARGS are the arguments for message."
-  (apply 'dframe-message fmt args))
+  `(dframe-message ,fmt ,@args))
 
-(defun speedbar-y-or-n-p (prompt)
+(defsubst speedbar-y-or-n-p (prompt)
   "Like `y-or-n-p', but for use in the speedbar frame.
 Argument PROMPT is the prompt to use."
   (dframe-y-or-n-p prompt))
 
+(defsubst speedbar-select-attached-frame ()
+  "Select the frame attached to this speedbar."
+  (dframe-select-attached-frame (speedbar-current-frame)))
+
+;; Backwards compatibility
+(defalias 'speedbar-with-attached-buffer 'dframe-with-attached-buffer)
+(defalias 'speedbar-maybee-jump-to-attached-frame 'dframe-maybee-jump-to-attached-frame)
+ 
 (defun speedbar-set-mode-line-format ()
   "Set the format of the mode line based on the current speedbar environment.
 This gives visual indications of what is up.  It EXPECTS the speedbar
@@ -2542,9 +2550,7 @@ Uses `dframe-set-timer'."
 			  (speedbar-message nil)))))
 		(select-frame af)))
 	    ;; Now run stealthy updates of time-consuming items
-	    (speedbar-stealthy-updates)))
-      ;; Now run the mouse tracking system
-      (speedbar-show-info-under-mouse)))
+	    (speedbar-stealthy-updates)))))
   (run-hooks 'speedbar-timer-hook))
 
 
