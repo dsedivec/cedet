@@ -2,7 +2,7 @@
 ;;              or maybe Eric's Implementation of Emacs Intrepreted Objects
 
 ;;;
-;; Copyright (C) 1995,1996, 1998, 1999 Eric M. Ludlam
+;; Copyright (C) 1995,1996, 1998, 1999, 2000 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
 ;; Version: 0.15
@@ -50,6 +50,9 @@
   "Display the current version of EIEIO."
   (interactive)
   (message eieio-version))
+
+(if (not (fboundp 'typep))
+    (autoload 'typep "cl" "Determie if OBJ is of type TYPE." nil))
 
 
 ;;;
