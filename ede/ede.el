@@ -209,8 +209,8 @@ Do not set this to non-nil globally.  It is used internally.")
 				 (list 'ede-load-project-file
 				       (list 'oref obj 'path))
 				 obj))
-		     '(dbka (get-file-buffer (oref pf 'file))))
-	      '(if (not dbka) (find-file (oref pf 'file))
+		     '(dbka (get-file-buffer (oref pf file))))
+	      '(if (not dbka) (find-file (oref pf file))
 		 (switch-to-buffer dbka))
 	      (cons 'progn forms)
 	      '(if (not dbka) (kill-buffer (current-buffer))))))
@@ -364,16 +364,16 @@ of objects with the `ede-want-file-p' method."
 Argument FILE is the file or directory to load a project from."
   (interactive "fProject File: ")
   (if (not (file-exists-p file))
-      (ede-new (file))
+      (ede-new file)
     (ede-load-project-file (file-name-directory file))))
 
 (defun ede-new (type)
   "Create a new project starting of project type TYPE."
   (interactive
    (list (completing-read "Project Type: "
-			  (object-assoc-list name ede-project-class-files)
+			  (object-assoc-list 'name ede-project-class-files)
 			  nil t)))
-  (let* ((obj (object-assoc type name ede-project-class-files))
+  (let* ((obj (object-assoc type 'name ede-project-class-files))
 	 (nobj (make-instance (oref obj class-sym)
 			      :name (read-string "Name: ")
 			      :file (oref obj proj-file))))
