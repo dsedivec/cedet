@@ -145,7 +145,8 @@ These are removed with make clean."
 
 ;;; Speedbar options:
 ;;
-(defmethod ede-sb-expand ((this ede-proj-target-makefile-objectcode) depth)
+(defmethod eieio-speedbar-child-make-tag-lines
+  ((this ede-proj-target-makefile-objectcode))
   "Expand an object code node in speedbar.
 This is special for additional headers."
   (call-next-method)
