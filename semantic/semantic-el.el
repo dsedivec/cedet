@@ -68,7 +68,7 @@
     (include
      (open-paren symbol "require" quote symbol
 		 ,(lambda (vals start end)
-		    (list (nth 3 vals) 'include nil start end))))
+		    (list (nth 3 vals) 'include nil nil start end))))
     ;; in elisp, a package statement is the same as the provide token.
     (package
      (open-paren symbol "provide" quote symbol opt-filestring close-paren
