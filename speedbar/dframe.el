@@ -306,7 +306,7 @@ CREATE-HOOK are hooks to run after creating a frame."
   ;; turn the frame off on neg number
   (if (and (numberp arg) (< arg 0))
       (progn
-	(run-hooks delete-hook)
+	(run-hooks 'delete-hook)
 	(if (and (symbol-value frame-var)
 		 (frame-live-p (symbol-value frame-var)))
 	    (progn
