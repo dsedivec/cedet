@@ -101,7 +101,9 @@
 (make-variable-buffer-local 'tree-root-node)
 
 (defvar tree-buffer-mode 'tree-center-box-1
-  "Current mode of this tree buffer.  Valid values are:
+  "Current mode of a tree buffer.
+
+Valid values are:
 'tree-center-box-1 - nodes are boxed w/ 1 line of text in center of region
                      this is default if this value is unknown
 'tree-top-box-1    - nodes are boxed w/ 1 line of text @ top of region
@@ -160,8 +162,7 @@ handle graphic characters.  Returns the newly created frame"
 ;;; display management
 ;;;
 (defun tree-refresh-tree ()
-  "Refresh the tree structure which should be currently active in the
-current buffer"
+  "Refresh the tree structure which is currently active in this buffer."
   (message "Refreshing tree...")
   ;; first-things first.  Cache the height of every node in the tree
   (tree-level-height tree-root-node)
