@@ -693,6 +693,7 @@ NO-DEFAULT switches like this:
 - - \\[universal-argument] -     NO-DEFAULT.
 - - \\[universal-argument] \\[universal-argument]   IN-CONTEXT + NO-DEFAULT."
   (interactive (senator-jump-interactive "Jump to: " nil nil t))
+  (push-mark)
   (let ((tok (senator-jump-noselect sym no-default)))
     (when tok
       (switch-to-buffer (semantic-token-buffer tok))
