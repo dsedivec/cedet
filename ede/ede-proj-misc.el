@@ -1,6 +1,6 @@
 ;;; ede-proj-nusc.el --- EDE Generic Project Emacs Lisp support
 
-;;;  Copyright (C) 1998, 1999, 2000  Eric M. Ludlam
+;;;  Copyright (C) 1998, 1999, 2000, 2001  Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Keywords: project, make
@@ -71,7 +71,11 @@ All listed sources are included in the distribution.")
   ((this ede-proj-target-makefile-miscelaneous))
   "Return a list of files which THIS target depends on."
   (with-slots (submakefile) this
-      (or (not (string= submakefile "")) (list submakefile))))
+    (cond ((string= submakefile "")
+	   nil)
+	  ((not submakefile)
+	   nil)
+	  (t (list submakefile)))))
 
 (defmethod ede-proj-makefile-insert-rules ((this ede-proj-target-makefile-miscelaneous))
   "Create the make rule needed to create an archive for THIS."
