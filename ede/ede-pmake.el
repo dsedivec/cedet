@@ -317,7 +317,7 @@ sources variable."
 		       (oref this source) " ")
 	    " "
 	    (mapconcat (lambda (a)
-			 (concat (file-name-sans-extension a) ".lo"))
+			 (concat (file-name-sans-extension a) obj-ext))
 		       (oref this auxsource) " ")
 	    "\n")
     ))
@@ -453,6 +453,12 @@ These are removed with make clean."
       (setq ar (cdr ar))))
   (insert "\t$(EMACS) -batch -l " (ede-name this) "-comp -f batch-byte-compile"
 	  " $(" (ede-proj-makefile-sourcevar this) ")\n"))
+
+(defmethod ede-proj-makefile-insert-rules ((this ede-proj-target-makefile-info))
+  "Insert rules to build THIS set of texinfo documentation files."
+  (call-next-method)
+  (insert (ede-name this) ": $(" (ede-pmake-varname this) "_INFOS)\n"
+	  "\tmakeinfo $(" (ede-pmake-varname this) "_INFOS)\n"))
 
 (provide 'ede-pmake)
 
