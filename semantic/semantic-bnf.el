@@ -1005,8 +1005,9 @@ Returns the previous colon's column."
 	  (sc nil))
       (goto-char p)
       (while (and (re-search-backward "^\\s-*;\\s-*$" nil t)
-		  (semantic-bnf-in-lambda-continuation-p))
-	(setq sc t))
+		  (semantic-bnf-in-lambda-continuation-p)))
+      (if (looking-at "\\s-*;")
+	  (setq sc t))
       (if sc
 	  (if (< (point) cp)
 	      ci
