@@ -4198,6 +4198,12 @@ TEXT is the buffer's name, TOKEN and INDENT are unused."
 (if (fboundp 'defimage)
     (defalias 'defimage-speedbar 'defimage)
 
+  (if (not (fboundp 'make-glyph))
+      
+(defmacro defimage-speedbar (variable imagespec docstring)
+  "Don't bother loading up an image..."
+  `(defvar ,variable nil ,docstring))
+
 (defun speedbar-find-image-on-load-path (image)
   "Find the image file IMAGE on the load path."
   (let ((l load-path)
@@ -4228,7 +4234,7 @@ IMAGESPEC is the image data, and DOCSTRING is documentation for the image."
       'buffer)
      ,docstring))
 
-)
+))
 
 (defimage-speedbar speedbar-directory-+
   ((:type xpm :file "sb-dir+.xpm"))
