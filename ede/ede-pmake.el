@@ -48,6 +48,8 @@ MFILENAME is the makefile to generate."
 		 (string= (oref (car targets) makefile) mfilename))
 	    (setq mt (cons (car targets) mt)))
 	(setq targets (cdr targets))))
+    ;; Fix the order so things compile in the right direction.
+    (setq mt (nreverse mt))
     (save-excursion
       (set-buffer (find-file-noselect mfilename))
       (erase-buffer)
