@@ -723,8 +723,22 @@ SOURCEFILE is the file name from whence tokstream came."
 	   (token . "Tokens")
 	   (rule  . "Rules")
 	   )
+	semantic-override-table
+	'( (abbreviate-nonterminal . semantic-bnf-abbreviate-nonterminal)
+	   )
 	imenu-create-index-function 'semantic-create-imenu-index)
   (run-hooks 'semantic-bnf-mode-hook))
+
+(defun semantic-bnf-abbreviate-nonterminal (token &optional parent)
+  "Return a string abbreviation of TOKEN.
+Optional PARENT is no used."
+  (let ((tok (semantic-token-token token))
+	(name (semantic-token-name token)))
+    (cond
+     ((eq tok 'rule) (concat name ":"))
+     ((eq tok 'setting) "%settings%")
+     ((or (eq tok 'token) (eq tok 'keyword)) name)
+     (t (concat "%" (symbol-name tok) " " name)))))
 
 (defun semantic-bnf-electric-punctuation ()
   "Insert and reindent for the symbol just typed in."
