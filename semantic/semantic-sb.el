@@ -89,7 +89,7 @@ Optional PREFIX is used to specify special marker characters."
 	   (let ((name (semantic-token-name token)))
 	     (if ttype
 		 (setq name (concat ttype " " name)))
-	     (if (or edata (semantic-token-type-parent token))
+	     (if edata
 		 (speedbar-insert-button (if prefix (concat " +" prefix) " +>")
 					 'speedbar-button-face
 					 'speedbar-highlight-face
@@ -179,16 +179,12 @@ Optional MODIFIERS is additional text needed for variables."
   (let ((tt (semantic-token-token token))
 	(type (semantic-token-type token)))
     (cond ((eq tt 'type)
-	   (let ((parts (semantic-token-type-parts token))
-		 (parent (semantic-token-type-parent token)))
+	   (let ((parts (semantic-token-type-parts token)))
 	     ;; Lets expect PARTS to be a list of either strings,
 	     ;; or variable tokens.
 	     (while parts
 	       (semantic-sb-maybe-token-to-button (car parts) indent)
-	       (setq parts (cdr parts)))
-	     (if (and (not parts) parent)
-		 ;; This case is probably a typedef like item.
-		 (semantic-sb-maybe-token-to-button parent indent ">"))))
+	       (setq parts (cdr parts)))))
 	  ((eq tt 'variable)
 	   (if type
 	       (let ((mods (semantic-token-variable-modifiers token)))
