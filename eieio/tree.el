@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1996 Eric M. Ludlam
 ;;;
 ;;; Author: <zappo@gnu.ai.mit.edu>
-;;; Version: 0.1
+;;; Version: 0.2
 ;;; RCS: $Id$
 ;;; Keywords: OO, tree                                           
 ;;;                                                                          
