@@ -431,7 +431,9 @@ in an Emacs buffer."
 	(while files
 	  (when (or diff-mode
 		    (eq mm (oref (car files) major-mode)))
-	    (semanticdb-refresh-table (car files))
+ 	    ;; This can cause unneded refreshes while typing with
+ 	    ;; senator-eldoc mode.
+ 	    ;;(semanticdb-refresh-table (car files))
 	    (setq found (funcall function
 				 (oref (car files) tokens)
 				 search-parts
