@@ -644,6 +644,7 @@ to toggle this value.")
      '(save-excursion (beginning-of-line) (looking-at "[0-9]+: *[[<]")))
 (put 'speedbar-item-delete 'menu-enable
      '(save-excursion (beginning-of-line) (looking-at "[0-9]+: *[[<]")))
+(put 'speedbar-item-info 'menu-enable 'speedbar-shown-directories)
 
 (defvar speedbar-buffer nil
   "The buffer displaying the speedbar.")
@@ -986,22 +987,24 @@ This should be bound to a mouse EVENT."
 (defun speedbar-item-info ()
   "Display info in the minibuffer about the button the mouse is over."
   (interactive)
-  (let* ((item (speedbar-line-file))
-	 (attr (if item (file-attributes item) nil)))
-    (if item (message "%s %d %s" (nth 8 attr) (nth 7 attr) item)
-      (save-excursion
-	(beginning-of-line)
-	(looking-at "\\([0-9]+\\):")
-	(setq item (speedbar-line-path (string-to-int (match-string 1))))
-	(if (re-search-forward "> \\([^ ]+\\)$"
-			       (save-excursion(end-of-line)(point)) t)
-	    (progn
-	      (setq attr (get-text-property (match-beginning 1)
-					    'speedbar-token))
-	      (message "Tag %s in %s at position %s"
-		       (match-string 1) item (if attr attr 0)))
-	  (message "No special info for this line.")))
-	  )))
+  (if (not speedbar-shown-directories)
+      nil
+    (let* ((item (speedbar-line-file))
+	   (attr (if item (file-attributes item) nil)))
+      (if item (message "%s %d %s" (nth 8 attr) (nth 7 attr) item)
+	(save-excursion
+	  (beginning-of-line)
+	  (looking-at "\\([0-9]+\\):")
+	  (setq item (speedbar-line-path (string-to-int (match-string 1))))
+	  (if (re-search-forward "> \\([^ ]+\\)$"
+				 (save-excursion(end-of-line)(point)) t)
+	      (progn
+		(setq attr (get-text-property (match-beginning 1)
+					      'speedbar-token))
+		(message "Tag %s in %s at position %s"
+			 (match-string 1) item (if attr attr 0)))
+	    (message "No special info for this line.")))
+	))))
 
 (defun speedbar-item-copy ()
   "Copy the item under the cursor.
@@ -1910,7 +1913,10 @@ directory with these items."
   (interactive)
   (save-excursion
     (beginning-of-line)
-    (re-search-forward "[]>}] [a-zA-Z0-9]" (save-excursion (end-of-line) (point)))
+    ;; If this fails, then it is a non-standard click, and as such,
+    ;; perfectly allowed.
+    (re-search-forward "[]>}] [a-zA-Z0-9]"
+		       (save-excursion (end-of-line) (point)) t)
     (speedbar-do-function-pointer)))
 
 (defun speedbar-expand-line ()
