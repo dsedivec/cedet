@@ -1389,7 +1389,8 @@ dynamically set from FIELDS."
 SLOT-NAME is the name of the failed slot, OPERATION is the type of access
 that was requested, and optional NEW-VALUE is the value that was desired
 to be set."
-  (signal 'invalid-slot-name (list (class-name class) field)))
+  (signal 'invalid-slot-name (list (class-name (object-class class))
+				   slot-name)))
 
 (defmethod object-print ((this eieio-default-superclass) &rest strings)
   "Pretty printer for any object.  Calls `object-name' with STRINGS.
