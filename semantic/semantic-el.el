@@ -35,7 +35,10 @@
      (semantic-list
       ,(lambda (vals start end)
 	 (let ((i (semantic-bovinate-from-nonterminal
-		   start end 'extract-toplevel)))
+		   start end 'extract-toplevel nil
+		   ;; NOTE, currently the longest item we have is 6 long,
+		   ;; so only ask the flexer to go out 6 tokens.
+		   6)))
 	   (append (nreverse (cdr (cdr (reverse i))))
 		   (list start end)))))
      (extract-toplevel))
