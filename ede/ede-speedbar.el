@@ -37,6 +37,8 @@
 (require 'ede)
 (require 'eieio-speedbar)
 
+(eval-when-compile (require 'speedbar))
+
 ;;; Speedbar support mode
 ;;
 (defvar ede-speedbar-key-map nil
@@ -225,9 +227,9 @@ A plain child is a child element which is not an EIEIO object."
   "Return the list of speedbar display children for THIS."
   (oref this source))
 
-(defmethod eieio-speedbar-child-make-tag-lines ((this ede-target))
+(defmethod eieio-speedbar-child-make-tag-lines ((this ede-target) depth)
   "Create a speedbar tag line for a child of THIS.
-It has string CHILD-STRING, and depth DEPTH."
+It has depth DEPTH."
   (with-slots (source) this
     (mapcar (lambda (car)
  	      (speedbar-make-tag-line 'bracket ?+
