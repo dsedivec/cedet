@@ -48,7 +48,7 @@
 (require 'autoconf-edit)
 
 ;;; Types:
-(defclass ede-compilation-program ()
+(defclass ede-compilation-program (eieio-instance-inheritor)
   ((name :initarg :name
 	 :type string
 	 :custom string
