@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1996, 97, 98 Free Software Foundation
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; Version: 0.7
+;; Version: 0.7e
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
@@ -365,7 +365,7 @@
 
 (defvar speedbar-xemacsp (string-match "XEmacs" emacs-version)
   "Non-nil if we are running in the XEmacs environment.")
-(defvar speedbar-xemacs20p (and speedbar-xemacsp 
+(defvar speedbar-xemacs20p (and speedbar-xemacsp
 				(= emacs-major-version 20)))
 
 ;; From custom web page for compatibility between versions of custom:
