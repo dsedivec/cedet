@@ -1037,7 +1037,7 @@ It is often useful to use @code{speedbar-create-tag-hierarchy} on your
 token list.  See that functions documentation for details on what it
 requires.
 
-Once these to functions are written, modify the variable
+Once these two functions are written, modify the variable
 @code{speedbar-dynamic-tags-function-list} to include your parser at the
 beginning, like this:
 
