@@ -449,12 +449,15 @@
  ( punctuation "[!*&~]" symbol
   ,(semantic-lambda
  ))
+ ( string
+  ,(semantic-lambda
+ ))
  ( semantic-list
   ,(semantic-lambda
  ))
  ) ; end expression
  )
-     "C language specification.")
+      "C language specification.")
 
 (defvar semantic-flex-c-extensions
   '(("^#\\(if\\(def\\)?\\|else\\|endif\\)" . semantic-flex-c-if))
