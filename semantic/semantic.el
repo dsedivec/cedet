@@ -350,6 +350,10 @@ This function should behave as the function `semantic-bovinate-toplevel'.")
 ;; These functions use the flex and bovination engines to perform some
 ;; simple tasks useful to other programs.
 ;;
+(defmacro semantic-clear-toplevel-cache ()
+  "Clear the toplevel bovin cache for the current buffer."
+  '(setq semantic-toplevel-bovine-cache nil))
+
 (defmacro semantic-token-token (token)
   "Retrieve from TOKEN the token identifier."
   `(nth 1 ,token))
@@ -439,7 +443,7 @@ stripped from the main list of synthesized tokens."
 		(* 100.0 (/ (float (car (cdr (car ss))))
 			    (float (point-max)))))
 	     100)))
-	(working-dynamic-status t))
+	(working-status t))
       (setq semantic-toplevel-bovine-cache (list (nreverse res) (point-max)))
       (car semantic-toplevel-bovine-cache)))))
 
