@@ -301,7 +301,7 @@ Argument TARGET is the project we are completing customization on."
 		      :path (ede-convert-path this default-directory)
 		      :source (list (file-name-nondirectory src))))
     ;; If we added it, set the local buffer's object.
-    (if src (setq ede-obj ot))
+    (if src (setq ede-object ot))
     ;; Add it to the project object
     (oset this targets (cons ot (oref this targets)))
     ;; And save
@@ -474,7 +474,8 @@ MFILENAME is the makefile to generate."
   (ede-with-projectfile this
     (goto-char (point-min))
     (let ((l (read (current-buffer)))
-	  (fields (obj-fields this)))
+	  (fields (obj-fields this))
+	  (targets (oref this targets)))
       (setq l (cdr (cdr l))) ;; objtype and name skip
       (while fields ;  reset to defaults those that dont appear.
 	(if (and (not (assoc (car fields) l))
