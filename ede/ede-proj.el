@@ -214,12 +214,8 @@ These variables are used in the makefile when a configuration becomes active.")
    (menu :initform
 	 (
 	  [ "Regenerate Makefiles" ede-proj-regenerate t ]
-	  [ "Update Version" ede-update-version ede-object ]
-	  [ "Rescan Project Files" ede-rescan-toplevel t ]
-	  [ "Edit Projectfile" ede-edit-file-target
-	    (and ede-object
-		 (or (listp ede-object)
-		     (not (obj-of-class-p ede-object ede-project)))) ])
+	  [ "Upload Distribution" ede-upload-distribution t ]
+	  )
 	 )
    )
   "The EDE-PROJ project definition class.")
@@ -399,6 +395,12 @@ FILE must be massaged by `ede-convert-path'."
     (ede-proj-setup-buildenvironment this)
     (if (string= pm "Makefile.am") (setq pm "Makefile"))
     (compile (concat "make -f " pm " dist"))))
+
+(defmethod project-dist-files ((this ede-proj-project))
+  "Return a list of files that constitues a distribution of THIS project."
+  (list
+   (concat (oref this name) "-" (oref this version) ".tar.gz")
+   ))
 
 (defmethod project-compile-project ((proj ede-proj-project) &optional command)
   "Compile the entire current project PROJ.
