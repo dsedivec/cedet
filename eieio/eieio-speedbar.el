@@ -252,8 +252,8 @@ and take the apropriate action."
 	       :type symbol
 	       :documentation
 	       "The type of expansion button used for objects of this class.
-Possible values are 'bracket, 'angle, 'curly, and nil.
-See `speedbar-make-tag-line' for details."
+Possible values are those symbols supported by the `exp-button-type' argument
+to `speedbar-make-tag-line'."
 	       :allocation class)
    (buttonface :initform speedbar-tag-face
 	       :type (or symbol face)
