@@ -212,7 +212,7 @@ TOP-LEVEL ENTRIES:
    PART-LIST is only useful for structs that have multiple individual parts.
             (It is recommended that these be variables, functions or types).
    PARENTS is strictly for classes where there is inheritance.
-   
+           See `semantic-token-parent' for a description of this value.   
 
  (\"FILE\" include SYSTEM \"DOCSTRING\" PROPERTIES OVERLAY)
    In C, an #include statement.  In elisp, a require statement.
