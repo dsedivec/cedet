@@ -4228,10 +4228,12 @@ IMAGESPEC is the image data, and DOCSTRING is documentation for the image."
      ;; The Emacs21 version of defimage looks just like the XEmacs image
      ;; specifier, except that it needs a :type keyword.  If we line
      ;; stuff up right, we can use this cheat to support XEmacs specifiers.
-     (make-glyph
-      (make-image-specifier
-       (speedbar-convert-emacs21-imagespec-to-xemacs (quote ,imagespec)))
-      'buffer)
+     (condition-case nil
+	 (make-glyph
+	  (make-image-specifier
+	   (speedbar-convert-emacs21-imagespec-to-xemacs (quote ,imagespec)))
+	  'buffer)
+       (error nil))
      ,docstring))
 
 ))
@@ -4297,7 +4299,7 @@ If we have an image associated with it, use that image."
 	;; Unfortunatly, there is a giant pile o code dependent on the
 	;; underlying text.  This means if we leave it tangible, then I
 	;; don't have to change said giant piles o code.
-	(if a
+	(if (and a (symbol-value (cdr a)))
 	    (if (fboundp 'set-extent-property)
 		(add-text-properties (+ start (length bt)) start
 				     (list 'end-glyph (symbol-value (cdr a))
