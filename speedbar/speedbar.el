@@ -441,15 +441,9 @@ use etags instead.  Etags support is not as robust as imenu support."
   "Set to a functions which will return and insert a list of tags.
 Each element is of the form ( FETCH .  INSERT ) where FETCH
 is a funciotn which takes one parameter (the file to tag) and return a
-list of tags of the form:
-  ( ( TAG . LOCATION ) ... )
-or 
-  ( (GROUPSTRING ( TAG . LOCATION) ...) ...)
-    
- note to self: make sure the above is correct
-if it returns t, then an error occured, and the next fetch routine is
-tried.
-
+list of tags.  The tag list can be of any form as long as the
+corresponding insert method can handle it.  If it returns t, then an
+error occured, and the next fetch routine is tried.
 INSERT is a function which takes an INDENTation level, and a LIST of
 tags to insert.  It will then create the speedbar buttons.")
 
