@@ -404,6 +404,7 @@ It does not check for existing project objects.  Use `project-am-load'."
 	    (if (and ede-object (project-am-makefile-p ede-object))
 		ede-object
 	      (let ((ampf (project-am-makefile (project-am-last-dir fn)
+					       :name (project-am-last-dir fn)
 					       :file fn)))
 		(project-rescan ampf)
 		(make-local-variable 'ede-object)
