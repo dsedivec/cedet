@@ -243,7 +243,7 @@ MFILENAME is the makefile to generate."
 
 (defmethod ede-proj-makefile-sourcevar ((this ede-proj-target-makefile-miscelaneous))
   "Return the variable name for THIS's sources."
-  (concat (ede-pmake-varname this) "_MISC"))))
+  (concat (ede-pmake-varname this) "_MISC"))
 
 ;;; DEPENDENCY FILE GENERATOR LISTS
 ;;
