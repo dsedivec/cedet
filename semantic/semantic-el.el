@@ -142,11 +142,26 @@ Return a bovination list to use."
 	    (locate-library (semantic-token-name token)))))
     (concat f ".el")))
 
+(defun semantic-elisp-prototype-nonterminal (token)
+  "Return a prototype for the Emacs Lisp nonterminal TOKEN."
+  (let* ((tok (semantic-token-token token))
+	 (args (semantic-nonterminal-children token))
+	 )
+    (if (eq tok 'function)
+	(concat (semantic-token-name token) " ("
+		(mapconcat (lambda (a) a) args " ")
+		")")
+      (semantic-prototype-nonterminal-default token))))
+
 (defun semantic-default-elisp-setup ()
   "Setup hook function for Emacs Lisp files and Semantic."
+  (semantic-install-function-overrides
+   '((find-dependency . semantic-elisp-find-dependency)
+     (prototype-nonterminal . semantic-elisp-prototype-nonterminal)
+     (concise-prototype-nonterminal . semantic-elisp-prototype-nonterminal)
+     )
+   t)
   (setq semantic-toplevel-bovine-table semantic-toplevel-elisp-bovine-table
-	semantic-override-table
-	'((find-dependency . semantic-elisp-find-dependency))
 	semantic-symbol->name-assoc-list
 	'( (variable . "Variables")
 	   (type     . "Types")
