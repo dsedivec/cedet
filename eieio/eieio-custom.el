@@ -189,6 +189,13 @@ This is the next line of documentation.")
     ;; This is the same object we had before.
     obj))
 
+(defmethod eieio-done-customizing ((obj eieio-default-superclass))
+  "When a applying change to a widget, call this method.
+This method is called by the default widget-edit commands.  User made
+commands should also call this method when applying changes.
+Argument OBJ is the object that has been customized."
+  nil)
+
 (defmethod eieio-customize-object ((obj eieio-default-superclass))
   "Customize OBJ in a specialized custom buffer.
 To override call the `eieio-custom-widget-insert' to just insert the
@@ -236,13 +243,6 @@ object widget."
 Arguments FLAGS are widget compatible flags.
 Must return the created widget."
   (widget-create 'object-edit :value obj))
-
-(defmethod eieio-done-customizing ((obj eieio-default-superclass))
-  "When a applying change to a widget, call this method.
-This method is called by the default widget-edit commands.  User made
-commands should also call this method when applying changes.
-Argument OBJ is the object that has been customized."
-  nil)
 
 (define-widget 'object 'object-edit
   "Instance of a CLOS class."
