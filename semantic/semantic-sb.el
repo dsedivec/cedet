@@ -264,7 +264,7 @@ TEXT TOKEN and INDENT are the details."
     ;; Reset the timer with a new timeout when cliking a file
     ;; in case the user was navigating directories, we can cancel
     ;; that other timer.
-    (speedbar-set-timer speedbar-update-speed)
+    (speedbar-set-timer dframe-update-speed)
     ;;(recenter)
     (speedbar-maybee-jump-to-attached-frame)
     (run-hooks 'speedbar-visiting-tag-hook)))
@@ -331,7 +331,7 @@ Returns the tag list, or t for an error."
   ;; Load this AND compile it in
   (save-excursion
     (set-buffer (find-file-noselect file))
-    (if speedbar-power-click (setq semantic-toplevel-bovine-cache))
+    (if dframe-power-click (setq semantic-toplevel-bovine-cache))
     (if (not semantic-toplevel-bovine-table)
 	t
       (condition-case nil
