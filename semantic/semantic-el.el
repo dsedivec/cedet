@@ -176,8 +176,7 @@ PARENT and COLOR as for `semantic-prototype-nonterminal'."
 	(concat (semantic-name-nonterminal token parent color) " ("
 		(mapconcat (lambda (a)
 			     (if color
-				 (semantic-colorize-text
-				  a font-lock-variable-name-face)
+				 (semantic-colorize-text a 'variable)
 			       a))
 			   args " ")
 		")")
