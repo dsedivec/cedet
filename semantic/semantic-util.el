@@ -1199,6 +1199,10 @@ If TANGIBLE is non-nil, make the text visible."
   (semantic-overlay-put (semantic-token-overlay token) 'intangible
 			(not tangible)))
 
+(defun semantic-token-intangible-p (token)
+  "Return non-nil if TOKEN is intangible."
+  (semantic-overlay-get (semantic-token-overlay token) 'intangible))
+
 (defun semantic-overlay-signal-read-only
   (overlay after start end &optional len)
   "Hook used in modification hooks to preventi modification.
@@ -1219,6 +1223,12 @@ instead of read-only."
     (semantic-overlay-put o 'modification-hooks hook)
     (semantic-overlay-put o 'insert-in-front-hooks hook)
     (semantic-overlay-put o 'insert-behind-hooks hook)))
+
+(defun semantic-token-read-only-p (token)
+  "Return non-nil if the current TOKEN is marked read only."
+  (let ((o (semantic-token-overlay token)))
+    (member 'semantic-overlay-signal-read-only
+	    (semantic-overlay-get o 'modification-hooks))))
 
 (defun semantic-narrow-to-token (token)
   "Narrow to the region specified by TOKEN."
