@@ -197,6 +197,26 @@ Optional argument NOTYPECHECK specifies not to make subgroups under types."
   ;; Force a rescan
   (setq imenu--index-alist nil))
 
+;;; Which function support
+;;
+;; The which-function library will display the current function in the
+;; mode line.  It tries do do this through imenu.  With a semantic parsed
+;; buffer, there is a much more efficient way of doing this.
+;; Advise `which-function' so that we optionally use semantic tokens
+;; instead, and get better stuff.
+(require 'advice)
+
+(defvar semantic-which-function
+  (lambda (l) (mapconcat 'semantic-abbreviate-nonterminal ol "."))
+  "Function to convert semantic tokens into `which-function' text.")
+
+(defadvice which-function (around semantic-which activate)
+  "Choose the function to display via semantic if it is currently active."
+  (if (and (featurep 'semantic) semantic-toplevel-bovine-cache)
+      (let ((ol (semantic-find-nonterminal-by-overlay)))
+	(setq ad-return-value (funcall semantic-which-function ol)))
+    ad-do-it))
+
 (provide 'semantic-imenu)
 
 ;;; semantic-imenu.el ends here
