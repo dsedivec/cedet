@@ -2905,11 +2905,11 @@ that will occur on your system."
    (file-exists-p (concat path "RCS/" name ",v"))
    (file-exists-p (concat path "RCS/" name))
    ;; Local SCCS file name
-   (file-exists-p (concat path "SCCS/p." name))
+   (file-exists-p (concat path "SCCS/s." name))
    ;; Remote SCCS file name
    (let ((proj-dir (getenv "PROJECTDIR")))
      (if proj-dir
-         (file-exists-p (concat proj-dir "/SCCS/p." name))
+         (file-exists-p (concat proj-dir "/SCCS/s." name))
        nil))
    ;; User extension
    (run-hook-with-args 'speedbar-vc-in-control-hook path name)
