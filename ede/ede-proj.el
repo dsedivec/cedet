@@ -294,6 +294,15 @@ Argument TARGET is the project we are completing customization on."
     ;; And save
     (ede-proj-save this)))
 
+(defmethod project-new-target-custom ((this ede-proj-project))
+  "Create a new target in THIS for custom."
+  (let* ((name (read-string "Name: " ""))
+	 (type (completing-read "Type: " ede-proj-target-alist
+				nil t nil '(ede-proj-target-history . 1))))
+    (funcall (cdr (assoc type ede-proj-target-alist)) name :name name
+	     :path (ede-convert-path this default-directory)
+	     :source nil)))
+
 (defmethod project-delete-target ((this ede-proj-target))
   "Delete the current target THIS from it's parent project."
   (let ((p (ede-current-project))
