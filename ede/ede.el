@@ -207,10 +207,10 @@ Do not set this to non-nil globally.  It is used internally.")
 			   (list 'if (list 'obj-of-class-p
 					   obj 'ede-target)
 				 (list 'ede-load-project-file
-				       (list 'oref obj path))
+				       (list 'oref obj 'path))
 				 obj))
-		     '(dbka (get-file-buffer (oref pf file))))
-	      '(if (not dbka) (find-file (oref pf file))
+		     '(dbka (get-file-buffer (oref pf 'file))))
+	      '(if (not dbka) (find-file (oref pf 'file))
 		 (switch-to-buffer dbka))
 	      (cons 'progn forms)
 	      '(if (not dbka) (kill-buffer (current-buffer))))))
