@@ -109,7 +109,9 @@ a variable symbol used to store a list of all instances.")
   "Make sure THIS is in our master list of this class.
 Optional argument FIELDS are the initialization arguments."
   ;; Theoretically, this is never called twice for a given instance.
-  (add-to-list (oref this tracking-symbol) this))
+  (let ((sym (oref this tracking-symbol)))
+    (if (not (member this (symbol-value sym)))
+	(set sym (append (symbol-value sym) (list this))))))
 
 (defmethod delete-instance ((this eieio-instance-tracker))
   "Remove THIS from the master list of this class."
