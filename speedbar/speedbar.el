@@ -1246,8 +1246,10 @@ redirected into a window on the attached frame."
   (if speedbar-attached-frame (select-frame speedbar-attached-frame))
   (pop-to-buffer buffer nil)
   (other-window -1)
-  ;; Fix for using this hook: Bob Weiner
-  (cond ((fboundp 'run-hook-with-args)
+  ;; Fix for using this hook on some platforms: Bob Weiner
+  (cond ((not speedbar-xemacsp)
+	 (run-hooks 'temp-buffer-show-hook))
+	((fboundp 'run-hook-with-args)
 	 (run-hook-with-args 'temp-buffer-show-hook buffer))
 	((and (boundp 'temp-buffer-show-hook)
 	      (listp temp-buffer-show-hook))
