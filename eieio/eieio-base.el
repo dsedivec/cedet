@@ -1,7 +1,7 @@
 ;;; eieio-base.el --- Base classes for EIEIO.
 
 ;;;
-;; Copyright (C) 2000 Eric M. Ludlam
+;; Copyright (C) 2000, 2001 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
 ;; RCS: $Id$
@@ -34,6 +34,9 @@
 ;; inherit from one or more of them.
 
 (require 'eieio)
+
+(if (not (fboundp 'compare-strings))
+    (require 'compare-strings))
 
 ;;; Code:
 
