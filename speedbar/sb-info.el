@@ -58,7 +58,7 @@
   "Keymap used when in the info display mode.")
 
 (if Info-speedbar-key-map
-b    nil
+    nil
   (setq Info-speedbar-key-map (speedbar-make-specialized-keymap))
 
   ;; Basic tree features
