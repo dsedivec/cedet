@@ -21,6 +21,9 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.12  2000/06/13 14:37:48  zappo
+# The table has moved.
+#
 # Revision 1.11  2000/05/06 01:32:57  zappo
 # Use EXPANDFULL for enums, and for argument lists to functions.
 #
@@ -58,7 +61,7 @@
 # Initial revision
 #
 
-# TABLE: semantic-ex.el:semantic-toplevel-c-bovine-table
+# TABLE: semantic-c.el:semantic-toplevel-c-bovine-table
 # MODE: c-mode
 
 bovine-toplevel : include
