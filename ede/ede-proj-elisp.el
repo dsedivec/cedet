@@ -133,10 +133,10 @@ These are removed with make clean."
 	  )
       (error "Don't know how to update load path"))))
 
-(defmethod ede-proj-tweek-autoconf ((this ede-proj-target-elisp))
-  "Tweek the configure file (current buffer) to accomodate THIS."
+(defmethod ede-proj-tweak-autoconf ((this ede-proj-target-elisp))
+  "Tweak the configure file (current buffer) to accomodate THIS."
   (autoconf-insert-new-macro "AM_PATH_LISPDIR")
-  ;; Ok, now we have to tweek the autoconf provided `elisp-comp' program.
+  ;; Ok, now we have to tweak the autoconf provided `elisp-comp' program.
   (let ((ec (ede-expand-filename this "elisp-comp")))
     (if (not (file-exists-p ec))
 	(message "There may be compile errors.  Rerun a second time.")

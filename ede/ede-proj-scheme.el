@@ -46,8 +46,8 @@
   "Return t if OBJ wants to own FILE."
   (string-match "\\.scm$" file))
 
-(defmethod ede-proj-tweek-autoconf ((this ede-proj-target-scheme))
-  "Tweek the configure file (current buffer) to accomodate THIS."
+(defmethod ede-proj-tweak-autoconf ((this ede-proj-target-scheme))
+  "Tweak the configure file (current buffer) to accomodate THIS."
   (autoconf-insert-new-macro "AM_INIT_GUILE_MODULE"))
 
 (provide 'ede-proj-scheme)

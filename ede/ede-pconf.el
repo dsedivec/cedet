@@ -58,7 +58,7 @@
       (setq targs (cdr targs)))
     (setq targs (oref this targets))
     (while targs
-      (ede-proj-tweek-autoconf (car targs))
+      (ede-proj-tweak-autoconf (car targs))
       (setq targs (cdr targs)))
     ;; Now save
     (save-buffer)
@@ -129,14 +129,14 @@ Rerun the previous ede command when automake and autoconf are completed.")
     (if b (kill-buffer b)))
   (ede-proj-configure-synchronize this))
 
-(defmethod ede-proj-tweek-autoconf ((this ede-proj-target))
-  "Tweek the configure file (current buffer) to accomodate THIS."
+(defmethod ede-proj-tweak-autoconf ((this ede-proj-target))
+  "Tweak the configure file (current buffer) to accomodate THIS."
   nil)
 
 (defmethod ede-proj-flush-autoconf ((this ede-proj-target))
   "Flush the configure file (current buffer) to accomodate THIS.
 By flushing, remove any cruft that may be in the file.  Subsequent
-calls to `ede-proj-tweek-autoconf' can restore items removed by flush."
+calls to `ede-proj-tweak-autoconf' can restore items removed by flush."
   nil)
 
 (provide 'ede-pconf)
