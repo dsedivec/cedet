@@ -27,7 +27,7 @@
 ;; 
 ;; Code generator for autoconf configure.in, and support files.
 
-(require 'ede)
+(require 'ede-proj)
 (require 'autoconf-edit)
 
 ;;; Code:
