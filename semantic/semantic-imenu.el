@@ -1,6 +1,6 @@
 ;;; semantic-imenu.el --- Use the Bovinator as a imenu tag generateor
 
-;;; Copyright (C) 2000 Paul Kinnucan & Eric Ludlam
+;;; Copyright (C) 2000, 2001 Paul Kinnucan & Eric Ludlam
 
 ;; Author: Paul Kinnucan, Eric Ludlam
 ;; X-RCS: $Id$
@@ -189,17 +189,27 @@ Optional argument NOTYPECHECK specifies not to make subgroups under types."
                                 (semantic-token-overlay token))
                           index)))
       (setq tokens (cdr tokens)))
-    ;; Imenu wasn't capturing this, so add the code from imenu.el
-    ;; into this sub-sub section.
-    (if imenu-sort-function
-	(sort (let ((res nil)
-		    (oldlist index))
-		;; Copy list method from the cl package `copy-list'
-		(while (consp oldlist) (push (pop oldlist) res))
-		(if res		; in case, e.g. no functions defined
-		    (prog1 (nreverse res) (setcdr res oldlist))))
-	      imenu-sort-function)
-      (nreverse index))))
+    (setq index
+	  ;; Imenu wasn't capturing this, so add the code from imenu.el
+	  ;; into this sub-sub section.
+	  (if imenu-sort-function
+	      (sort (let ((res nil)
+			  (oldlist index))
+		      ;; Copy list method from the cl package `copy-list'
+		      (while (consp oldlist) (push (pop oldlist) res))
+		      (if res	  ; in case, e.g. no functions defined
+			  (prog1 (nreverse res) (setcdr res oldlist))))
+		    imenu-sort-function)
+	    (nreverse index)))
+    (if (> (length index) imenu-max-items)
+	(let ((count 0))
+	  (setq index
+		(mapcar
+		 (function
+		  (lambda (menu)
+		    (cons (format "From: %s" (caar menu)) menu)))
+		 (imenu--split index imenu-max-items)))))
+    index))
 
 ;;; Interactive Utilities
 ;;
