@@ -899,6 +899,32 @@ instead of read-only."
     (semantic-overlay-put o 'insert-in-front-hooks hook)
     (semantic-overlay-put o 'insert-behind-hooks hook)))
 
+;;; Interactive Functions for bovination
+;;
+(eval-when-compile (require 'pp))
+
+(defun bovinate (&optional clear)
+  "Bovinate the current buffer.  Show output in a temp buffer.
+Optional argument CLEAR will clear the cache before bovinating."
+  (interactive "P")
+  (if clear (semantic-clear-toplevel-cache))
+  (let ((out (semantic-bovinate-toplevel nil t)))
+    (pop-to-buffer "*BOVINATE*")
+    (require 'pp)
+    (erase-buffer)
+    (insert (pp-to-string out))
+    (goto-char (point-min))))
+
+(defun bovinate-debug ()
+  "Bovinate the current buffer and run in debug mode."
+  (interactive)
+  (let ((semantic-edebug t)
+	(out (semantic-bovinate-debug-buffer)))
+    (pop-to-buffer "*BOVINATE*")
+    (require 'pp)
+    (erase-buffer)
+    (insert (pp-to-string out))))
+
 ;;; Hacks
 ;;
 ;; Some hacks to help me test these functions
