@@ -484,7 +484,7 @@ Retrieve the default value of the variable @var{TOKEN}.
 @end defun
 
 @defun semantic-token-variable-modifiers token
-Retrieve extra modifiers for the variable @var{TOKEN}.
+Retrieve extra non-type modifiers for the variable @var{TOKEN}.
 @end defun
 
 @defun semantic-token-include-system token
