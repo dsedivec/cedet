@@ -573,8 +573,7 @@ Handle multiple variable declarations in the same statement."
                            vl)))
               ;; Workaround: delete the old token overlay
               (if vl
-                  (semantic-overlay-delete
-                   (semantic-token-overlay token)))
+                  (semantic-deoverlay-token token))
               )
             
           ;; Only one variable declared.  Just replace the
