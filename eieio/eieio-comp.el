@@ -120,7 +120,7 @@ that is called but rarely.  Argument FORM is the body of the method."
 Lets do it right on both platforms
 Argument CODE is the code to output.
 Argument OUTBUFFER is the buffer to dump the created code to."
-  (if (eval-when-compile (not (string-match "XEmacs" emacs-version)))
+  (if (eval-when-compile (not (featurep 'xemacs)))
       ;; FSF emacs
       (prin1 code outbuffer)
     ;; XEmacs
