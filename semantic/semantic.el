@@ -1035,11 +1035,16 @@ return token will be larger than END.  To truly restrict scanning, using
 		     (setq ts (cons (cons 'open-paren
 					  (cons (match-beginning 0) (match-end 0)))
 				    ts)))
-		 (setq ts (cons (cons 'semantic-list
-				      (cons (match-beginning 0)
-					    (save-excursion
-					      (forward-list 1)
-					      (setq ep (point)))))
+		 (setq ts (cons
+			   (cons 'semantic-list
+				 (cons (match-beginning 0)
+				       (save-excursion
+					 (condition-case nil
+					     (forward-list 1)
+					   ;; This case makes flex robust
+					   ;; to broken lists.
+					   (error (goto-char (point-max))))
+					 (setq ep (point)))))
 				ts))))
 	      ;; Close parens
 	      ((looking-at "\\s)")
