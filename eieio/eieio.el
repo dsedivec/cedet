@@ -1106,8 +1106,13 @@ Fills in the default value in CLASS' in FIELD with VALUE."
 		    value))
 	  (signal 'invalid-slot-name (list (class-name class) field)))
       (eieio-validate-slot-value class c value field)
+      ;; Set this into the storage for defaults.
       (setcar (nthcdr (- c 3) (aref (class-v class) class-public-d))
-	      value))))
+	      value)
+      ;; Take the value, and put it into our cache object.
+      (eieio-oset (aref (class-v class) class-default-object-cache)
+		  field value)
+      )))
 
 ;;; Handy CLOS macros
 ;;
