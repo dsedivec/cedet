@@ -139,7 +139,8 @@ is found, such as a `-version' variable, or the standard header."
 				     (ede-proj-elisp-packages-to-loadpath
 				      (oref this aux-packages))
 				     " ")
-	      "\n")))
+	      "\n")
+    (insert "LOADPATH=\n")))
 
 (defun ede-proj-elisp-add-path (path)
   "Add path PATH into the file if it isn't already there."
