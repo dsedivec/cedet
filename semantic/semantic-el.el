@@ -65,7 +65,7 @@
 			 (car-safe (nth 5 vals))))))
     ;; A function is anything that starts with a (defun
     (function
-     (open-paren symbol "defun\\|defmacro" symbol arg-list doc-string
+     (open-paren symbol "defun\\|defmacro\\|defsubst" symbol arg-list doc-string
 		 ,(semantic-lambda
 		    (list (nth 2 vals) 'function nil (nth 3 vals) nil
 			  (car-safe (nth 4 vals))))))
