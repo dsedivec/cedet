@@ -1,4 +1,4 @@
-;;; semantic-ex.el --- Semantic details for some languages
+;;; semantic-bnf.el --- Semantic details for some languages
 
 ;;; Copyright (C) 1999, 2000 Eric M. Ludlam
 
