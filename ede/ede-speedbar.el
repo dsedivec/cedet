@@ -169,7 +169,7 @@ method for the actual text."
       (mapcar (lambda (car) (ede-sb-button car depth)) targets))))
 
 (defmethod ede-sb-expand ((this ede-target) depth)
-  "The default speedbar button for any target."
+  "Create buttons for items belonging to target THIS at DEPTH."
   (with-slots (source) this
     (mapcar (lambda (car)
 	      (speedbar-make-tag-line 'bracket ?+
