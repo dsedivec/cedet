@@ -90,7 +90,8 @@ Use ldlibs to add addition libraries.")
        "\t@-rm -f .deps/$(*F).p\n\n"))
   )
 
-(defmethod ede-proj-configure-add-missing ((this ede-proj-target))
+(defmethod ede-proj-configure-add-missing
+  ((this ede-proj-target-makefile-shared-object))
   "Query if any files needed by THIS provided by automake are missing.
 Results in --add-missing being passed to automake."
   (not (and (ede-expand-filename (ede-toplevel) "ltconfig")
