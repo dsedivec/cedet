@@ -447,7 +447,7 @@ The returned item may be an overlay or an unloaded buffer representation."
   (and (listp token)
        (stringp (car token))
        (symbolp (car (cdr token)))
-       (let ((o (semantic-token-overlay (car token))))
+       (let ((o (semantic-token-overlay token)))
 	 (or (semantic-overlay-p o)
 	     (arrayp o)))))
 
