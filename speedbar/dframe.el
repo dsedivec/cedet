@@ -503,6 +503,12 @@ LOCATION can be one of 'random, 'left-right, or 'top-bottom."
        (list (cons 'left newleft)
 	     (cons 'top newtop))))))
 
+(defun dframe-reposition-frame-xemacs (new-frame parent-frame location)
+  "Move NEW-FRAME to be relative to PARENT-FRAME.
+LOCATION can be one of 'random, 'left-right, or 'top-bottom."
+  ;; Not yet implemented
+  )
+
 ;; XEmacs function only.
 (defun dframe-needed-height (&optional frame)
   "The needed height for the tool bar FRAME (in characters)."
@@ -762,7 +768,7 @@ Must be bound to event E."
   (if (functionp (default-value 'mouse-motion-handler))
       (funcall (default-value 'mouse-motion-handler) event))
   (if dframe-track-mouse-function
-      (funcall dframe-track-mouse-function)))
+      (funcall dframe-track-mouse-function event)))
 
 (defun dframe-help-echo (window &optional buffer position)
   "Display help based context.
