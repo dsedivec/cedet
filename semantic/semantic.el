@@ -874,13 +874,11 @@ Argument NONTERM is the nonterminal symbol to start with.
 Optional argument DEPTH is the depth of lists to dive into.
 Whan used in a `lambda' of a MATCH-LIST, there is no need to include
 a START and END part."
-  (let* ((stream (semantic-flex start end (or depth 1)))
-	 (ans (semantic-bovinate-nonterminal
-	       stream
-	       ;; the byte compiler will complain about this one.
-	       table
-	       nonterm)))
-    (car (cdr ans))))
+  (car (cdr (semantic-bovinate-nonterminal
+	     (semantic-flex start end (or depth 1))
+	     ;; the byte compiler will complain about TABLE
+	     table
+	     nonterm))))
 
 (defun semantic-bovinate-from-nonterminal-full (start end nonterm
 						      &optional depth)
