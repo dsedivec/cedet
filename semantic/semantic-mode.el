@@ -103,8 +103,8 @@
 (let ((a (assoc 'semantic-minor-mode minor-mode-map-alist)))
   (if a
       (setcdr a semantic-mode-map)
-    (checkdoc-add-to-list 'minor-mode-map-alist (cons 'semantic-minor-mode
-						      semantic-mode-map))))
+    (add-to-list 'minor-mode-map-alist (cons 'semantic-minor-mode
+					     semantic-mode-map))))
 
 ;;;###autoload
 (defun semantic-minor-mode (&optional arg)
