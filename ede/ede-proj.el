@@ -351,7 +351,9 @@ Argument TARGET is the project we are completing customization on."
 		  (buffer-file-name))))
     (setq ot (funcall (cdr (assoc type ede-proj-target-alist)) name :name name
 		      :path (ede-convert-path this default-directory)
-		      :source (list (file-name-nondirectory src))))
+		      :source (if src
+				  (list (file-name-nondirectory src))
+				nil)))
     ;; If we added it, set the local buffer's object.
     (if src (setq ede-object ot))
     ;; Add it to the project object
