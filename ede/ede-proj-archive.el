@@ -6,14 +6,12 @@
 ;; Keywords: project, make
 ;; RCS: $Id$
 
-;; This file is NOT part of GNU Emacs.
-
-;; GNU Emacs is free software; you can redistribute it and/or modify
+;; This software is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation; either version 2, or (at your option)
 ;; any later version.
 
-;; GNU Emacs is distributed in the hope that it will be useful,
+;; This software is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
@@ -34,6 +32,16 @@
   (ede-proj-target-makefile-objectcode)
   ()
   "This target generates an object code archive.")
+
+
+(defmethod ede-proj-makefile-insert-source-variables :BEFORE
+  ((this ede-proj-target-makefile-archive))
+  "Insert bin_PROGRAMS variables needed by target THIS.
+We aren't acutally inserting SOURCE details, but this is used by the
+Makefile.am generator, so use it to add this important bin program."
+  (ede-pmake-insert-variable-shared
+      (concat "lib" (ede-name this) "_a_LIBRARIES")
+    (insert (concat "lib" (ede-name this) ".a"))))
 
 (defmethod ede-proj-makefile-insert-rules
   ((this ede-proj-target-makefile-archive))
