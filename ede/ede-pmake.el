@@ -134,7 +134,8 @@ MFILENAME is the makefile to generate."
 				   ")")
 		       (setq tmp (cdr tmp)))
 		(insert " $(ede_FILES) $(DISTDIR)\n"
-			"\ttar -cvzf $(DISTDIR).tar.gz $(DISTDIR)\n\n"
+			"\ttar -cvzf $(DISTDIR).tar.gz $(DISTDIR)\n"
+			"\trm -rf $(DISTDIR)\n\n"
 			mfilename ": "
 			(file-name-nondirectory (oref this file)) "\n"
 			"\t@echo Makefile is out of date!  "
