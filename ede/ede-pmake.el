@@ -27,6 +27,10 @@
 ;; 
 ;; Code generator for Makefiles.
 
+(autoload 'ede-proj-configure-create "ede-pconf"
+  "Create a configure script from an EDE-PROJ project."
+  nil nil)
+
 ;;; Code:
 (defmethod ede-proj-makefile-create ((this ede-proj-project) mfilename)
   "Create a Makefile for all Makefile targets in THIS.
