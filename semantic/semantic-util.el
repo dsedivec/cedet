@@ -614,6 +614,13 @@ file prototypes belong in."
 ;;; Hacks
 ;;
 ;; Some hacks to help me test these functions
+(defun semantic-current-token (p)
+  "Display the curent token.
+Argument P is the point to search from in the current buffer."
+  (interactive "d")
+  (message
+   (semantic-summerize-nonterminal
+    (semantic-find-nonterminal-by-position p (current-buffer)))))
 
 (defun semantic-hack-search ()
   "Disply info about something under the cursor using generic methods."
