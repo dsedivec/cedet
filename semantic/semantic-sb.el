@@ -1,6 +1,6 @@
 ;;; semantic-sb.el --- Semantic tag display for speedbar
 
-;;; Copyright (C) 1999, 2000 Eric M. Ludlam
+;;; Copyright (C) 1999, 2000, 2001 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Version: 0.1
@@ -187,7 +187,7 @@ Optional MODIFIERS is additional text needed for variables."
 	       (setq parts (cdr parts)))))
 	  ((eq tt 'variable)
 	   (if type
-	       (let ((mods (semantic-token-variable-modifiers token)))
+	       (let ((mods (semantic-token-variable-modifier token 'typemodifiers)))
 		 (semantic-sb-maybe-token-to-button type indent "@" mods)))
 	   ;; default value here
 	   )
