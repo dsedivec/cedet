@@ -329,6 +329,15 @@ METHOD is the method that was attempting to be called."
 (if (eq (oref a classslot) (oref aa classslot))
     nil
   (error "Class slots are tracking between objects"))
+
+;;; Test different types in a class
+;;
+;(defclass class-typep ()
+;  ((slot1 :type function
+;	  :initform (lambda-default (a b) (< a b))
+;	  )
+;   )
+;  "Test different types in a class.")
 
 
 ;;; Inheritance status
