@@ -3,7 +3,7 @@
 ;;; Copyright (C) 1996, 97, 98 Free Software Foundation
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; Version: 0.7e
+;; Version: 0.7
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
@@ -351,6 +351,8 @@
 ;;       You can now use the generic tagging function on arbitrary [+] buttons
 ;;         for non file based speedbar displays.
 ;;       XEmacs old custom workaround changes.
+;;       `speedbar-add-supported-extension' and
+;;         `speedbar-add-ignored-path-regexp' are now interactive.
 
 ;;; TODO:
 ;; - More functions to create buttons and options
@@ -814,6 +816,7 @@ This should start with a `.' if it is not a complete file name, and
 the dot should NOT be quoted in with \\.  Other regular expression
 matchers are allowed however.  EXTENSION may be a single string or a
 list of strings."
+  (interactive "sExtionsion: ")
   (if (not (listp extension)) (setq extension (list extension)))
   (while extension
     (if (member (car extension) speedbar-supported-extension-expressions)
@@ -828,6 +831,7 @@ list of strings."
   "Add PATH-EXPRESSION as a new ignored path for speedbar tracking.
 This function will modify `speedbar-ignored-path-regexp' and add
 PATH-EXPRESSION to `speedbar-ignored-path-expressions'."
+  (interactive "sPath regex: ")
   (if (not (listp path-expression))
       (setq path-expression (list path-expression)))
   (while path-expression
