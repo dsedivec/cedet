@@ -88,6 +88,23 @@ data")
   "Class for core widget.  This is the widget all other widgets are 
 based from.")
 
+(defclass widget-gadget-translator (widget-core)
+  ((watch :initarg :watch
+	  :docstring "A data-object to watch.  When it changes, run the translator")
+   (change :initarg :change
+	   :docstring "A data-object to change whenever watch is modified.")
+   (translate-function :initarg :translate-function
+		       :initarg (lambda-default (watch change)
+				  nil)
+		       :docstring
+		       "Function to call when `watch' changes.  It should modify the data object
+`change' from it's value.  It takes two parameters WATCH and CHANGE.")
+   )
+  "Non-visible class for a gadget translator.  The translators job is
+to convert the data-object in `watch' to some new value, and store it
+in `change'.  This is useful for translating indices into descriptions
+or something like that.")
+
 (defclass widget-visual (widget-core)
   ((x :initarg :x
       :initform nil
