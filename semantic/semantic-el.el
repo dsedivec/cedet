@@ -413,7 +413,7 @@
 	     ;; Argument lists come in this way.  Append all the expandsions!
 	     (let ((vl nil))
 	       (while nonterm
-		 (setq vl (append (semantic-expand-c-nonterm (car vl))
+		 (setq vl (append (semantic-expand-c-nonterminal (car vl))
 				  vl)
 		       nonterm (cdr nonterm)))
 	       vl))
