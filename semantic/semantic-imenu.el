@@ -43,7 +43,7 @@
   "*Function to use when creating items in Imenu.
 Some useful functions are:
 `semantic-abbreviate-nonterminal'
-`semantic-summerize-nonterminal'
+`semantic-summarize-nonterminal'
 `semantic-prototype-nonterminal'"
   :group 'imenu
   :type 'function)
