@@ -965,6 +965,14 @@ return token will be larger than END.  To truly restrict scanning, using
   "Flex the body of SEMLIST to DEPTH."
   (semantic-flex (car (cdr semlist)) (cdr (cdr semlist)) depth))
 
+(defun semantic-flex-start (semobj)
+  "Fetch the start position of the semantic object SEMOBJ."
+  (nth 1 semobj))
+
+(defun semantic-flex-end (semobj)
+  "Fetch the end position of the semantic object SEMOBJ."
+  (cdr (cdr semobj)))
+
 (provide 'semantic)
 
 ;;; semantic.el ends here
