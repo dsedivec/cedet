@@ -350,10 +350,10 @@ By default, assume that \"=\" indicates an assignment."
     (error nil)))
 
 (defun semantic-ctxt-current-function (&optional point)
-  "Return the current symbol the cursor is on at POINT.
+  "Return the current function the cursor is in at POINT.
 The function returned is the one accepting the arguments that
 the cursor is currently in.
-This can be overridden with `ctxt.current-function'."
+This can be overridden with `ctxt-current-function'."
     (if point (goto-char (point)))
     (let ((s (semantic-fetch-overload 'ctxt-current-function)))
       (if s (funcall s)
@@ -377,7 +377,7 @@ Override with `ctxt-current-argument'."
 	(semantic-ctxt-current-argument-default)
 	)))
 
-(defun semantic-ctxt-current-argument-default ()
+ (defun semantic-ctxt-current-argument-default ()
   "Return the current symbol the cursor is on at POINT in a list.
 Depends on `semantic-function-argument-separation-character'."
   (when (semantic-ctxt-current-function)
