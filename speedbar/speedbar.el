@@ -395,26 +395,26 @@ list of strings."
   (if (not (listp ext)) (setq ext (list ext)))
   (while ext
     (if (member (car ext) speedbar-supported-extension-expressions)
-      nil
-    (setq speedbar-supported-extension-expressions
-	  (cons (car ext) speedbar-supported-extension-expressions)
-	  speedbar-file-regexp
-	  (speedbar-extension-list-to-regex
-	   speedbar-supported-extension-expressions)))))
+	nil
+      (setq speedbar-supported-extension-expressions
+	    (cons (car ext) speedbar-supported-extension-expressions)))
+    (setq ext (cdr ext)))
+  (setq speedbar-file-regexp (speedbar-extension-list-to-regex
+			      speedbar-supported-extension-expressions)))
 
 (defun speedbar-add-ignored-path-regexp (path-exp)
   "Adds PATH-EXPRESSION as a new ignored path for speedbar tracking.
 This function will modify `speedbar-ignored-path-regexp' and add
 PATH-EXPRESSION to `speedbar-ignored-path-expressions'."
-  (if (not (listp ext)) (setq ext (list ext)))
-  (while ext
-    (if (member (car ext) speedbar-supported-extension-expressions)
-      nil
-    (setq speedbar-ignored-path-expressions
-	  (cons (car ext) speedbar-ignored-path-expressions)
-	  speedbar-ignored-path-regexp
-	  (speedbar-extension-list-to-regex
-	   speedbar-ignored-path-expressions)))))
+  (if (not (listp path-exp)) (setq path-exp (list path-exp)))
+  (while path-exp
+    (if (member (car path-exp) speedbar-ignored-path-expressions)
+	nil
+      (setq speedbar-ignored-path-expressions
+	    (cons (car path-exp) speedbar-ignored-path-expressions)))
+    (setq path-exp (cdr path-exp)))
+  (setq speedbar-ignored-path-regexp (speedbar-extension-list-to-regex
+				      speedbar-ignored-path-expressions)))
 
 (defvar speedbar-do-update (or (not (fboundp 'run-with-idle-timer))
 			       (not (fboundp 'start-itimer)))
