@@ -32,64 +32,64 @@
 
 ;;; Code:
 (defvar semantic-toplevel-scheme-bovine-table
-  `((bovine-toplevel
-     ( semantic-list
-       ,(lambda (vals start end)
+`((bovine-toplevel
+ ( semantic-list
+ ,(lambda (vals start end)
  
-	  (semantic-bovinate-from-nonterminal (car (nth 0 vals)) (cdr (nth 0 vals)) 'scheme-list)
-	  ))
-     )					; end scheme
-    (scheme-list
-     ( open-paren "(" scheme-in-list
-		  ,(semantic-lambda
-		    (nth 1 vals)))
-     )					; end scheme-list
-    (scheme-in-list
-     ( DEFINE symbol expression
-       ,(semantic-lambda
-	 (list (nth 1 vals) 'variable nil (nth 2 vals) nil)))
-     ( DEFINE name-args opt-doc
-       ,(semantic-lambda
-	 (list ( car (nth 1 vals)) 'function ( cdr (nth 1 vals)) nil) (nth 2 vals)))
-     ( DEFINE-MODULE name-args
-       ,(semantic-lambda
-	 (list ( nth ( length (nth 1 vals)) (nth 1 vals)) 'provide nil)))
-     ( LOAD string
-	    ,(semantic-lambda
-	      (list ( file-name-nondirectory ( read (nth 2 vals))) 'require ( read (nth 2 vals)))))
-     ( symbol
-       ,(semantic-lambda
-	 (list (nth 0 vals) 'code)))
-     )					; end scheme-in-list
-    (name-args
-     ( semantic-list
-       ,(lambda (vals start end)
+ (semantic-bovinate-from-nonterminal (car (nth 0 vals)) (cdr (nth 0 vals)) 'scheme-list)
+ ))
+ ) ; end scheme
+ (scheme-list
+ ( open-paren "(" scheme-in-list
+  ,(semantic-lambda
+  (nth 1 vals)))
+ ) ; end scheme-list
+ (scheme-in-list
+ ( DEFINE symbol expression
+  ,(semantic-lambda
+  (list (nth 1 vals) 'variable nil (nth 2 vals) nil)))
+ ( DEFINE name-args opt-doc
+  ,(semantic-lambda
+  (list ( car (nth 1 vals)) 'function ( cdr (nth 1 vals)) nil) (nth 2 vals)))
+ ( DEFINE-MODULE name-args
+  ,(semantic-lambda
+  (list ( nth ( length (nth 1 vals)) (nth 1 vals)) 'provide nil)))
+ ( LOAD string
+  ,(semantic-lambda
+  (list ( file-name-nondirectory ( read (nth 2 vals))) 'require ( read (nth 2 vals)))))
+ ( symbol
+  ,(semantic-lambda
+  (list (nth 0 vals) 'code)))
+ ) ; end scheme-in-list
+ (name-args
+ ( semantic-list
+ ,(lambda (vals start end)
  
-	  (semantic-bovinate-from-nonterminal (car (nth 0 vals)) (cdr (nth 0 vals)) 'name-arg-expand)
-	  ))
-     )					; end name-args
-    (name-arg-expand
-     ( open-paren name-arg-expand
-		  ,(semantic-lambda
-		    (nth 1 vals)))
-     ( symbol name-arg-expand
-	      ,(semantic-lambda
-		( cons (nth 0 vals) (nth 1 vals))))
-     (
-      ,(semantic-lambda
-	))
-     )					; end name-arg-expand
-    (opt-doc
-     ( string)
-     ()
-     )					; end opt-doc
-    (expression
-     ( symbol)
-     ( semantic-list)
-     ( string)
-     )					; end expression
-    )
-  "Top level bovination table for scheme.")
+ (semantic-bovinate-from-nonterminal (car (nth 0 vals)) (cdr (nth 0 vals)) 'name-arg-expand)
+ ))
+ ) ; end name-args
+ (name-arg-expand
+ ( open-paren name-arg-expand
+  ,(semantic-lambda
+  (nth 1 vals)))
+ ( symbol name-arg-expand
+  ,(semantic-lambda
+  ( cons (nth 0 vals) (nth 1 vals))))
+ (
+  ,(semantic-lambda
+ ))
+ ) ; end name-arg-expand
+ (opt-doc
+ ( string)
+ ()
+ ) ; end opt-doc
+ (expression
+ ( symbol)
+ ( semantic-list)
+ ( string)
+ ) ; end expression
+ )
+   "Top level bovination table for scheme.")
 
 (defvar semantic-scheme-keyword-table
   (semantic-flex-make-keyword-table 
@@ -98,6 +98,9 @@
       ("load" . LOAD)
       )
    '(
+     ("define" summary "Function: (define symbol expression)")
+     ("define-module" summary "Function: (define-module (name arg1 ...)) ")
+     ("load" summary "Function: (load \"filename\")")
      ))
   "Some keywords used in scheme.")
 
