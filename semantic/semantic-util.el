@@ -667,7 +667,7 @@ depended on, and functions will move to the specified definition."
 	     (if f (find-file f))))
       nil
     (let ((s (semantic-fetch-overload 'find-nonterminal)))
-      (if s (funcall s token)
+      (if s (funcall s token parent)
 	(set-buffer (semantic-token-buffer token))
 	(let ((start (semantic-token-start token)))
 	  (if (numberp start)
@@ -694,7 +694,7 @@ If nosnarf if 'flex, then only return the flex token."
   (if (not token)
       (setq token (car (semantic-find-nonterminal-by-overlay nil))))
   (let ((s (semantic-fetch-overload 'find-documentation)))
-    (if s (funcall s token)
+    (if s (funcall s token nosnarf)
       ;; No override.  Try something simple to find documentation nearby
       (save-excursion
 	(set-buffer (semantic-token-buffer token))
