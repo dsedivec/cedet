@@ -1679,21 +1679,31 @@ This should be bound to a mouse EVENT."
   (mouse-set-point event)
   (speedbar-item-info))
 
+(defun speedbar-generic-item-info ()
+  "Attempt to derive, and then display information about thils line item.
+File style information is displayed with `speedbar-item-info'."
+  (save-excursion
+    (beginning-of-line)
+    ;; Skip invisible number info.
+    (if (looking-at "\\([0-9]+\\):") (goto-char (match-end 0)))
+    ;; Skip items in "folder" type text characters.
+    (if (looking-at "\\s-*[[<({].[]>)}] ") (goto-char (match-end 0)))
+    ;; Get the text
+    (message "Text: %s" (buffer-substring-no-properties
+			 (point) (progn (end-of-line) (point))))))
+
 (defun speedbar-item-info ()
   "Display info in the mini-buffer about the button the mouse is over."
   (interactive)
   (if (not speedbar-shown-directories)
-      (message "Text: %s" (buffer-substring (point) (progn (end-of-line)
-							   (point))))
+      (speedbar-generic-item-info)
     (let* ((item (speedbar-line-file))
 	   (attr (if item (file-attributes item) nil)))
-      (if (and item attr) (message "%s %d %s" (nth 8 attr) (nth 7 attr) item)
+      (if (and item attr) (message "%s %-6d %s" (nth 8 attr) (nth 7 attr) item)
 	(save-excursion
 	  (beginning-of-line)
 	  (if (not (looking-at "\\([0-9]+\\):"))
-	      (message "Text: %s"
-		       (buffer-substring (point) (progn (end-of-line)
-							(point))))
+	      (speedbar-generic-item-info)
 	    (setq item (speedbar-line-path (string-to-int (match-string 1))))
 	    (if (re-search-forward "> \\([^ ]+\\)$"
 				   (save-excursion(end-of-line)(point)) t)
@@ -1708,9 +1718,7 @@ This should be bound to a mouse EVENT."
 	      (if (re-search-forward "{[+-]} \\([^\n]+\\)$"
 				     (save-excursion(end-of-line)(point)) t)
 		  (message "Group of tags \"%s\"" (match-string 1))
-		(message "Text: %s"
-			 (buffer-substring (point) (progn (end-of-line)
-							  (point))))))))))))
+		(speedbar-generic-item-info)))))))))
 
 (defun speedbar-item-copy ()
   "Copy the item under the cursor.
