@@ -759,7 +759,7 @@ to toggle this value.")
   (define-key speedbar-key-map "g" 'speedbar-refresh)
   (define-key speedbar-key-map "t" 'speedbar-toggle-updates)
   (define-key speedbar-key-map "q" 'speedbar-close-frame)
-  (define-key speedbar-key-map "Q" 'delete c-frame)
+  (define-key speedbar-key-map "Q" 'delete-frame)
 
   ;; navigation
   (define-key speedbar-key-map "n" 'speedbar-next)
