@@ -789,6 +789,9 @@ It is generated from the variable `completion-ignored-extensions'")
 	    ".el" ".emacs" ".l" ".lsp" ".p" ".java" ".f\\(90\\|77\\|or\\)?")
 	  (if speedbar-use-imenu-flag
 	      '(".ada" ".pl" ".tcl" ".m" ".scm" ".pm" ".py"
+		;; html is not supported by default, but an imenu tags package
+		;; is available.  Also, html files are nice to be able to see.
+		".s?html"
 		"Makefile\\(\\.in\\)?")))
   "*List of regular expressions which will match files supported by tagging.
 Do not prefix the `.' char with a double \\ to quote it, as the period
