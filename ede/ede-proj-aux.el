@@ -36,7 +36,7 @@
   "Return t if OBJ wants to own FILE."
   (string-match "README\\|\\.txt$" file))
 
-(defmethod ede-proj-makefile-sourcevar ((this ede-proj-aux))
+(defmethod ede-proj-makefile-sourcevar ((this ede-proj-target-aux))
   "Return the variable name for THIS's sources."
   (concat (ede-pmake-varname this) "_AUX"))
 
