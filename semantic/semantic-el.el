@@ -1,6 +1,6 @@
 ;;; semantic-ex.el --- Semantic details for some languages
 
-;;; Copyright (C) 1999 Eric M. Ludlam
+;;; Copyright (C) 1999, 2000 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Version: 0.1
@@ -123,7 +123,7 @@
      ( comment)
      ) ; end bovine-toplevel
     (include
-     ( punctuation "#" symbol "include" punctuation "<" symbol punctuation "." symbol punctuation ">"
+     ( punctuation "#" symbol "include" punctuation "<" symbol punctuation "\\." symbol punctuation ">"
 		   ,(lambda (vals start end)
 		      (append  (list ( concat (nth 3 vals) (nth 4 vals) (nth 5 vals)) 'include nil)
 			       (list start end))))
