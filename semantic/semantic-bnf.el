@@ -261,6 +261,7 @@ VALS are the matches in the BNF notation file."
   (interactive "FBNF file: ")
   (let* ((tokstream (save-excursion
 		      (set-buffer (find-file-noselect file))
+		      (semantic-clear-toplevel-cache)
 		      (save-excursion
 			(goto-char (point-min))
 			(semantic-bovinate-toplevel 0 t))))
@@ -295,7 +296,7 @@ VALS are the matches in the BNF notation file."
 	  (indent-for-tab-command))
 	(setq tokstream (cdr tokstream))
 	(working-status (* 100.0 (- 1.0 (/ (float (length tokstream)) tl)))))
-      (working-status 100.0 t))
+      (working-status t))
     (insert ")\n")
     ))
 
