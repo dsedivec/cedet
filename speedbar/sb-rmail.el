@@ -36,6 +36,10 @@
 ;; files are displayed.  These functions provide rmail specific support,
 ;; showing links and addresses in the side-bar.
 ;;
+;;   To enable in emacs 20.2 or earlier, add this to your .emacs file.
+;;   (autoload 'rmail-speedbar-buttons "sb-rmail"
+;;             "Rmail specific speedbar button generator.")
+;;
 ;;   This file requires speedbar.
 
 ;;; Change log:

@@ -34,6 +34,10 @@
 ;; files are displayed.  These functions provide w3 specific support,
 ;; showing links and addresses in the side-bar.
 ;;
+;;   To enable, add this to your .emacs file.
+;;   (autoload 'w3-speedbar-buttons "sb-w3"
+;;             "W3 specific speedbar button generator.")
+;;
 ;;   This file requires speedbar.
 
 ;;; Change log:
