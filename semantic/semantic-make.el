@@ -99,7 +99,7 @@
     )
   "Table for parsing Makefiles.")
 
-(defvar semantic-flex-make-extentions
+(defvar semantic-flex-make-extensions
   '(("^\\(\t\\)" . semantic-flex-make-command)
     ("\\(\\\\\n\\)" . semantic-flex-nonewline))
   "Extensions to the flexer for make.")
@@ -120,7 +120,7 @@ These command lines continue to additional lines when the end with \\"
 
 (defun semantic-default-make-setup ()
   "Set up a Makefile buffer for parsing with semantic."
-  (setq semantic-flex-extensions semantic-flex-make-extentions)
+  (setq semantic-flex-extensions semantic-flex-make-extensions)
   ;; Code generated from make.bnf
   (setq semantic-toplevel-bovine-table semantic-toplevel-make-bovine-table)
   (setq semantic-flex-enable-newlines t
