@@ -697,7 +697,7 @@ If NULL-ON-ERROR is a symbol, set it to nil if we cannot create a timer."
   "Called due to the dframe timer.
 Evaluates all cached timer functions in sequence."
   (let ((l dframe-client-functions))
-    (while l
+    (while (and l (sit-for 0))
       (condition-case er
 	  (funcall (car l))
 	(error (message "DFRAME TIMER ERROR: %S" er)))
