@@ -266,16 +266,19 @@ QUOTEMODE is the mode in which quoted symbols are slurred."
       ;; conversion upon it.
       (insert "\n")
       (indent-for-tab-command)
-      (insert ",(semantic-lambda\n")
-      (indent-for-tab-command)
       (cond ((eq (car slsr) 'EXPAND)
-	     (semantic-bnf-EXPAND slsr))
+	     (insert ",(lambda (vals start end)\n")
+	     (indent-for-tab-command)
+	     (semantic-bnf-EXPAND slsr)
+	     )
 	    ((and (listp (car slsr))
 		  (eq (car (car slsr)) 'EVAL))
 	     ;; The user wants to evaluate the following args.
 	     ;; Use a simpler expander
 	     )
 	    (t
+	     (insert ",(semantic-lambda\n")
+	     (indent-for-tab-command)
 	     (semantic-bnf-lambda-substitute slsr quotemode)
 	     ))
       (insert ")"))))
