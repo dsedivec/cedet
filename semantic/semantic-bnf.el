@@ -91,7 +91,13 @@
      (symbol "start" symbol
 	     ,(semantic-lambda
 	       (list (nth 1 vals) 'start)))
-     (symbol "outputfile" symbol punctuation "." symbol "el"
+     (symbol "token" symbol string
+	     ,(semantic-lambda
+	       (list (nth 1 vals) 'token "symbol" (nth 2 vals))))
+     (symbol "token" symbol symbol string
+	     ,(semantic-lambda
+	       (list (nth 1 vals) 'token (nth 2 vals)  (nth 3 vals))))
+     (symbol "outputfile" symbol punctuation "." symbol "\\bel\\b"
 	     ,(semantic-lambda
 	       (list (concat (nth 1 vals) ".el") 'outputfile)))
      (symbol "parsetable" symbol
@@ -281,6 +287,7 @@ QUOTEMODE is the mode in which quoted symbols are slurred."
 Inserts the token stream TOKSTREAM, and uses START is the starting token."
   (interactive "FBNF file: ")
   (let ((tl (float (length tokstream)))
+	(tokens (semantic-find-nonterminal-by-token 'token tokstream))
 	(quotemode (if (semantic-find-nonterminal-by-token 'quotemode tokstream)
 		       t nil)))
     (insert "`(")
@@ -306,7 +313,15 @@ Inserts the token stream TOKSTREAM, and uses START is the starting token."
 		(if (and (= (length ml) 1) (string= (car ml) "EMPTY"))
 		    nil
 		  (while ml
-		    (insert " " (car ml))
+		    (let ((a (assoc (car ml) tokens)))
+		      (if a
+			  (insert " " (nth 2 a) " "
+				  (format
+				   "%S"
+				   (concat "\\b"
+					   (regexp-quote (read (nth 3 a)))
+					   "\\b")))
+			(insert " " (car ml))))
 		    (setq ml (cdr ml))))
 		(semantic-bnf-lambda-convert lamb (car (cdr mla)) quotemode)
 		(insert ")\n"))
@@ -386,7 +401,7 @@ parse table variable."
   "Find the setup code based on TOKSTREAM.
 Return a marker where the code is to be inserted.
 SOURCEFILE is the file name from whence tokstream came."
-  (let ((setfn (semantic-find-nonterminal-by-token 'setupfunction tok)))
+  (let ((setfn (semantic-find-nonterminal-by-token 'setupfunction tokstream)))
     (if (not setfn)
 	nil
       ;; The setup function
