@@ -297,6 +297,42 @@ INDENT is the current indentation level."
     (speedbar-maybee-jump-to-attached-frame)
     ))
 
+;;; EDE and the speedbar FILE display
+;;
+;; This will add a couple keybindings and menu items into the
+;; FILE display for speedbar.
+
+(defvar ede-speedbar-file-menu-additions
+  '("----"
+    ["Create EDE Target" ede-new-target (ede-current-project) ]
+    ["Add to project" ede-speedbar-file-add-to-project (ede-current-project) ]
+    ["Compile project" ede-speedbar-compile-project (ede-current-project) ]
+    ["Make distribution" ede-make-dist (ede-current-project) ]
+    )
+  "Set of menu items to splice into the speedbar menu.")
+
+(defvar ede-speedbar-file-keymap
+  (let ((km (make-sparse-keymap)))
+    (define-key km "a" 'ede-speedbar-file-add-to-project)
+    (define-key km "t" 'ede-new-target)
+    (define-key km "s" 'ede-speedbar)
+    (define-key km "C" 'ede-speedbar-compile-project)
+    (define-key km "d" 'ede-make-dist)
+    km)
+  "Keymap spliced into the speedbar keymap.")
+
+(defun ede-speedbar-file-setup ()
+  "Setup some keybindings in the Speedbar File display."
+  (setq speedbar-easymenu-definition-special
+	(append speedbar-easymenu-definition-special
+		ede-speedbar-file-menu-additions
+		))
+  (define-key speedbar-file-key-map "." ede-speedbar-file-keymap)
+  ;; Finally, if the FILES mode is loaded, force a refresh
+  ;; of the menus and such.
+  (if (string= speedbar-initial-expansion-list-name "files")
+      (speedbar-change-initial-expansion-list "files")))
+
 (provide 'ede-speedbar)
 
 ;;; ede-speedbar.el ends here
