@@ -68,8 +68,8 @@
      ;;
     (ede-proj-dist-makefile this)
     ;; Loop over all targets to clean and then add themselves in.
-    (mapcar 'ede-proj-flush-autoconf targs)
-    (mapcar 'ede-proj-tweak-autoconf targs)
+    (mapc 'ede-proj-flush-autoconf targs)
+    (mapc 'ede-proj-tweak-autoconf targs)
     ;; Now save
     (save-buffer)
     ;; Verify aclocal
@@ -100,7 +100,7 @@
     (ede-proj-configure-test-required-file this "README")
     (ede-proj-configure-test-required-file this "ChangeLog")
     ;; Let specific targets get missing files.
-    (mapcar 'ede-proj-configure-create-missing targs)
+    (mapc 'ede-proj-configure-create-missing targs)
     ;; Verify that we have a make system.
     (if (or (not (ede-expand-filename (ede-toplevel this) "Makefile"))
 	    ;; Now is this one of our old Makefiles?
@@ -146,7 +146,7 @@ Rerun the previous ede command when automake and autoconf are completed.")
   "Tweak the configure file (current buffer) to accomodate THIS."
   ;; Check the compilers belonging to THIS, and call the autoconf
   ;; setup for those compilers.
-  (mapcar 'ede-proj-tweak-autoconf (ede-proj-compilers this)))
+  (mapc 'ede-proj-tweak-autoconf (ede-proj-compilers this)))
 
 (defmethod ede-proj-flush-autoconf ((this ede-proj-target))
   "Flush the configure file (current buffer) to accomodate THIS.
