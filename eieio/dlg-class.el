@@ -639,7 +639,7 @@ the variables we are editing."
 ;; FACE-FOREGROUND
 (defmacro data-valid-color-p (c)
   "Work around annoying differences between emacsen"
-  (if (eval-when-compile (boundp 'x-color-defined-p))
+  (if (eval-when-compile (fboundp 'x-color-defined-p))
       (list 'x-color-defined-p c)
     (list 'valid-color-name-p c)))
 
