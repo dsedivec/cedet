@@ -457,8 +457,9 @@ These are removed with make clean."
 (defmethod ede-proj-makefile-insert-rules ((this ede-proj-target-makefile-info))
   "Insert rules to build THIS set of texinfo documentation files."
   (call-next-method)
-  (insert (ede-name this) ": $(" (ede-pmake-varname this) "_INFOS)\n"
-	  "\tmakeinfo $(" (ede-pmake-varname this) "_INFOS)\n"))
+  (insert "\n" (ede-name this) ": $(" (ede-pmake-varname this) "_INFOS)\n"
+	  "\tmakeinfo " (or (oref this mainmenu) (car (oref this source)))
+	  "\n"))
 
 (provide 'ede-pmake)
 
