@@ -97,7 +97,11 @@
 ;;; you're typeing.  It's quite pesky.
 ;;;
 ;;;    To get speedbar-configure-faces to work, you will need to
-;;; download my eieio package from my ftp site:
+;;; download my eieio package from my ftp site.
+;;;
+;;;    EIEIO is NOT required when using speedbar.  Only if you want to use
+;;; a fancy dialog face editor for speedbar.
+;;;
 ;;; ftp://ftp.ultranet.com/pub/zappo/eieio-*.tar.gz
 ;;;
 
@@ -288,7 +292,7 @@ This variable is ignored if `speedbar-use-imenu-package' is `t'")
 	     ;; Now try to make them different colors
 	     (cond ((face-differs-from-default-p 'speedbar-button-face))
 		   ((x-display-color-p) (set-face-foreground 'speedbar-button-face 
-							     "light green"))
+							     "forestgreen"))
 		   (t (copy-face 'bold 'speedbar-button-face)))
 
 	     (cond ((face-differs-from-default-p 'speedbar-file-face))
