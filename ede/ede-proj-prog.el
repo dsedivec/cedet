@@ -1,6 +1,6 @@
 ;;; ede-proj-prog.el --- EDE Generic Project program support
 
-;;;  Copyright (C) 1998, 1999, 2000  Eric M. Ludlam
+;;;  Copyright (C) 1998, 1999, 2000, 2001  Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Keywords: project, make
@@ -79,7 +79,7 @@ options to the linker.")
 	  (setq ede-proj-compiler-object-linkflags
 		(concat ede-proj-compiler-object-linkflags
 			" -l"
-			(mapconcat 'identity (oref this ldlibs) " -l")))))
+			(mapconcat 'identity ldlibs " -l")))))
     (call-next-method)))
 
 (defmethod project-debug-target ((obj ede-proj-target-makefile-program))
