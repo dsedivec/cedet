@@ -817,6 +817,7 @@ created by the :initarg tag."
       (eieio-barf-if-slot-unbound (aref obj c) obj field 'oref))))
 
 (defalias 'slot-value 'oref-engine)
+(defalias 'set-slot-value 'oset-engine)
 
 ;; This alias is needed so that functions can be written
 ;; for defaults, but still behave like lambdas.
