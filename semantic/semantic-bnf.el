@@ -34,6 +34,9 @@
 ;; 
 
 (require 'semantic)
+(eval-when-compile
+  (require 'speedbar)
+  (require 'senator))
 
 ;;; Code:
 (defvar semantic-setup-code-delimiters '("^\\s-*;; Code generated from" .

@@ -33,6 +33,11 @@
 ;;; Code:
 (require 'semantic)
 
+(eval-when-compile
+  (require 'semantic-ctxt)
+  (require 'semantic-imenu)
+  (require 'document))
+
 ;; Generated parser table
 (defvar semantic-toplevel-java-bovine-table
 `((bovine-toplevel

@@ -27,6 +27,9 @@
 (require 'semantic)
 (require 'backquote)
 
+(eval-when-compile
+  (require 'document))
+
 ;;; Code:
 (defvar semantic-toplevel-scheme-bovine-table
   `((bovine-toplevel

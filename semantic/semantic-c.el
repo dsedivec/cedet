@@ -34,6 +34,10 @@
 (require 'semantic)
 (require 'backquote)
 
+(eval-when-compile
+  (require 'semantic-ctxt)
+  (require 'document))
+
 ;;; Code:
 (defvar semantic-toplevel-c-bovine-table
 `((bovine-toplevel

@@ -32,7 +32,8 @@
 ;; This library provides the hooks needed for a language to specify how
 ;; the current context is calculated.
 ;;
-
+(require 'semantic)
+(eval-when-compile (require 'semanticdb))
 
 ;;; Code:
 ;;

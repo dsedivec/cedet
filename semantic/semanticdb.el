@@ -33,6 +33,8 @@
 
 (require 'eieio-base)
 (require 'semantic)
+(eval-when-compile
+  (require 'semantic-imenu))
 
 ;;; Variables:
 (defgroup semanticdb nil

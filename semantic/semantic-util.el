@@ -29,6 +29,11 @@
 ;; Semantic Bovinator.
 ;;
 
+(require 'assoc)
+(eval-when-compile
+  (provide 'semantic-util)
+  (require 'semantic))
+
 ;;; Code:
 
 (defvar semantic-type-relation-separator-character '(".")
@@ -469,7 +474,7 @@ EXPERIMENTAL"
 	)
     (if (not tromp)
 	;; No tokens hit, setup a dirty region on the screen.
-	(setq tromp (semantic-get-dirty-token beg end))
+	(setq tromp nil) ;(semantic-get-dirty-token beg end))
       ;; First, mark all fully dirty tokens.
       (setq ttmp tromp)
       (while ttmp

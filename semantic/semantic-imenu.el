@@ -36,9 +36,10 @@
 ;;             (setq imenu-create-index-function 'semantic-create-imenu-index)
 ;;             ))
 
+(require 'imenu)
 (require 'semantic)
 (eval-when-compile (require 'semanticdb)
-		   (require 'working))
+		   )
 (condition-case nil
     (progn
       (require 'imenu)

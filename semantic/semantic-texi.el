@@ -29,6 +29,14 @@
 ;;
 
 (require 'semantic)
+(require 'texinfo)
+
+(eval-when-compile
+  (require 'semanticdb)
+  (require 'semantic-ctxt)
+  (require 'semantic-imenu)
+  (require 'document)
+  (require 'senator))
 
 (defvar semantic-texi-super-regex
   "^@\\(chapter\\|\\(sub\\)*section\\|unnumbered\\(\\(sub\\)*sec\\)?\\|\
