@@ -5,7 +5,7 @@
 ;; Copyright (C) 1995,1996, 1998, 1999 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
-;; Version: 0.10
+;; Version: 0.11
 ;; RCS: $Id$
 ;; Keywords: OO, lisp
 ;;
