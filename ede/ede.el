@@ -942,7 +942,7 @@ This includes buffers controlled by a specific target of PROJECT."
   (mapcar proc (ede-target-buffers this)))
 
 ;; other types of mapping
-(defmethod ede-map-subproject ((this ede-project) proc)
+(defmethod ede-map-subprojects ((this ede-project) proc)
   "For object THIS, execute PROC on all subprojects."
   (mapcar proc (oref this subproj)))
 
