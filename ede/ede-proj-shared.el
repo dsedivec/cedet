@@ -28,7 +28,7 @@
 ;; Handle shared object libraries in and EDE Project file.
 ;; Tries to deal with libtool and non-libtool situations.
 
-(require 'ede-proj-prog)
+(eval-and-compile (require 'ede-proj-prog))
 
 ;;; Code:
 (defclass ede-proj-target-makefile-shared-object
