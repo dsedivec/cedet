@@ -166,16 +166,22 @@ Return a bovination list to use."
 	    (locate-library (semantic-token-name token)))))
     (concat f ".el")))
 
-(defun semantic-elisp-prototype-nonterminal (token)
-  "Return a prototype for the Emacs Lisp nonterminal TOKEN."
+(defun semantic-elisp-prototype-nonterminal (token &optional parent color)
+  "Return a prototype for the Emacs Lisp nonterminal TOKEN.
+PARENT and COLOR as for `semantic-prototype-nonterminal'."
   (let* ((tok (semantic-token-token token))
 	 (args (semantic-nonterminal-children token))
 	 )
     (if (eq tok 'function)
-	(concat (semantic-token-name token) " ("
-		(mapconcat (lambda (a) a) args " ")
+	(concat (semantic-name-nonterminal token parent color) " ("
+		(mapconcat (lambda (a)
+			     (if color
+				 (semantic-colorize-text
+				  a font-lock-variable-name-face)
+			       a))
+			   args " ")
 		")")
-      (semantic-prototype-nonterminal-default token))))
+      (semantic-prototype-nonterminal-default token parent color))))
 
 (defun semantic-elisp-find-documentation (token &optional nosnarf)
   "Return the documentation string for TOKEN.
