@@ -406,11 +406,6 @@ frame."
   "Default function list for creating specialized button lists.
 Similar to `speedbar-initial-expansion-list'.")
 
-(defvar speedbar-easymenu-definition-special nil
-  "Default easymeny definition for specialized speedbar displays.
-Used as the center part of the speedbar meny in specialized speedbar
-modes.")
-
 (defcustom speedbar-visiting-file-hook nil
   "Hooks run when speedbar visits a file in the selected frame."
   :group 'speedbar
