@@ -30,7 +30,9 @@
 
 ;;; Code:
 (defclass ede-proj-target-scheme (ede-proj-target)
-  ((interpreter :initarg :interpreter
+  ((menu :initform nil)
+   (keybindings :initform nil)
+   (interpreter :initarg :interpreter
 		:initform "guile"
 		:type string
 		:custom string
