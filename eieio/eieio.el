@@ -456,7 +456,18 @@ OPTIONS-AND-DOC as the toplevel documentation for this class."
       (fset csym
 	    (list 'lambda (list 'obj)
 		  (format "Test OBJ to see if it an object of type %s" cname)
-		  (list 'same-class-p 'obj cname))))
+		  (list 'and '(object-p obj)
+			(list 'same-class-p 'obj cname)))))
+
+    ;; Create a handy child test too
+    (let ((csym (intern (concat (symbol-name cname) "-child-p"))))
+      (fset csym
+	    (list 'lambda (list 'obj)
+		  (format
+		   "Test OBJ to see if it an object is a child of type %s"
+		   cname)
+		  (list 'and '(object-p obj)
+			(list 'obj-of-class-p 'obj cname)))))
 
     ;; Set up a specialized doc string
     (eieio-rebuild-doc-string cname)
