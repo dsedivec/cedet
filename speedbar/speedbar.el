@@ -166,6 +166,8 @@
 ;;;         `speedbar-item-byte-compile' `speedbar-item-load'
 ;;;         `speedbar-item-copy' `speedbar-item-rename' `speedbar-item-delete'
 ;;;         and `speedbar-item-info'
+;;;       If the user kills the speedbar buffer in some way, the frame will
+;;;         be removed.
 ;;;
 ;;; TODO:
 ;;; 1) Implement SHIFT-mouse2 to rescan buffers with imenu.
@@ -635,6 +637,10 @@ Keybindings: \\<speedbar-key-map>
   (setq truncate-lines t)
   (make-local-variable 'temp-buffer-show-function)
   (setq temp-buffer-show-function 'speedbar-temp-buffer-show-function)
+  (setq kill-buffer-hook '(lambda () (let ((skilling (boundp 'skilling)))
+				       (if skilling
+					   nil
+					 (speedbar-frame-mode -1)))))
   (setq mode-line-format
 	'("<< SPEEDBAR " (line-number-mode " %3l ") " >>"))
   (if (not speedbar-xemacsp) (setq auto-show-mode nil))	;no auto-show for FSF
