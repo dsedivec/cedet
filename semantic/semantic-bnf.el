@@ -670,6 +670,10 @@ SOURCEFILE is the file name from whence tokstream came."
 	   (when key
 	     (insert "(setq semantic-flex-keywords-obarray "
 		     (semantic-token-name (car key)) ")\n "))
+	   ;; Is there more than one major mode?
+	   (if (and (listp mode) (> (length mode) 1))
+	       (insert "(setq semantic-equivalent-major-modes '"
+		       (format "%S" mode) ")\n"))
 	   ;; Add in user specified settings
 	   (let ((settings (semantic-find-nonterminal-by-token 'setting tok)))
 	     (while settings
@@ -855,7 +859,11 @@ Once found, put it in a buffer, and return it."
   (define-key semantic-bnf-map "\M-\t" 'semantic-bnf-complete)
   )
 
-(speedbar-add-supported-extension ".bnf")
+(if (featurep 'speedbar)
+    (speedbar-add-supported-extension ".bnf")
+  (add-hook 'speedbar-load-hook
+	    (lambda ()
+	      (speedbar-add-supported-extension ".bnf"))))
 
 (defalias 'bnf-mode 'semantic-bnf-mode)
 (defun semantic-bnf-mode ()
