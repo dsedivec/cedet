@@ -44,7 +44,7 @@
 ;;; Code:
 (eval-when-compile (require 'cl))
 
-(defvar eieio-version "0.13"
+(defvar eieio-version "0.14"
   "Current version of EIEIO.")
 (defun eieio-version ()
   "Display the current version of EIEIO."
