@@ -141,6 +141,15 @@ It is safe to leave this blank.")
     )
   "Alist of names to class types for available project target classes.")
 
+(defun ede-proj-register-target (name class)
+  "Register a new target class with NAME and class symbol CLASS.
+This enables the creation of your target type."
+  (let ((a (assoc name ede-proj-target-alist)))
+    (if a
+	(setcdr a class)
+      (setq ede-proj-target-alist
+	    (cons (cons name class) ede-proj-target-alist)))))
+
 (defclass ede-proj-project (ede-project)
   ((makefile-type :initarg :makefile-type
 		  :initform Makefile
