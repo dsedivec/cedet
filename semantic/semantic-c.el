@@ -94,7 +94,7 @@
  ( close-paren "}"
   ,(semantic-lambda
   (list nil)))
- ( variable)
+ ( var-or-fun)
  ( define)
  ) ; end structsubparts
  (classparts
@@ -251,10 +251,22 @@
  ( ENUM symbol
   ,(semantic-lambda
   (list (nth 1 vals) 'type (nth 0 vals))))
+ ( builtintype
+  ,(semantic-lambda
+  (nth 0 vals)))
  ( symbol
   ,(semantic-lambda
   (list (nth 0 vals))))
  ) ; end typeformbase
+ (builtintype
+ ( VOID)
+ ( CHAR)
+ ( SHORT)
+ ( INT)
+ ( LONG)
+ ( FLOAT)
+ ( DOUBLE)
+ ) ; end builtintype
  (var-or-fun
  ( declmods typeform var-or-func-decl
   ,(semantic-lambda
@@ -438,7 +450,7 @@
  ))
  ) ; end expression
  )
-   "C language specification.")
+    "C language specification.")
 
 (defvar semantic-flex-c-extensions
   '(("^#\\(if\\(def\\)?\\|else\\|endif\\)" . semantic-flex-c-if))
@@ -584,6 +596,13 @@ machine."
       ("break" . BREAK)
       ("continue" . CONTINUE)
       ("sizeof" . SIZEOF)
+      ("void" . VOID)
+      ("char" . CHAR)
+      ("short" . SHORT)
+      ("int" . INT)
+      ("long" . LONG)
+      ("float" . FLOAT)
+      ("double" . DOUBLE)
       )
    '(
      ("extern" summary "Declaration Modifier: extern <type> <declaration>")
@@ -611,6 +630,13 @@ machine."
      ("break" summary "Non-local exit: break;")
      ("continue" summary "Non-local continue: continue;")
      ("sizeof" summary "Function: sizeof(<type or variable>) // size in bytes")
+     ("void" summary "Built in type: void  No type")
+     ("char" summary "Built in type: char  Character, or 8 bit numeric value")
+     ("short" summary "Built in type: short  Small numeric value")
+     ("int" summary "Built in type: int  Numeric interger value")
+     ("long" summary "Built in type: long  Large numeric integer value")
+     ("float" summary "Built in type: float  Numeric floating point value")
+     ("double" summary "Built in type: double  Large floating point value")
      ))
   "Some keywords used in C.")
 
