@@ -6,6 +6,9 @@
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
+(defvar dframe-version "1.0beta"
+  "The current version of the dedicated frame library.")
+
 ;; This file is part of GNU Emacs.
 
 ;; GNU Emacs is free software; you can redistribute it and/or modify
@@ -156,8 +159,7 @@
 (defgroup dframe nil
   "Faces used in dframe."
   :prefix "dframe-"
-  :group 'dframe
-  :group 'faces)
+  :group 'dframe)
 
 (defvar dframe-have-timer-flag
   (and (or (fboundp 'run-with-idle-timer)
