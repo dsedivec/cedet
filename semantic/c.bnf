@@ -21,6 +21,9 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.19  2000/09/27 02:08:04  zappo
+# Moved `type' to be before `function' and `variable' in `declaration'.
+#
 # Revision 1.18  2000/09/21 03:35:08  zappo
 # Fixed up struct/union variable declaration section to use new lexical
 # tokens for struct/union.
@@ -114,11 +117,10 @@
 
 declaration : include
 	    | macro
-	    | comment
+	    | type
 	    | function
 	    | variable
 	    | prototype
-	    | type
 	    | define
 	    ;
 		
