@@ -42,11 +42,11 @@
   "String represending what type of section header to use.")
 
 (defvar eieiodoc-prev-class nil
-  "Non-nil when while eieiodoc-recurse is running.
+  "Non-nil when while `eieiodoc-recurse' is running.
 Can be referenced from the recursed function.")
 
 (defvar eieiodoc-next-class nil
-  "Non-nil when eieiodoc-recurse is running.
+  "Non-nil when `eieiodoc-recurse' is running.
 Can be referenced from the recursed function.")
 
 (defun eieiodoc-class (root-class indexstring &optional skiplist)
