@@ -131,21 +131,24 @@ If CLASS is actually an object, then also display current values of that obect."
 	      (princ "  Undocumented")
 	    (if (car doc)
 		(progn
-		  (princ "  :BEFORE method:")
+		  (princ "  :BEFORE ")
+		  (prin1 (car (car doc)))
 		  (terpri)
-		  (princ (car doc))))
+		  (princ (cdr (car doc)))))
 	    (setq doc (cdr doc))
 	    (if (car doc)
 		(progn
-		  (princ "  :PRIMARY method:")
+		  (princ "  :PRIMARY ")
+		  (prin1 (car (car doc)))
 		  (terpri)
-		  (princ (car doc))))
+		  (princ (cdr (car doc)))))
 	    (setq doc (cdr doc))
 	    (if (car doc)
 		(progn
-		  (princ "  :AFTER method:")
+		  (princ "  :AFTER ")
+		  (prin1 (car (car doc)))
 		  (terpri)
-		  (princ (car doc))))
+		  (princ (cdr (car doc)))))
 	    (terpri)
 	    (terpri))
 	  (setq methods (cdr methods)))))
@@ -294,10 +297,7 @@ Also extracts information about all methods specific to this generic."
 	    (princ " ")
 	    ;; argument list
 	    (let* ((func (cdr (car gm)))
-		   (arglst
-		    (if (byte-code-function-p func)
-			(eieio-compiled-function-arglist func)
-		      (car (cdr func)))))
+		   (arglst (eieio-lambda-arglist func)))
 	      (prin1 arglst))
 	    (terpri)
 	    ;; 3 because of cdr
@@ -308,6 +308,13 @@ Also extracts information about all methods specific to this generic."
 	    (terpri)))
 	(setq i (1+ i))))
     (buffer-string)))
+
+(defun eieio-lambda-arglist (func)
+  "Return the argument list of FUNC, a function body."
+  (if (symbolp func) (setq func (symbol-function func)))
+  (if (byte-code-function-p func)
+      (eieio-compiled-function-arglist func)
+    (car (cdr func))))
 
 (defun eieio-all-generic-functions (&optional class)
   "Return a list of all generic functions.
@@ -345,9 +352,18 @@ function has no documentation, then return nil."
 		   (fboundp primary)
 		   (fboundp after)))
 	  nil
-	(list (if (fboundp before) (documentation before) nil)
-	      (if (fboundp primary) (documentation primary) nil)
-	      (if (fboundp after) (documentation after)))))))
+	(list (if (fboundp before)
+		  (cons (eieio-lambda-arglist before)
+			(documentation before))
+		nil)
+	      (if (fboundp primary)
+		  (cons (eieio-lambda-arglist primary)
+			(documentation primary))
+		nil)
+	      (if (fboundp after)
+		  (cons (eieio-lambda-arglist after)
+			(documentation after))
+		nil))))))
 
 (defvar eieio-read-generic nil
   "History of the `eieio-read-generic' prompt.")
