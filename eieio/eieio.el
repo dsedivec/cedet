@@ -808,7 +808,7 @@ doc string, and eventually the body, such as:
       (setq key (+ key method-num-lists)))
     ;; Put this lambda into the symbol so we can find it
     (if (byte-code-function-p (car-safe body))
-	(eieiomt-add method (car-safe body) key (nth 1 firstarg))
+	(eieiomt-add method (car-safe body) key argclass)
       (eieiomt-add method (append (list 'lambda (reverse argfix)) body)
 		   key argclass))
     )
