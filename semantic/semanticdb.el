@@ -33,12 +33,10 @@
 
 (require 'eieio-base)
 (require 'semantic)
-(eval-when-compile
-  (require 'semantic-imenu))
 
 ;;; Variables:
 (defgroup semanticdb nil
-  "Parser Generator Imenu interface."
+  "Parser Generator Persistent Database interface."
   :group 'semantic
   )
 
@@ -71,6 +69,13 @@ everywhere, or `project', which enables saving in any directory that
 passes `semanticdb-directory-project-p'."
   :group 'semanticdb
   :type nil)
+
+(defcustom semanticdb-mode-hooks nil
+  "*Hooks run whenever `global-semanticdb-minor-mode' is run.
+Use `semanticdb-minor-mode-p' to determine if the mode has been turned
+on or off."
+  :group 'semanticdb
+  :type 'hook)
 
 (defcustom semanticdb-save-database-hooks nil
   "*Hooks run after a database is saved.
@@ -383,7 +388,10 @@ If ARG is nil, then toggle."
     ;(message "ARG = %d" arg)
     (while h
       (funcall fn (car (cdr (car h))) (car (car h)))
-      (setq h (cdr h)))))
+      (setq h (cdr h)))
+    ;; Call a hook
+    (run-hooks 'semanticdb-mode-hooks)
+    ))
 
 (defun semanticdb-toggle-global-mode ()
   "Toggle use of the Semantic Database feature.
@@ -397,14 +405,7 @@ Update the environment of Semantic enabled buffers accordingly."
         (semanticdb-save-all-db)))
   ;; Toggle semanticdb minor mode.
   (global-semanticdb-minor-mode)
-  ;; Update the environment of Semantic enabled buffers.
-  (semantic-map-buffers
-   #'(lambda ()
-       ;; Set up semanticdb environment if enabled.
-       (if (semanticdb-minor-mode-p)
-           (semanticdb-semantic-init-hook-fcn))
-       ;; Clear imenu cache to redraw the imenu.
-       (semantic-imenu-flush-fcn))))
+  )
 
 ;;; Utilities
 ;;
