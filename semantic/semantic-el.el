@@ -176,7 +176,10 @@ PARENT and COLOR as for `semantic-prototype-nonterminal'."
 	(concat (semantic-name-nonterminal token parent color) " ("
 		(mapconcat (lambda (a)
 			     (if color
-				 (semantic-colorize-text a 'variable)
+				 (if (string-match "^&" a)
+				     ;; This is a keyword
+				     (semantic-colorize-text a 'keyword)
+				   (semantic-colorize-text a 'variable))
 			       a))
 			   args " ")
 		")")
