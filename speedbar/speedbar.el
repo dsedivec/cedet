@@ -312,6 +312,7 @@
 ;;       Default speedbar has no menubar, mouse-3 is popup menu,
 ;;       XEmacs double-click capability (Hrvoje Niksic <hniksic@srce.hr>)
 ;;       General documentation fixup.
+;; 0.6.1 Fixed button-3 menu for Emacs 20.
 
 ;;; TODO:
 ;; - More functions to create buttons and options
@@ -1210,7 +1211,9 @@ Must be bound to event E."
     ;; This gets the cursor where the user can see it.
     (if (not (bolp)) (forward-char -1))
     (sit-for 0)
-    (mouse-major-mode-menu e)))
+    (if (< emacs-major-version 20)
+	(mouse-major-mode-menu e)
+      (mouse-major-mode-menu e nil))))
 
 (defun speedbar-get-focus ()
   "Change frame focus to or from the speedbar frame.
