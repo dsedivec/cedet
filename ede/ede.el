@@ -583,8 +583,10 @@ If ARG is negative, disable.  Toggle otherwise."
 	(global-ede-mode 1))
     (if (or (eq arg t) (> arg 0))
 	(progn
+	  (add-hook 'semanticdb-project-predicates 'ede-directory-project-p)
 	  (add-hook 'find-file-hooks 'ede-turn-on-hook)
 	  (add-hook 'dired-mode-hook 'ede-turn-on-hook))
+      (remove-hook 'semanticdb-project-predicates 'ede-directory-project-p)
       (remove-hook 'find-file-hooks 'ede-turn-on-hook)
       (remove-hook 'dired-mode-hook 'ede-turn-on-hook))
     (let ((b (buffer-list)))
