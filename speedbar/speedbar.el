@@ -875,6 +875,7 @@ This basically creates a sparse keymap, and makes it's parent be
   (define-key speedbar-file-key-map "e" 'speedbar-edit-line)
   (define-key speedbar-file-key-map "\C-m" 'speedbar-edit-line)
   (define-key speedbar-file-key-map "+" 'speedbar-expand-line)
+  (define-key speedbar-file-key-map "=" 'speedbar-expand-line)
   (define-key speedbar-file-key-map "-" 'speedbar-contract-line)
 
   ;; file based commands
@@ -3707,6 +3708,7 @@ Each symbol will be associated with its line position in FILE."
 		   (cdr ans))))
 	    (if expr
 		(let (tnl)
+		  (set-buffer (get-buffer-create "*etags tmp*"))
 		  (while (not (save-excursion (end-of-line) (eobp)))
 		    (save-excursion
 		      (setq tnl (speedbar-extract-one-symbol expr)))
@@ -3801,6 +3803,7 @@ regular expression EXPR"
   (define-key speedbar-buffers-key-map "e" 'speedbar-edit-line)
   (define-key speedbar-buffers-key-map "\C-m" 'speedbar-edit-line)
   (define-key speedbar-buffers-key-map "+" 'speedbar-expand-line)
+  (define-key speedbar-buffers-key-map "=" 'speedbar-expand-line)
   (define-key speedbar-buffers-key-map "-" 'speedbar-contract-line)
 
   ;; Buffer specific keybindings
