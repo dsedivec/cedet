@@ -66,6 +66,9 @@ Return a bovination list to use."
 	 (sn (format "%S" ss))
 	 )
     (cond
+     ((listp ts)
+      ;; If the first elt is a list, then it is some arbitrary code.
+      (list "anonymous" 'code))
      ((or (eq ts 'defvar)
 	  (eq ts 'defconst)
 	  (eq ts 'defcustom)
