@@ -68,7 +68,7 @@
 (defmacro semantic-token-function-throws (token)
   "Optional details if this function has a THROWS type.
 Determines if it is available based on the length of TOKEN."
-  `(if (>= (length ,token) (+ 6 3))
+  `(if (>= (length ,token) (+ 6 2))
        (nth 5 ,token)
      nil))
 
@@ -268,6 +268,12 @@ UNTRUSTED"
       ;; convert ol to a token
       (when ol
 	(semantic-overlay-get ol 'semantic)))))
+
+(defun semantic-current-nonterminal ()
+  "Return the current nonterminal in the current buffer.
+If there are more than one in the same location, return the
+smallest token."
+  (car (nreverse (semantic-find-nonterminal-by-overlay))))
 
 (defun semantic-find-nonterminal-by-token (token streamorbuffer)
   "Find all nonterminals with a token TOKEN within STREAMORBUFFER.
