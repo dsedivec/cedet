@@ -28,7 +28,7 @@
 ;; Handles a supperclass of target types which create object code in
 ;; and EDE Project file.
 
-(eval-and-compile (require 'ede-proj))
+(require 'ede-proj)
 
 ;;; Code:
 (defclass ede-proj-target-makefile-objectcode (ede-proj-target-makefile)
@@ -53,6 +53,13 @@ file.")
   ;; Only C targets for now.  I'll figure out more later.
   (string-match "\\.\\(c\\|C\\|cc\\|cpp\\|CPP\\|h\\|hh\\|hpp\\)$"
 		file))
+
+(defmethod ede-buffer-mine ((this ede-proj-target-makefile-objectcode) buffer)
+  "Return non-nil if object THIS lays claim to the file in BUFFER."
+  (or (call-next-method)
+      (member (ede-convert-path this (buffer-file-name buffer))
+	      (oref this headers))
+      ))
 
 (defmethod project-add-file ((this ede-proj-target-makefile-objectcode) file)
   "Add to target THIS the current buffer represented as FILE."
