@@ -1,6 +1,6 @@
 ;;; dlg-config - configureation specific routines using dialog
 ;;;
-;;; Copyright (C) 1996 Eric M. Ludlam
+;;; Copyright (C) 1996, 1997 Eric M. Ludlam
 ;;;
 ;;; Author: <zappo@gnu.ai.mit.edu>
 ;;; RCS: $Id$
@@ -35,7 +35,7 @@
 ;;; windows under emacs that perform some basic tasks.
 ;;;           
 (require 'eieio)
-(require 'dialog)
+(require 'dialog-mode)
 (require 'dlg-class)
 
 (defvar dlg-config-file "~/.emacs"

@@ -1,6 +1,6 @@
 ;;; dlg-class - Class definitions and implementations for config widgets
 ;;;
-;;; Copyright (C) 1996 Eric M. Ludlam
+;;; Copyright (C) 1996, 1997 Eric M. Ludlam
 ;;;
 ;;; Author: <zappo@gnu.ai.mit.edu>
 ;;; RCS: $Id$
@@ -37,7 +37,7 @@
 ;;; dlg-config.
 ;;;           
 (require 'eieio)
-(require 'dialog)
+(require 'dialog-mode)
 (require 'loadhist)			;for feature loading/dumping
 
 ;;;
