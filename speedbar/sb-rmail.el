@@ -48,6 +48,11 @@
 ;; 0.1.2 - Changed to handle new keymap feature.
 
 ;;; Code:
+(defvar rmail-speedbar-match-folder-regexp "^[A-Z0-9]+\\(\\.[A-Z0-9]+\\)?$"
+  "*This regex us used to match folder names to be displayed in speedbar.
+Enabling this will permit speedbar to display your folders for easy
+browsing, and moving of messages.")
+
 (defvar rmail-speedbar-last-user nil
   "The last user to be displayed in the speedbar.")
 
@@ -103,7 +108,7 @@ current message into that RMAIL folder."
       (let* ((case-fold-search nil)
 	     (df (directory-files (save-excursion (set-buffer buffer)
 						  default-directory)
-				  nil "^[A-Z0-9]+\\(\\.[A-Z0-9]+\\)?$")))
+				  nil rmail-speedbar-match-folder-regexp)))
 	(while df
 	  (speedbar-insert-button "<M>" 'speedbar-button-face 'highlight
 				  'rmail-speedbar-move-message (car df))
