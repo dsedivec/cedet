@@ -190,6 +190,7 @@ METHOD is the method that was attempting to be called."
 
 ;; Try the self referencing test
 (oset a self a)
+(oset ab self ab)
 
 
 ;;; Test the BEFORE, PRIMARY, and AFTER method tags.
@@ -326,6 +327,12 @@ METHOD is the method that was attempting to be called."
 (if (eq (oref a water) (oref-default a water))
     nil
   (error "oset-default -> oref/oref-default comparison failed."))
+
+(defmethod slot-unbound ((a class-a) &rest foo)
+  "If a slot in A is unbound, ignore FOO."
+  ;; Disable the old slot-unbound so we can run this test
+  ;; more than once
+  (call-next-method))
 
 ;; Slot type checking
 (condition-case nil
