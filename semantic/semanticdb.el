@@ -305,7 +305,8 @@ If there is a semantic cache, slurp out the overlays, an store
 it in our database.  If that buffer has not cache, ignore it, we'll
 handle it later if need be."
   (if (and semantic-toplevel-bovine-table
-	   semantic-toplevel-bovine-cache)
+	   semantic-toplevel-bovine-cache
+	   semanticdb-current-table)
       (progn
 	(oset semanticdb-current-table pointmax (point-max))
 	(condition-case nil
