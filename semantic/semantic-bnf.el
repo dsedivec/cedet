@@ -682,7 +682,9 @@ SOURCEFILE is the file name from whence tokstream came."
   (if (bolp) (if (looking-at "\\s-+") (end-of-line))))
 
 (add-to-list 'auto-mode-alist '("\\.bnf$" . semantic-bnf-mode))
-	     
+
+(eval-after-load "which-func"
+  (add-to-list 'which-func-modes 'semantic-bnf-mode))
 
 (provide 'semantic-bnf)
 
