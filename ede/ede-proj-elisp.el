@@ -1,6 +1,6 @@
 ;;; ede-proj-elisp.el --- EDE Generic Project Emacs Lisp support
 
-;;;  Copyright (C) 1998, 1999  Eric M. Ludlam
+;;;  Copyright (C) 1998, 1999, 2000  Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Keywords: project, make
@@ -100,6 +100,8 @@ These are removed with make clean."
 	(insert "\t  echo \"(add-to-list 'load-path \\\"$$loadpath\\\")\" >> "
 		(ede-name this) "-compile-script; \\\n")
 	(insert "\t  done\n")))
+  (insert "\t@echo \"(setq debug-on-error t)\" >> "
+	  (ede-name this) "-compile-script\n")
 ;  (let ((lp (oref this load-path)))
 ;    (while lp
 ;      (insert "\t@echo \"(add-to-list 'load-path \\\"" (car lp) "\\\")\" >> "
