@@ -71,15 +71,17 @@ Return a bovination list to use."
 	  (eq ts 'defcustom)
 	  (eq ts 'defface)
 	  (eq ts 'defimage))
-      ;; Variables and constants
-      (list sn 'variable nil (nth 2 rt)
-	    (semantic-bovinate-make-assoc-list
-	     'const (if (eq ts 'defconst) t nil)
-	     'user-visible (and (nth 3 rt)
-				(= (aref (nth 3 rt) 0) ?*))
-	     )
-	    (nth 3 rt))
-      )
+      (let ((doc (nth 3 rt)))
+        ;; Variables and constants
+        (list sn 'variable nil (nth 2 rt)
+              (semantic-bovinate-make-assoc-list
+               'const (if (eq ts 'defconst) t nil)
+               'user-visible (and doc
+                                  (> (length doc) 0)
+                                  (= (aref doc 0) ?*))
+               )
+              doc)
+        ))
      ((or (eq ts 'defun)
 	  (eq ts 'defsubst)
 	  (eq ts 'defmacro))
@@ -163,7 +165,7 @@ Return a bovination list to use."
   "Return the documentation string for TOKEN.
 Optional argument NOSNARF is ignored."
   (let ((d (semantic-token-docstring token)))
-    (if (= (aref d 0) ?*)
+    (if (and d (> (length d) 0) (= (aref d 0) ?*))
 	(substring d 1)
       d)))
 
