@@ -1376,9 +1376,10 @@ LENGTH tokens."
       (while (and (< (point) end) (or (not length) (<= (length ts) length)))
 	(cond (;; catch newlines when needed
 	       (and semantic-flex-enable-newlines
-		    (looking-at "\n"))
-	       (setq ts (cons (cons 'newline
-				    (cons (match-beginning 0) (match-end 0)))
+		    (looking-at "\\s-*\\(\n\\)"))
+	       (setq ep (match-end 1)
+		     ts (cons (cons 'newline
+				    (cons (match-beginning 1) ep))
 			      ts)))
 	      ;; special extentions, sometimes includes some whitespace.
 	      ((and semantic-flex-extensions
