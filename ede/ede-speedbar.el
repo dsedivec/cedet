@@ -91,14 +91,14 @@
 (eieio-speedbar-create 'ede-speedbar-make-map
 		       'ede-speedbar-key-map
 		       'ede-speedbar-menu
-		       "EDE"
+		       "Project"
 		       'ede-speedbar-toplevel-buttons)
 
 (defun ede-speedbar ()
   "EDE development environment project browser for speedbar."
   (interactive)
   (speedbar-frame-mode 1)
-  (speedbar-change-initial-expansion-list "EDE")
+  (speedbar-change-initial-expansion-list "Project")
   (speedbar-get-focus)
   )
 
