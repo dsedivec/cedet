@@ -1474,10 +1474,12 @@ about this widget."
     (goto-xy (1- (oref this rx)) (oref this ry))
     ;; check for characters off to the left
     (if (same-class-p this widget-text-field)
+	;; Do not put our object on these buttons since no imput is
+	;; aquired here.
 	(insert-overwrite-face (cond ((> dr 0) "^")
 				     ((> dc 0) "<")
 				     (t " "))
-			       (oref this spface) nil this))
+			       (oref this spface) nil))
     (setq textlist (nthcdr dr textlist))
     ;; for each line of height
     (while (< lc nline)
