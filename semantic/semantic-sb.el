@@ -302,7 +302,7 @@ to create much wiser decisions about how to sort and group these items."
   (save-restriction
     (narrow-to-region (point) (point))
     (let ((buckets (semantic-sb-buckets tokens))
-	  (names '(nil "Types" "Variables" "Functions" "Dependencies"))
+	  (names '(nil "Types" "Variables" "Functions" "Dependencies" "Misc"))
 	  tmp)
       (while buckets
 	(setq tmp (car buckets)
@@ -317,7 +317,7 @@ to create much wiser decisions about how to sort and group these items."
 
 (defun semantic-sb-buckets (tokens)
   "Sort TOKENS into a group of buckets based on type, and toss the rest."
-  (let ((vars nil) (funs nil) (types nil) (deps nil) toktype)
+  (let ((vars nil) (funs nil) (types nil) (deps nil) other toktype)
     (while tokens
       (setq toktype (semantic-token-token (car tokens)))
       (cond ((eq toktype  'variable)
@@ -328,9 +328,10 @@ to create much wiser decisions about how to sort and group these items."
 	     (setq types (cons (car tokens) types)))
 	    ((eq toktype 'include)
 	     (setq deps (cons (car tokens) deps)))
-	    (t nil))
+	    (t
+	     (setq other (cons (car tokens) other))))
       (setq tokens (cdr tokens)))
-    (list types vars funs deps)))
+    (list types vars funs deps other)))
 
 (defun semantic-fetch-dynamic-bovine (file)
   "Load FILE into a buffer, and generate tags using the Semantic Bovinator.
