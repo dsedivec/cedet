@@ -370,7 +370,8 @@ Argument TARGET is the project we are completing customization on."
 	 (type (completing-read "Type: " ede-proj-target-alist
 				nil t nil '(ede-proj-target-history . 1)))
 	 (ot nil)
-	 (src (if (y-or-n-p (format "Add %s to %s? " (buffer-name) name))
+	 (src (if (and (buffer-file-name)
+		       (y-or-n-p (format "Add %s to %s? " (buffer-name) name)))
 		  (buffer-file-name))))
     (setq ot (funcall (cdr (assoc type ede-proj-target-alist)) name :name name
 		      :path (ede-convert-path this default-directory)
