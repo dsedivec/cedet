@@ -21,8 +21,11 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.28  2001/02/20 20:36:19  zappo
+# Removed unused %put calls.
+#
 # Revision 1.27  2001/02/09 19:49:26  zappo
-# Added ( testing to argument lists.
+# Added paren testing to argument lists.
 #
 # Revision 1.26  2001/02/09 11:47:32  zappo
 # Added type separation characters.
@@ -114,11 +117,6 @@
 %token PUBLIC "public"
 %token PRIVATE "private"
 %token PROTECTED "protected"
-
-%put STRUCT type t
-%put UNION type t
-%put TYPEDEF type t
-%put CLASS type t
 
 declaration : include
 	    | macro
