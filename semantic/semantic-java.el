@@ -423,7 +423,7 @@
  ( unary_expression operators_expression_opt)
  ) ; end expression
  )
-   "Java language specification.")
+    "Java language specification.")
 
 ;; Generated keyword table
 (defvar semantic-java-keyword-table
@@ -678,7 +678,8 @@ Override `semantic-find-documentation'."
    )
 
   ;; Code generated from java.bnf
-  (setq semantic-toplevel-bovine-table semantic-toplevel-java-bovine-table)
+  (setq semantic-toplevel-bovine-table semantic-toplevel-java-bovine-table
+        semantic-toplevel-bovine-table-source "java.bnf")
   (setq semantic-flex-keywords-obarray semantic-java-keyword-table)
   (setq
    ;; Java is case sensitive
