@@ -41,8 +41,11 @@
        )%
 
 %token DEFINE "define"
+%put DEFINE summary "Function: (define symbol expression)"
 %token DEFINE-MODULE "define-module"
+%put DEFINE-MODULE summary "Function: (define-module (name arg1 ...)) "
 %token LOAD "load"
+%put LOAD summary "Function: (load \"filename\")"
 
 scheme : semantic-list
 	 (EXPAND $1 scheme-list 4)
