@@ -640,7 +640,9 @@ Keybindings: \\<speedbar-key-map>
   (setq kill-buffer-hook '(lambda () (let ((skilling (boundp 'skilling)))
 				       (if skilling
 					   nil
-					 (speedbar-frame-mode -1)))))
+					 (if (eq (current-buffer)
+						 speedbar-buffer)
+					     (speedbar-frame-mode -1))))))
   (setq mode-line-format
 	'("<< SPEEDBAR " (line-number-mode " %3l ") " >>"))
   (if (not speedbar-xemacsp) (setq auto-show-mode nil))	;no auto-show for FSF
