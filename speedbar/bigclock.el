@@ -113,8 +113,8 @@ Optional argument ARG enables or disables the bigclock frame."
 		     bigclock-after-create-hook)
   ;; Start up the timer
   (if (not bigclock-frame)
-      (dframe-set-timer nil 'bigclock-timer-fn 'bigclock-update-flag)
-    (dframe-set-timer 60 'bigclock-timer-fn 'bigclock-update-flag)
+      (dframe-set-timer nil #'bigclock-timer-fn 'bigclock-update-flag)
+    (dframe-set-timer 60 #'bigclock-timer-fn 'bigclock-update-flag)
     ))
 
 (defun bigclock-get-focus ()
@@ -145,7 +145,7 @@ selected.  If the bigclock frame is active, then select the attached frame."
 	  dframe-mouse-click-function nil
 	  dframe-mouse-position-function nil)
     ;;no auto-show for Emacs
-    (run-hooks 'bigclock-mode-hook)))
+    (run-hooks 'bigclock-mode-hook))
 
 (defun bigclock-timer-fn ()
   "Run whenever Emacs is idle to update bigclock."
