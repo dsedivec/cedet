@@ -415,7 +415,8 @@
 		     (setq mods (concat ":" (nth 2 cur))))
 		 (if (nth 3 cur)
 		     (setq mods (concat mods
-					"[" (length (nth 3 cur)) "]")))
+					"[" (int-to-string
+					     (length (nth 3 cur))) "]")))
 		 (if (= (length basety) 1)
 		     (progn
 		       (setq ty (car basety))
