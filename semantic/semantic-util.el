@@ -1128,7 +1128,7 @@ Optional argument COLOR means highlight the prototype with font-lock colors."
     (if (not (featurep 'font-lock)) (setq color nil))
     (if s
 	;; Prototype is non-local
-	(funcall s token t)
+	(funcall s token parent color)
       (semantic-prototype-nonterminal-default token parent color))))
 
 (defun semantic-prototype-nonterminal-default-args (args color)
