@@ -423,7 +423,7 @@
  ( unary_expression operators_expression_opt)
  ) ; end expression
  )
-        "Java language specification.")
+         "Java language specification.")
 
 ;; Generated keyword table
 (defvar semantic-java-keyword-table
@@ -611,7 +611,7 @@ See also `semantic-prototype-nonterminal'."
     ;; Character used to separation a parent/child relationship
     (set (make-local-variable
           'semantic-type-relation-separator-character)
-         ".")
+         '("."))
     ;; Java is case sensitive
     (setq semantic-case-fold nil)
     )
