@@ -1,7 +1,7 @@
 ;;; eieio-tests.el -- eieio tests routines
 
 ;;;
-;; Copyright (C) 1999, 2000 Eric M. Ludlam
+;; Copyright (C) 1999, 2000, 2001 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.org>
 ;; RCS: $Id$
@@ -50,6 +50,9 @@
 	      :allocation class)
    (test-tag :initform nil
 	     :documentation "Used to make sure methods are called.")
+   (self :initform nil
+	 :type (or null class-a)
+	 :documentation "Test self referencing types.")
    )
   "Class A")
 
@@ -175,6 +178,9 @@ METHOD is the method that was attempting to be called."
 (if (eq (class-fun3 ab) 'moose)
     nil
   (error "Call next method MI check failed."))
+
+;; Try the self referencing test
+(oset a self a)
 
 
 ;;; Test the BEFORE, PRIMARY, and AFTER method tags.
@@ -354,6 +360,7 @@ METHOD is the method that was attempting to be called."
   "Test different types in a class.")
 
 (defvar ct (class-typep "foo"))
+
 
 ;;; Inheritance status
 ;;
