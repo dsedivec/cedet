@@ -21,6 +21,9 @@
 # Boston, MA 02111-1307, USA.
 #
 # $Log$
+# Revision 1.33  2001/04/21 14:37:55  zappo
+# Spelling error for integer.
+#
 # Revision 1.32  2001/04/13 02:24:45  zappo
 # Added built in types (void, char, etc) and summaries.
 #
@@ -189,7 +192,7 @@
 %token SHORT "short"
 %put SHORT summary "Built in type: short  Small numeric value"
 %token INT "int"
-%put INT summary "Built in type: int  Numeric interger value"
+%put INT summary "Built in type: int  Numeric integer value"
 %token LONG "long"
 %put LONG summary "Built in type: long  Large numeric integer value"
 %token FLOAT "float"
