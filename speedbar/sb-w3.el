@@ -3,7 +3,7 @@
 ;; Copyright (C) 1997, 1998 Free Software Foundation
 ;;
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; Version: 0.1
+;; Version: 0.2.1
 ;; Keywords: tags, tools, w3
 ;; X-RCS: $Id$
 ;;
