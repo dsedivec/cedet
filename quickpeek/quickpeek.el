@@ -204,7 +204,7 @@ to toggle this value.")
   (setq quickpeek-syntax-table (make-syntax-table))
   ;; turn off paren matching around here.
   (modify-syntax-entry ?\' " " quickpeek-syntax-table)
-  (modify-syntax-entry ?\" " " quickpeek-syntax-table)
+;  (modify-syntax-entry ?\" " " quickpeek-syntax-table)
   (modify-syntax-entry ?( "()" quickpeek-syntax-table)
   (modify-syntax-entry ?) ")( " quickpeek-syntax-table)
   (modify-syntax-entry ?{ ")}" quickpeek-syntax-table)
