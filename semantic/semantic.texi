@@ -303,5 +303,14 @@ In C, an #include statement.  In elisp, a require statement.
 Indicates additional locations of sources or definitions.
 @refill
 
+@example
+(\"NAME\" package DETAIL \"DOCSTRING\" START END)
+@end example
+
+In Emacs Lisp, a `provide' statement.  DETAIL might be an associated
+file name.
+@refill
+
+
 @bye
 
