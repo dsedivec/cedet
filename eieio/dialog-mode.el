@@ -300,7 +300,10 @@ Commands:
   (setq mode-name "Dialog")
   (setq major-mode 'dialog-mode)
   (use-local-map dialog-mode-map)
-  (setq widget-toplevel-shell 
+  (setq mode-line-buffer-identification	(list "DIALOG: " "%15b ")
+	mode-line-modified '("--")
+
+	widget-toplevel-shell 
 	(widget-toplevel "topLevel" :parent t :rx 0 :x 0 :ry 1 :y 1))
   (message "Constructing Dialog...")
   (verify widget-toplevel-shell t)
