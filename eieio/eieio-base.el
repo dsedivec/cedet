@@ -1,5 +1,4 @@
-;;; eieio.el --- Enhanced Implementation of Emacs Interpreted Objects
-;;               or maybe Eric's Implementation of Emacs Intrepreted Objects
+;;; eieio-base.el --- Base classes for EIEIO.
 
 ;;;
 ;; Copyright (C) 2000 Eric M. Ludlam
@@ -27,9 +26,6 @@
 ;;              Cambridge, MA 02139, USA.
 ;;
 ;; Please send bug reports, etc. to zappo@gnu.org
-;;
-;; Updates can be found at:
-;;    ftp://ftp.ultranet.com/pub/zappo
 
 ;;; Commentary:
 ;;
