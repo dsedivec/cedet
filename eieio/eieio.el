@@ -1399,15 +1399,20 @@ this object."
 
 (defun eieio-list-prin1 (list)
   "Display LIST where list may contain objects."
-  (princ "(list ")
-  (while list
-    (if (object-p (car list))
-	(object-write (car list))
-      (prin1 (car list)))
-    (insert " ")
-    (setq list (cdr list)))
-  (princ (make-string (* eieio-print-depth 2) ? ))
-  (princ ")"))
+  (if (not (object-p (car list)))
+      (progn
+	(princ "'")
+	(prin1 list))
+    (princ "(list ")
+    (while list
+      (if (object-p (car list))
+	  (object-write (car list))
+	(princ "'")
+	(prin1 (car list)))
+      (princ " ")
+      (setq list (cdr list)))
+    (princ (make-string (* eieio-print-depth 2) ? ))
+    (princ ")")))
 
 
 ;;; Unimplemented functions from CLOS
