@@ -1,4 +1,4 @@
-;;; semantic-scm.el --- Semantic details for some languages
+;;; semantic-scm.el --- Semantic details for Scheme (guile)
 
 ;;; Copyright (C) 2001 Eric M. Ludlam
 
