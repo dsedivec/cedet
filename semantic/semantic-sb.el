@@ -336,7 +336,7 @@ Returns the tag list, or t for an error."
 	t
       (condition-case nil
 	  (semantic-bucketize
-	   (semantic-bovinate-toplevel nil t))
+	   (semantic-bovinate-toplevel))
 	(error t)))))
 
 ;; Link ourselves into the tagging process.

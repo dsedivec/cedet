@@ -93,7 +93,7 @@ Optional argument REST is some extra stuff."
 Uses the output of the Semantic Bovinator to create the index.
 Optional argument STREAM STREAM is an optional stream of tokens used to create menus."
   (setq imenu-default-goto-function 'semantic-imenu-goto-function)
-  (let ((tokens (or stream (semantic-bovinate-toplevel nil t t))))
+  (let ((tokens (or stream (semantic-bovinate-toplevel t))))
     (if semantic-imenu-bucketize-file
 	(let ((buckets (semantic-bucketize
 			tokens semantic-imenu-sort-bucket-function))

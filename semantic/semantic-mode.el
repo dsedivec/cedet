@@ -161,13 +161,13 @@ tokens, highlighting them, or making functions read only.
 (defun semantic-mode-parse ()
   "Parse the current buffer only if it needs it."
   (interactive)
-  (semantic-bovinate-toplevel 0 t t))
+  (semantic-bovinate-toplevel t))
 
 (defun semantic-mode-reparse ()
   "Force a reparse of the current buffer."
   (interactive)
   (semantic-clear-toplevel-cache)
-  (semantic-bovinate-toplevel 0 t t))
+  (semantic-bovinate-toplevel t))
 
 (defun semantic-mode-make-visible (token)
   "Select an invisible TOKEN to be made visible."
