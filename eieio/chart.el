@@ -620,7 +620,7 @@ extentions in directory DIR."
 	(b (get-buffer-create " *du-tmp*")))
     (set-buffer b)
     (erase-buffer)
-    (insert "cd " d ";/bin/du -sk * \n")
+    (insert "cd " d ";du -sk * \n")
     (message "Running `cd %s;du -sk *'..." d)
     (call-process-region (point-min) (point-max) "csh" t
 			 (current-buffer) nil)
