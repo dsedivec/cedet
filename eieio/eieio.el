@@ -885,7 +885,7 @@ doc string, and eventually the body, such as:
 ;;; Slot type validation
 ;;
 (defun eieio-perform-slot-validation (spec value)
-  "Signal if SPEC does not match VALUE."
+  "Return non-nil if SPEC does not match VALUE."
   ;; typep is in cl-macs
   (or (eq spec t)			; t always passes
       (eq value eieio-unbound)		; unbound always passes
