@@ -25,6 +25,7 @@
 ;;
 ;; Handle object code archives in and EDE Project file.
 
+(require 'ede-pmake)
 (require 'ede-proj-obj)
 
 ;;; Code:
@@ -33,6 +34,15 @@
   ()
   "This target generates an object code archive.")
 
+(defvar ede-gcc-archive-compiler
+  (clone ede-gcc-compiler
+	 "ede-c-archive-compiler"
+	 :name "gcc"
+	 :likvariables '(("AR" . "NOT YET IMPLEMENTED"))
+	 :commands '("$(AR) $@ $^")
+	 :autoconf '(("AC_CHECK_PROGS" . "RANLIB, ranlib"))
+	 )
+  "Create an archive of C code.")
 
 (defmethod ede-proj-makefile-insert-source-variables :BEFORE
   ((this ede-proj-target-makefile-archive))
