@@ -306,7 +306,7 @@
     (varnamelist
      ( varname punctuation "," varnamelist
 	       (lambda (vals start end)
-		 (append  (list ( cons (nth 0 vals) (nth 2 vals)))
+		 (append  ( cons (nth 0 vals) (nth 2 vals))
 			  (list start end))))
      ( varname
        (lambda (vals start end)
@@ -409,6 +409,7 @@
 		   (cur nil)
 		   (cnt 0))
 	       (while lst
+		 (setq mods "" ty "")
 		 (setq cur (car lst))
 		 (if (nth 2 cur)
 		     (setq mods (concat ":" (nth 2 cur))))
