@@ -77,7 +77,7 @@ A lisp target may be one general program with many separate lisp files in it.")
 (defmethod ede-proj-makefile-insert-variables ((this ede-proj-target-elisp))
   "Insert variables needed by target THIS."
   (call-next-method this)
-  (insert "EMACS=" (car command-line-args) "\n")
+  (insert "EMACS=" (file-name-nondirectory (car command-line-args)) "\n")
   (if (oref this load-path)
       (insert "LOADPATH=" (mapconcat (lambda (a) a) (oref this load-path) " ")
 	      "\n")))
