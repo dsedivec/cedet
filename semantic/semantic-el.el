@@ -39,9 +39,12 @@
 ;;; Code:
 (defvar semantic-toplevel-elisp-bovine-table
   `((bovine-toplevel
-     (semantic-list ,(lambda (vals start end)
-		       (semantic-bovinate-from-nonterminal
-			start end 'extract-toplevel)))
+     (semantic-list
+      ,(lambda (vals start end)
+	 (let ((i (semantic-bovinate-from-nonterminal
+		   start end 'extract-toplevel)))
+	   (setq i (append (nreverse (cdr (cdr (reverse i))))
+			   (list start end))))))
      (extract-toplevel))
     ;; When parsing at depth 0, we need to extract elements from semantic
     ;; lists at bovine-toplevel.  This symbol provides the needed redirection.
