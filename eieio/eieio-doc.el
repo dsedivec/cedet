@@ -259,13 +259,14 @@ class being referenced, do not Xref that class.
 
  `function' => @dfn{function}
  `variable' => @code{variable}
- `class'    => @code{class} @xref{class} <and prepend @##index class\n
+ `class'    => @code{class} @xref{class}
  `unknown'  => @code{unknonwn}
  'quoteme   => @code{quoteme}
  non-nil    => non-@code{nil}
  t          => @code{t}
  :tag       => @code{:tag}
  [ stuff ]  => @code{[ stuff ]}
+ Key        => @kbd{Key}        (key is C-h, M-h, SPC, RET, TAB and the like)
 "
   (while (string-match "`\\([-a-zA-Z0-9]+\\)'" string)
     (let* ((vs (substring string (match-beginning 1) (match-end 1)))
@@ -280,11 +281,13 @@ class being referenced, do not Xref that class.
 				 (concat " @xref{" vs "}")))
 			    nil t string)))))
   (while (string-match "\\( \\|^\\)\\(nil\\|t\\|'[-a-zA-Z0-9]+\\|:[-a-zA-Z0-9]+\\)\\([ ,]\\|$\\)" string)
-    (setq string (replace-match "@code{\\2}" nil nil string 2)))
+    (setq string (replace-match "@code{\\2}" t nil string 2)))
   (while (string-match "\\( \\|^\\)\\(\\(non-\\)\\(nil\\)\\)\\([ ,]\\|$\\)" string)
-    (setq string (replace-match "\\2@code{\\3}" nil nil string 2)))
+    (setq string (replace-match "\\2@code{\\3}" t nil string 2)))
   (while (string-match "\\( \\|^\\)\\(\\[[^]]+\\]\\)\\( \\|$\\)" string)
-    (setq string (replace-match "@code{\\2}" nil nil string 2)))
+    (setq string (replace-match "@code{\\2}" t nil string 2)))
+  (while (string-match "\\( \\|^\\)\\(\\(\\(C-\\|M-\\|S-\\)+\\([^ \t\n]\\|RET\\|SPC\\|TAB\\)\\)\\|\\(RET\\|SPC\\|TAB\\)\\)\\( \\|$\\)" string)
+    (setq string (replace-match "@kbd{\\2}" t nil string 2)))
   string)
 
 ;;; end of lisp
