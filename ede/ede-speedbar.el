@@ -34,8 +34,9 @@
 ;;                          when it is expanded.
 
 ;;; Code:
-(eval-and-compile (require 'eieio-speedbar)
-		  (require 'speedbar))
+(require 'ede)
+(require 'eieio-speedbar)
+(require 'speedbar)
 
 ;;; Speedbar support mode
 ;;
