@@ -236,6 +236,13 @@ Optional argument HISTVAR is a variable to use as history."
   (intern (completing-read prompt (eieio-build-class-alist) nil t nil
 			   (or histvar 'eieio-read-class))))
 
+(defun eieio-read-subclass (prompt class &optional histvar)
+  "Return a class chosen by the user using PROMPT.
+CLASS is the base class, and completion occurs across all subclasses.
+Optional argument HISTVAR is a variable to use as history."
+  (intern (completing-read prompt (eieio-build-class-alist class) nil t nil
+			   (or histvar 'eieio-read-class))))
+
 ;;; Collect all the generic functions created so far, and do cool stuff.
 ;;
 ;;;###autoload
@@ -383,12 +390,9 @@ Optional argument HISTORYVAR is the variable to use as history."
   "For buffers thrown into help mode, augment for eieio."
   ;; Scan created buttons so far if we are in help mode.
   (when (eq major-mode 'help-mode)
-    ;; View mode's read-only status of existing *Help* buffer is lost
-    ;; by with-output-to-temp-buffer.
-    (toggle-read-only -1)
-    (goto-char (point-min))
     (save-excursion
-      (let ((pos t))
+      (goto-char (point-min))
+      (let ((pos t) (inhibit-read-only t))
 	(while pos
 	  (if (get-text-property (point) 'help-xref) ; move off reference
 	      (goto-char
