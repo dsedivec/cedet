@@ -6,7 +6,7 @@
 ;; Keywords: file, tags, tools
 ;; X-RCS: $Id$
 
-(defvar speedbar-version "0.14"
+(defvar speedbar-version "0.14beta1"
   "The current version of speedbar.")
 
 ;; This file is part of GNU Emacs.
@@ -2622,7 +2622,10 @@ indicator, then do not add a space."
 	  (delete-region (match-beginning 0) (match-end 0))))
     (end-of-line)
     (if (not (string= " " indicator-string))
-	(insert indicator-string))))
+	(let ((start (point)))
+	  (insert indicator-string)
+	  (speedbar-insert-image-button-maybe start (length indicator-string))
+	  ))))
 
 ;; Load efs/ange-ftp only if compiling to remove byte-compiler warnings.
 ;; Steven L Baur <steve@xemacs.org> said this was important:
