@@ -334,6 +334,31 @@ manual, and update that."
 	(t
 	 (semantic-texi-update-doc-from-source token))))
 
+(defun semantic-texi-goto-source (&optional token)
+  "Jump to the source for the definition in the texinfo file TOKEN.
+If TOKEN is nil, it is derived from the deffn under POINT."
+  (interactive)
+  (if (not (or (featurep 'semanticdb) (semanticdb-minor-mode-p)))
+      (error "Texinfo updating only works when `semanticdb' is being used"))
+  (semantic-bovinate-toplevel t)
+  (when (not token)
+    (beginning-of-line)
+    (setq token (semantic-current-nonterminal)))
+  (if (not (eq (semantic-token-token token) 'def))
+      (error "Only deffns (or defun or defvar) can be updated"))
+  (let* ((name (semantic-token-name token))
+	 (toks (semanticdb-find-nonterminal-by-name name nil t nil t t))
+	 (done nil)
+	 )
+    (save-excursion
+      (while (and toks (not done))
+	(set-buffer (semantic-token-buffer (car toks)))
+	(when (not (eq major-mode 'texinfo-mode))
+	  (switch-to-buffer (semantic-token-buffer (car toks)))
+	  (goto-char (semantic-token-start (car toks)))
+	  (setq done t))
+	(setq toks (cdr toks))))))
+
 (provide 'semantic-texi)
 
 ;;; semantic-texi.el ends here
