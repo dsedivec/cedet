@@ -4082,7 +4082,8 @@ TEXT is the buffer's name, TOKEN and INDENT are unused."
 			       (save-excursion (end-of-line)
 					       (forward-char 1)
 					       (point))))
-  (speedbar-overlay-put speedbar-highlight-one-tag-line 'face 'highlight)
+  (speedbar-overlay-put speedbar-highlight-one-tag-line 'face
+			'speedbar-highlight-face)
   (add-hook 'pre-command-hook 'speedbar-unhighlight-one-tag-line)
   )
 
