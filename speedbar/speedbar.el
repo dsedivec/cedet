@@ -4,7 +4,7 @@
 ;;;
 ;;; Author: Eric M. Ludlam <zappo@gnu.ai.mit.edu>
 ;;; RCS: $Id$
-;;; Version: 0.3
+;;; Version: 0.3.1
 ;;; Keywords: file, tags, tools
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
@@ -130,7 +130,7 @@
 ;;;       Rearranged code into a more logical order
 ;;; 0.3.1 Fixed doc & broken keybindings
 ;;;       Added mode hooks.
-;;;       Improved face color selection
+;;;       Improved color selection to be background mode smart
 ;;;       `nil' passed to `speedbar-frame-mode' now toggles the frame as
 ;;;         advertised in the doc string
 ;;;       
