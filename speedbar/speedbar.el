@@ -720,8 +720,7 @@ supported at a time."
 		;;(make-local-variable 'current-menubar)
 		;;(setq current-menubar speedbar-menu)
 		;;(add-submenu nil speedbar-menu nil)
-		))
-	  (setq default-minibuffer-frame speedbar-attached-frame))
+		)))
 	(speedbar-set-timer speedbar-update-speed)
 	))))
 
@@ -806,6 +805,11 @@ Keybindings: \\<speedbar-key-map>
     (setq truncate-lines t)
     (make-local-variable 'frame-title-format)
     (setq frame-title-format "Speedbar")
+    ;; Set this up special just for the speedbar buffer
+    (if (null default-minibuffer-frame)
+	(progn
+	  (make-local-variable 'default-minibuffer-frame)
+	  (setq default-minibuffer-frame speedbar-attached-frame)))
     (make-local-variable 'temp-buffer-show-function)
     (setq temp-buffer-show-function 'speedbar-temp-buffer-show-function)
     (setq kill-buffer-hook '(lambda () (let ((skilling (boundp 'skilling)))
