@@ -1489,21 +1489,17 @@ updated."
 		 (concat " \\(" (regexp-quote newcf) "\\)\\("
 			 (regexp-quote speedbar-vc-indicator)
 			 "\\)?\n") nil t)
-		(progn
 		  ;; put the property on it
 		  (put-text-property (match-beginning 1)
 				     (match-end 1)
 				     'face 
 				     'speedbar-selected-face)
-		  (message "found...")
-		  )
 	      ;; Oops, it's not in the list.  Should it be?
 	      (if (and (string-match speedbar-file-regexp newcf)
 		       (string= (file-name-directory newcfd)
 				(expand-file-name default-directory)))
 		  ;; yes, it is (we will ignore unknowns for now...)
 		  (progn
-		    (message "Refreshing...")
 		    (speedbar-refresh)
 		    (if (re-search-forward 
 			 (concat " \\(" (regexp-quote newcf) "\\)\n") nil t)
