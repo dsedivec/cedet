@@ -354,57 +354,57 @@ may re-organize the list with side-effects."
   "Sort TOKENS by name in increasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (string-lessp (semantic-token-name b)
-			       (semantic-token-name a)))))
+		 (string-lessp (semantic-token-name a)
+			       (semantic-token-name b)))))
 
 (defun semantic-sort-tokens-by-name-decreasing (tokens)
   "Sort TOKENS by name in decreasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (string-lessp (semantic-token-name a)
-			       (semantic-token-name b)))))
+		 (string-lessp (semantic-token-name b)
+			       (semantic-token-name a)))))
 
 (defun semantic-sort-tokens-by-type-increasing (tokens)
   "Sort TOKENS by type in increasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (string-lessp (semantic-sort-token-type b)
-			       (semantic-sort-token-type a)))))
+		 (string-lessp (semantic-sort-token-type a)
+			       (semantic-sort-token-type b)))))
 
 (defun semantic-sort-tokens-by-type-decreasing (tokens)
   "Sort TOKENS by type in decreasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (string-lessp (semantic-sort-token-type a)
-			       (semantic-sort-token-type b)))))
+		 (string-lessp (semantic-sort-token-type b)
+			       (semantic-sort-token-type a)))))
 
 (defun semantic-sort-tokens-by-name-increasing-ci (tokens)
   "Sort TOKENS by name in increasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (semantic-string-lessp-ci (semantic-token-name b)
-					   (semantic-token-name a)))))
+		 (semantic-string-lessp-ci (semantic-token-name a)
+					   (semantic-token-name b)))))
 
 (defun semantic-sort-tokens-by-name-decreasing-ci (tokens)
   "Sort TOKENS by name in decreasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (semantic-string-lessp-ci (semantic-token-name a)
-					   (semantic-token-name b)))))
+		 (semantic-string-lessp-ci (semantic-token-name b)
+					   (semantic-token-name a)))))
 
 (defun semantic-sort-tokens-by-type-increasing-ci (tokens)
   "Sort TOKENS by type in increasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (semantic-string-lessp-ci (semantic-sort-token-type b)
-					   (semantic-sort-token-type a)))))
+		 (semantic-string-lessp-ci (semantic-sort-token-type a)
+					   (semantic-sort-token-type b)))))
 
 (defun semantic-sort-tokens-by-type-decreasing-ci (tokens)
   "Sort TOKENS by type in decreasing order with side effects.
 Return the sorted list."
   (sort tokens (lambda (a b)
-		 (semantic-string-lessp-ci (semantic-sort-token-type a)
-					   (semantic-sort-token-type b)))))
+		 (semantic-string-lessp-ci (semantic-sort-token-type b)
+					   (semantic-sort-token-type a)))))
 
 ;;; Recursive searching through dependency trees
 ;;
