@@ -337,9 +337,10 @@ TOP-LEVEL ENTRIES:
    that these be variables, functions or types).  PARENTS is strictly for
    classes where there is inheritance.
 
- (\"FILE\" include \"DOCSTRING\" START END)
+ (\"FILE\" include SYSTEM \"DOCSTRING\" START END)
    In C, an #include statement.  In elisp, a require statement.
    Indicates additional locations of sources or definitions.
+   SYSTEM is true if this include is part of a set of system includes.
 
  (\"NAME\" package DETAIL \"DOCSTRING\" START END)
    In Emacs Lisp, a `provide' statement.  DETAIL might be an
