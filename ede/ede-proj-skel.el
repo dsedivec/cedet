@@ -233,7 +233,7 @@
 ;;(defmethod ede-proj-makefile-insert-source-variables
 ;;           ((this ede-proj-target-%NAME%) &optional moresource)
 ;;  "Insert variables needed by target THIS."
-;;  (call-next-method this (oref this headers))
+;;  (call-next-method this (oref this %moresourceslotname%))
 
 ;; This method lets you add more variables specific to your type of target.
 ;;(defmethod ede-proj-makefile-insert-variables ((this ede-proj-target-%NAME%)
