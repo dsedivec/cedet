@@ -1111,6 +1111,8 @@ If VARIABLE is not project local, just use set."
 (autoload 'ede-speedbar "ede-speedbar" "Run speedbar in EDE project mode." t)
 (autoload 'ede-speedbar-file-setup "ede-speedbar" "EDE in Speedbar File mode hack." t)
 
+(eval-when-compile (require 'ede-speedbar))
+
 (if (featurep 'speedbar)
     (ede-speedbar-file-setup)
   (add-hook 'speedbar-load-hook 'ede-speedbar-file-setup))
