@@ -324,6 +324,7 @@ nil means don't show the file in the list."
 				       (width . 20)
 				       (border-width . 0)
 				       (menu-bar-lines . 0)
+				       (tool-bar-lines . 0)
 				       (unsplittable . t))
   "*Parameters to use when creating the speedbar frame in Emacs.
 Any parameter supported by a frame may be added.  The parameter `height'
