@@ -47,13 +47,33 @@
 ;; 0.1   - first revision copied from speedbspec.el V 0.1.1
 ;; 0.1.1 - Removed dependency on speedbspec
 ;; 0.2   - T.V.Raman's addition using newer w3, and w3 imenu.
+;; 0.2.1 - Added new keymap support
 
 ;;; Code:
 (require 'w3-imenu)
 (require 'cl)
+(require 'speedbar)
 
 (defvar w3-speedbar-last-buffer nil
   "The last buffer shown by w3-speedbar.")
+
+(defvar w3-speedbar-key-map nil
+  "Keymap used when in the w3 display mode.")
+
+(if w3-speedbar-key-map
+    nil
+  (setq w3-speedbar-key-map (speedbar-make-specialized-keymap))
+
+  ;; Basic features.
+  (define-key rmail-speedbar-key-map "e" 'speedbar-edit-line)
+  (define-key rmail-speedbar-key-map "r" 'speedbar-edit-line)
+  (define-key rmail-speedbar-key-map "\C-m" 'speedbar-edit-line)
+  )
+
+(defvar w3-speedbar-menu-items
+  '(["Jump to link" speedbar-edit-line t]
+    )
+  "Extra menu items for w3 mode.")
 
 (defun w3-speedbar-buttons (buffer)
   "Create speedbar buttons for the current web BUFFER displayed in w3 mode."
