@@ -428,9 +428,12 @@ If it is not shown, force it to appear in the default window."
 	       (not (eq (selected-window) (minibuffer-window))))
 	  (let ((af (selected-frame)))
 	    (save-window-excursion
-	      ;; Other frame is magic for the previously reffed frame.
-	      (if (eq af quickpeek-frame) (other-frame -1))
-	      (quickpeek-update-contents)))))))
+	      ;; This is magic for the previously reffed frame
+	      ;; excludes other dedicated frame applications.
+	      (while dframe-attached-frame
+		(select-frame (previous-frame (selected-frame))))
+	      (quickpeek-update-contents)
+	      (select-frame af)))))))
 
 (defun quickpeek-refresh ()
   "Refresh the current `quickpeek' display, disposing of any cached data."
