@@ -544,8 +544,9 @@ hierarchy would be replaced with the new directory."
   :group 'speedbar
   :type 'boolean)
 
-(defcustom speedbar-use-images (or (fboundp 'defimage)
-				   (fboundp 'make-image-specifier))
+(defcustom speedbar-use-images (and (or (fboundp 'defimage)
+					(fboundp 'make-image-specifier))
+				    window-system)
   "*Non nil if speedbar should display icons."
   :group 'speedbar
   :type 'boolean)
