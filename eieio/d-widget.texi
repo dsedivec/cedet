@@ -13,7 +13,7 @@
 @c on the expression below to rebuild the entire widget index (but only
 @c after loading in the dialog tool.)
 
-@c (cdoc-class widget-core "cw")
+@c (eieiodoc-class widget-core "cw")
 
 @menu
 * widget-core ::
