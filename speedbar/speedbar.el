@@ -1198,13 +1198,14 @@ and the existence of packages."
   (if (not speedbar-track-mouse-flag)
       nil
     (save-excursion
-      (let ((char (nth 1 (car (cdr event)))))
-	(if (not (numberp char))
-	    (speedbar-message nil)
-	  (goto-char char)
-	  ;; (speedbar-message "%S" event)
-	  (speedbar-item-info)
-	  )))))
+      (save-window-excursion
+	(condition-case nil
+	    (progn
+	      (mouse-set-point event)
+	      (if (eq major-mode 'speedbar-mode)
+		  ;; XEmacs may let us get in here in other mode buffers.
+		  (speedbar-item-info)))
+	  (t (speedbar-message nil)))))))
 
 (defun speedbar-show-info-under-mouse ()
   "Call the info function for the line under the mouse.
