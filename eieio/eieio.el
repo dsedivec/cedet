@@ -1711,8 +1711,19 @@ This is usually a symbol that starts with `:'."
 	  (list 'eieio-oset obj field store))
 	(defsetf eieio-oref (obj field) (store)
 	  (list 'eieio-oset obj field store))
-	(defsetf oref (obj field) (store)
-	  (list 'eieio-oset obj field store))))
+	;; The below setf method was written by
+	;; Arnd Kohrs <kohrs@acm.org>
+	(define-setf-method oref (obj field) 
+	  (let ((obj-temp (gensym)) 
+		(field-temp (gensym)) 
+		(store-temp (gensym))) 
+	    (list (list obj-temp field-temp) 
+		  (list obj `(quote ,field)) 
+		  (list store-temp) 
+		  (list 'set-slot-value obj-temp field-temp
+			store-temp)
+		  (list 'slot-value obj-temp field-temp))))
+	))
   )
 
 (add-hook 'eieio-hook 'eieio-cl-run-defsetf)
