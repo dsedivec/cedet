@@ -137,6 +137,7 @@
 	   (function . "Defuns")
 	   (include . "Requires")
 	   (package . "Provides"))
+	imenu-create-index-function 'semantic-create-imenu-index
 	))
 
 (add-hook 'emacs-lisp-mode-hook 'semantic-default-elisp-setup)
