@@ -384,6 +384,17 @@
     )
 "The moose is loose.")
 
+(defvar semantic-flex-c-extensions
+  '(("^#\\(if\\(def\\)?\\|else\\|endif\\)" . semantic-flex-c-if))
+  "Extensions to the flexer for C.")
+
+(defun semantic-flex-c-if ()
+  "Move the cursor and return nil when a #if is found."
+  ;; Future enhancement: Enable only the then or else clause depending on
+  ;; some mysterious knowledge.
+  (if (bolp) (end-of-line))
+  nil)
+
 (defun semantic-expand-c-nonterminal (nonterm)
   "Expand NONTERM into a list of equivalent nonterminals, or nil."
   (if (listp (car nonterm))
@@ -439,7 +450,8 @@
             (setq semantic-toplevel-bovine-table 
 		  semantic-toplevel-c-bovine-table
 		  semantic-expand-nonterminal 
-		  'semantic-expand-c-nonterminal)))
+		  'semantic-expand-c-nonterminal
+		  semantic-flex-extensions semantic-flex-c-extensions)))
 
 (provide 'semantic-ex)
 
