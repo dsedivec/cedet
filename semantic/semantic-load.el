@@ -57,10 +57,12 @@
   "Non-nil means turn on all features in the semantic package.")
 
 (when semantic-load-turn-everything-on
-  (add-hook 'semantic-init-hooks 'senator-minor-mode)
+  (add-hook 'semantic-init-hooks (lambda ()
+				   (senator-minor-mode 1)))
   (add-hook 'semantic-init-hooks 'turn-on-eldoc-mode)
   (if (fboundp 'which-func-mode)
-      (add-hook 'semantic-init-hooks 'which-funct-mode))
+      (add-hook 'semantic-init-hooks (lambda ()
+				       (which-func-mode 1))))
 
   (when (eq window-system 'x)
     (add-hook 'semantic-init-hooks (lambda ()
