@@ -147,6 +147,18 @@ IMAGESPEC is the image data, and DOCSTRING is documentation for the image."
   ((:type xpm :file "sb-mail.xpm" :ascent center))
   "Image used for open tag groups.")
 
+(defimage-speedbar speedbar-checkout
+  ((:type xpm :file "sb-chk.xpm" :ascent center))
+  "Image used for open tag groups.")
+
+(defimage-speedbar speedbar-object
+  ((:type xpm :file "sb-obj.xpm" :ascent center))
+  "Image used for open tag groups.")
+
+(defimage-speedbar speedbar-object-out-of-date
+  ((:type xpm :file "sb-objod.xpm" :ascent center))
+  "Image used for open tag groups.")
+
 (defvar speedbar-expand-image-button-alist
   '(("<+>" . speedbar-directory-plus)
     ("<->" . speedbar-directory-minus)
@@ -162,6 +174,9 @@ IMAGESPEC is the image data, and DOCSTRING is documentation for the image."
     (">" . speedbar-tag)
     ("@" . speedbar-tag-type)
     ("  @" . speedbar-tag-type)
+    ("*" . speedbar-checkout)
+    ("#" . speedbar-object)
+    ("!" . speedbar-object-out-of-date)
     )
   "List of text and image associations.")
 
