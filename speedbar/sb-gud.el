@@ -36,20 +36,15 @@
 ;; files are displayed.  These functions provide gud specific support,
 ;; showing stacks, files, and the like in the side-bar.
 ;;
-;;   To provide special service to all the modes supported by this file,
-;; put the following in your .emacs file.
-;;
-;; (require 'speedbspec)
-;;
-;;   This will load in the known functions, and the mode-enabling code
-;; into 'change-major-mode-hook.
+;;   To enable in emacs 20.2 or earlier, add this to your .emacs file.
+;;   (autoload 'gud-speedbar-buttons "sb-gud"
+;;             "GUD specific speedbar button generator.")
 ;;
 ;;   This file requires speedbar.
 
 ;;; Change log:
-;; 0.1 - Revision
-
-(require 'speedbspec)
+;; 0.1   - First revision
+;; 0.1.1 - Removed dependency on speedbspec.
 
 ;;; Code:
 (defvar gud-last-speedbar-buffer nil
