@@ -255,7 +255,6 @@ TEXT TOKEN and INDENT are the details."
     ;;(recenter)
     (speedbar-maybee-jump-to-attached-frame)
     (run-hooks 'speedbar-visiting-tag-hook)))
-    ))
 
 (defun semantic-sb-expand-group (text token indent)
   "Expand a group which has semantic tokens.
