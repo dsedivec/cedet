@@ -306,8 +306,8 @@ sources variable."
 (defmethod ede-proj-makefile-garbage-patterns ((this ede-proj-project))
   "Return a list of patterns that are considred garbage to THIS.
 These are removed with make clean."
-  (let ((mc (mapcar (lambda (c) (ede-proj-makefile-garbage-patterns c))
-		    (oref this targets)))
+  (let ((mc (ede-map-targets
+	     this (lambda (c) (ede-proj-makefile-garbage-patterns c))))
 	(uniq nil))
     (setq mc (sort (apply 'append mc) 'string<))
     ;; Filter out duplicates from the targets.
