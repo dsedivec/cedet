@@ -27,7 +27,7 @@
 ;;
 ;; Handle building programs from object files in and EDE Project file.
 
-(require 'ede-prog-obj)
+(require 'ede-proj-obj)
 
 ;;; Code:
 (defclass ede-proj-target-makefile-program
