@@ -31,8 +31,6 @@
 ;; rebuild.  The targets provided in ede-proj can be augmented with
 ;; additional target types inherited directly from `ede-proj-target'.
 
-(require 'ede)
-
 ;;; Class Definitions:
 (defclass ede-proj-target (ede-target)
   ((auxsource :initarg :auxsource

@@ -30,7 +30,6 @@
 ;; their project file by adding files (or whatever) directly from a
 ;; dired buffer.
 
-(require 'ede)
 (require 'easymenu)
 (require 'dired)
 
