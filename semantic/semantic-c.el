@@ -69,7 +69,7 @@
     (structparts
      ( semantic-list
        ,(lambda (vals start end)
-	  (append
+	  (append 
 	   (semantic-bovinate-from-nonterminal-full (car (nth 0 vals)) (cdr (nth 0 vals)) 'structsubparts)
 	   
 	   (list start end))))
@@ -81,7 +81,7 @@
     (enumparts
      ( semantic-list
        ,(lambda (vals start end)
-	  (append
+	  (append 
 	   (semantic-bovinate-from-nonterminal-full (car (nth 0 vals)) (cdr (nth 0 vals)) 'enumsubparts)
 	   
 	   (list start end))))
@@ -102,15 +102,15 @@
     (typesimple
      ( symbol "struct\\|union" opt-name structparts
 	      ,(lambda (vals start end)
-		 (append  (nth 1 vals) (list 'type (nth 0 vals) (nth 2 vals) nil nil)
+		 (append  (nth 1 vals) (list 'type (nth 0 vals) (nth 2 vals) nil nil nil)
 			  (list start end))))
      ( symbol "enum" opt-name enumparts
 	      ,(lambda (vals start end)
-		 (append  (nth 1 vals) (list 'type (nth 0 vals) (nth 2 vals) nil nil)
+		 (append  (nth 1 vals) (list 'type (nth 0 vals) (nth 2 vals) nil nil nil)
 			  (list start end))))
      ( symbol "typedef" typeform symbol
 	      ,(lambda (vals start end)
-		 (append  (list (nth 2 vals) 'type (nth 0 vals) nil (nth 1 vals) nil)
+		 (append  (list (nth 2 vals) 'type (nth 0 vals) nil (nth 1 vals) nil nil)
 			  (list start end))))
      ) ; end typesimple
     (type
@@ -242,7 +242,7 @@
 				 (list start end))))
      ( semantic-list
        ,(lambda (vals start end)
-	  (append
+	  (append 
 	   (semantic-bovinate-from-nonterminal-full (car (nth 0 vals)) (cdr (nth 0 vals)) 'arg-sub-list)
 	   
 	   (list start end))))
@@ -260,7 +260,7 @@
     (arg-list-p
      ( open-paren "(" semantic-list close-paren ")"
 		  ,(lambda (vals start end)
-		     (append
+		     (append 
 		      (semantic-bovinate-from-nonterminal-full (car (nth 1 vals)) (cdr (nth 1 vals)) 'arg-sub-list)
 		      
 		      (list start end))))
@@ -278,7 +278,7 @@
     (functiondef
      ( declmods typeform symbol arg-list
 		,(lambda (vals start end)
-		   (append  (list (nth 2 vals) 'function (nth 1 vals) (nth 3 vals) nil)
+		   (append  (list (nth 2 vals) 'function (nth 1 vals) (nth 3 vals) (nth 0 vals) nil)
 			    (list start end))))
      ) ; end functiondef
     (prototype
