@@ -56,9 +56,6 @@ All other sources should be included independently."))
    :commands '("makeinfo -o $@ $<")
    :autoconf '(("AC_CHECK_PROG" . "MAKEINFO, makeinfo"))
    :sourcetype '(ede-makeinfo-source)
-   ;; the extention keys off if we want intermediate files or not,
-   ;; not what the actual extention is.
-   :objectextention ".info"
    )
   "Compile texinfo files into info files.")
 
