@@ -476,6 +476,7 @@ SOURCEFILE is the file name from whence tokstream came."
   (if (not (eq major-mode 'semantic-bnf-mode))
       (error "Not valid outside the scope of a BNF file"))
   ;; Do the work
+  (semantic-clear-toplevel-cache)
   (let* ((fname (file-name-nondirectory (buffer-file-name)))
 	 (tok (semantic-bovinate-toplevel t))
 	 (bb (current-buffer))
@@ -497,7 +498,8 @@ SOURCEFILE is the file name from whence tokstream came."
 	(delete-blank-lines)
 	(let ((key (semantic-find-nonterminal-by-token 'keyword tok))
 	      (start (point)))
-	  (when key
+	  (if (not key)
+	      (insert "nil\n")
 	    (insert "(semantic-flex-make-keyword-table \n `(")
 	    (while key
 	      (insert " (" (nth 3 (car key)) " . " (car (car key)) ")\n")
