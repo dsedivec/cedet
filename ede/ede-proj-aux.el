@@ -6,14 +6,12 @@
 ;; Keywords: project, make
 ;; RCS: $Id$
 
-;; This file is NOT part of GNU Emacs.
-
-;; GNU Emacs is free software; you can redistribute it and/or modify
+;; This software is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation; either version 2, or (at your option)
 ;; any later version.
 
-;; GNU Emacs is distributed in the hope that it will be useful,
+;; This software is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
@@ -32,12 +30,14 @@
 
 ;;; Code:
 (defclass ede-proj-target-aux (ede-proj-target)
-  ()
+  ((sourcetype :initform (ede-aux-source)))
   "This target consists of aux files such as READMEs and COPYING.")
 
-(defmethod ede-want-file-p ((obj ede-proj-target-aux) file)
-  "Return t if OBJ wants to own FILE."
-  (string-match "README\\|\\.txt$" file))
+(defvar ede-aux-source
+  (ede-sourcecode "ede-aux-source"
+		  :name "Auxiliary"
+		  :sourcepattern "^[A-Z]+$\\|\\.txt$")
+  "Miscelaneous fiels definition.")
 
 (defmethod ede-proj-makefile-sourcevar ((this ede-proj-target-aux))
   "Return the variable name for THIS's sources."
