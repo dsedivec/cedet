@@ -1,7 +1,7 @@
 ;;; call-tree.el --- Uses tree mode to display a call tree of the
 ;;                  give emacs lisp function.
 ;;
-;; Copyright (C) 1996, 1998 Eric M. Ludlam
+;; Copyright (C) 1996, 1998, 2001 Eric M. Ludlam
 ;;
 ;; Author: <zappo@gnu.ai.mit.edu>
 ;; Version: 0.1
@@ -27,9 +27,6 @@
 ;;              Cambridge, MA 02139, USA.
 ;;
 ;; Please send bug reports, etc. to zappo@gnu.org
-
-;; Tree can be found in the eieio distribution on:
-;;  ftp://ftp.ultranet.com/pub/zappo
 
 ;;; Commentary:
 ;;   This function allows the user to display a call tree for a
