@@ -172,7 +172,7 @@ Optional argument NOTYPECHECK specifies not to make subgroups under types."
 		(if res		; in case, e.g. no functions defined
 		    (prog1 (nreverse res) (setcdr res oldlist))))
 	      imenu-sort-function)
-      index)))
+      (nreverse index))))
 
 ;;; Interactive Utilities
 ;;
