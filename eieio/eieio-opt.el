@@ -395,6 +395,15 @@ Optional argument HISTORYVAR is the variable to use as history."
 		      (t nil))
 		))))))))
 
+(defun eieio-help-augment-keymap ()
+  "Augment the help keymap for cool EIEIO stuff."
+  (define-key help-map "g" 'describe-generic)
+  (define-key help-map "C" 'describe-class))
+
+(if (and (boundp 'help-map) help-map)
+    (eieio-help-augment-keymap)
+  (eval-after-load 'help 'eieio-help-augment-keymap))
+
 ;;; How about showing the hierarchy in speedbar?  Cool!
 ;;
 (eval-when-compile
