@@ -31,6 +31,10 @@
 ;;   Document then provides some rules for creating English Text based
 ;; on the name of a given function, it's return type, or variable
 ;; type.  It also has output rules for texinfo, or comments.
+;;
+;; NOTE: Some of the user level commands in document.el dealing with
+;; texinfo files have been obsoleted commands in semantic-texi, which
+;; can not insert foriegn tokens.
 
 (require 'sformat)
 (require 'document-vars)
