@@ -338,10 +338,11 @@ Sets up the semanticdb environment."
       (semantic-overlay-cache))
     ))
 
-(defun semanticdb-post-bovination ()
-  "Function run after a bovination."
+(defun semanticdb-post-bovination (new-table)
+  "Function run after a bovination.
+Argument NEW-TABLE is the new table of tokens."
   (if semanticdb-current-table
-      (oset semanticdb-current-table tokens semantic-toplevel-bovine-cache)))
+      (oset semanticdb-current-table tokens new-table)))
 
 (defun semanticdb-kill-hook ()
   "Function run when a buffer is killed.
