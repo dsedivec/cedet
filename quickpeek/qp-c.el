@@ -152,14 +152,16 @@
 		      (re-search-backward
 		       (concat
 			"\\(^\\s-*\\|^\\s-*static\\s-+\\|^\\s-*const\\s-+"
-			"\\|[(,]\\s-*\\)\\(\\w+\\)"
+			"\\|[(,]\\s-*\\)"
+			"\\(\\s-*\\|unsigned\\s-+\\|short\\s-+\\|signed\\s-+\\)"
+			"\\(\\w+\\)"
 			"\\(\\s-*\\*+\\s-*\\|\\s-+\\)"
 			(regexp-quote variable) "\\s-*[[,;=)]")
 		       nil t))
 		    (not (save-match-data
 			   (string-match "\\(struct\\|union\\|enum\\)"
-					 (match-string 2)))))
-		 (list (cons (concat (match-string 2) (match-string 3))
+					 (match-string 3)))))
+		 (list (cons (concat (match-string 3) (match-string 4))
 			     'font-lock-type-face)))
 	      (;; Well, it might be in the middle of a list
 	       ;; of variables after a type.  Unfortunatly, this
@@ -373,6 +375,8 @@
      (("#if " . bold) ("<cond> " . italic) "code " ("#endif". bold)))
     ("pragma" .
      (("#pragma " . bold) "<compiler key word>"))
+    ("include" .
+     (("#include " . bold) "\"file.h\" -OR- <file.h>"))
     )
   "List of pre-processor macros we like to match against.")
 
