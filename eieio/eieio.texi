@@ -395,7 +395,7 @@ overridden it's return value will be returned from the function
 attempting to reference its value.
 @end defun
 
-@defun no-method-definition object method
+@defun no-applicable-method object method
 This method is called when there is an attempt to call a method on
 @var{object} when there is no method to call.  The default method throws
 a @code{no-method-definition} signal.  The return value of this function
