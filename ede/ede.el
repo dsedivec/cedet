@@ -453,14 +453,14 @@ Argument MENU-DEF is the menu definition to use."
    (easy-menu-create-menu
     "Target Forms"
     (let ((obj (or ede-selected-object ede-object)))
-      (if (not obj)
-	  nil
-	(append
-	 '([ "Add File" ede-add-file (ede-current-project) ]
-	   [ "Remove File" ede-remove-file
-	     (and ede-object
-		  (or (listp ede-object)
-		      (not (obj-of-class-p ede-object ede-project)))) ])
+      (append
+       '([ "Add File" ede-add-file (ede-current-project) ]
+	 [ "Remove File" ede-remove-file
+	   (and ede-object
+		(or (listp ede-object)
+		    (not (obj-of-class-p ede-object ede-project)))) ])
+       (if (not obj)
+	   nil
 	 (if (and (not (listp obj)) (oref obj menu))
 	     (oref obj menu)
 	   (when (listp obj)
