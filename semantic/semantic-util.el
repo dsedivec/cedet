@@ -676,7 +676,11 @@ depended on, and functions will move to the specified definition."
       nil
     (let ((s (semantic-fetch-overload 'find-nonterminal)))
       (if s (funcall s token parent)
-	(set-buffer (semantic-token-buffer token))
+	(if (semantic-token-buffer token)
+	    ;; If the token has no buffer, it may be deoverlayed.
+	    ;; Assume the tool doing the finding knows that we came
+	    ;; in from a database, and use the current buffer.
+	    (set-buffer (semantic-token-buffer token)))
 	(let ((start (semantic-token-start token)))
 	  (if (numberp start)
 	      ;; If it's a number, go there
