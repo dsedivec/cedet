@@ -360,7 +360,7 @@ smallest token."
 ;; and splice in new tokens after a partial reparse.
 
 (defun semantic-change-function-mark-dirty  (start end length)
-  "Run whenever a buffer controlled by `semantic-mode' change.
+  "Run whenever a buffer controlled by `semantic-mode' changes.
 Tracks when and how the buffer is re-parsed.
 Argument START, END, and LENGTH specify the bounds of the change."
   (when (and (not semantic-toplevel-bovine-cache-check)
@@ -1485,9 +1485,11 @@ If ARG is nil, then toggle."
 	;; Remove hooks
 	(remove-hook 'semantic-dirty-token-hooks 'semantic-show-dirty-token-hook-fcn)
 	(remove-hook 'semantic-clean-token-hooks 'semantic-show-clean-token-hook-fcn)
+	(remove-hook 'after-save-hook 'semantic-rebovinate-quickly-hook)
 	)
     (add-hook 'semantic-dirty-token-hooks 'semantic-show-dirty-token-hook-fcn)
     (add-hook 'semantic-clean-token-hooks 'semantic-show-clean-token-hook-fcn)
+    (add-hook 'after-save-hook 'semantic-rebovinate-quickly-hook)
     ))
 
 ;;; Hacks
