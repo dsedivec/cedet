@@ -27,8 +27,6 @@
 ;;
 ;; Please send bug reports, etc. to zappo@gnu.org
 ;;
-;; Updates can be found at:
-;;    ftp://ftp.ultranet.com/pub/zappo
 
 ;;; Commentary:
 ;;  
@@ -474,7 +472,8 @@ METHOD is the method that was attempting to be called."
 	  :initform "foo"))
   "A Persistent object with two initializable slots.")
 
-(defvar PO1 (PO "persist" :slot1 4 :slot2 "testing" :file "test-p.el"))
+(defvar PO1 (PO "persist" :slot1 4 :slot2 "testing"
+		:file (concat default-directory "test-p.el")))
 
 (eieio-persistent-save PO1)
 
