@@ -259,7 +259,7 @@ r, s, t = 1, 2, '3'
 
 
 )
-;  "pyhon test case. notice that python is indentation sensitive
+;; Python test case.  Notice that Python is indentation sensitive.
 
 
 (defvar semantic-utest-Python-name-contents
@@ -792,7 +792,7 @@ INSERTME is the text to be inserted after the deletion."
        semantic-utest-Python-buffer-contents
        semantic-utest-Python-name-contents
        '("fun2") "#1" "#deleted line")
-    (message "Skilling Python test: NO major mode."))
+    (message "Skipping Python test: NO major mode."))
   )
 
 
